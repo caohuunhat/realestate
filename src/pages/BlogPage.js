@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Banner from './Banner';
+import Banner from '../components/Banner';
 
-class Blog extends Component {
+class BlogPage extends Component {
     render() {
+        let pageName = 'Blog';
         return (
             <div>
                 {/* banner */}
-                <Banner />
+                <Banner pageName={pageName}/>
                 {/* banner */}
                 <div className="container">
                     <div className="spacer blog">
@@ -133,4 +134,4 @@ class Blog extends Component {
     }
 }
 
-export default Blog;
+export default BlogPage;

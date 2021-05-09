@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Banner from './Banner';
+import Banner from '../components/Banner';
 
-class BlogDetail extends Component {
+class BlogDetailPage extends Component {
     render() {
         return (
             <div>
@@ -86,4 +86,4 @@ class BlogDetail extends Component {
     }
 }
 
-export default BlogDetail;
+export default BlogDetailPage;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Banner from './Banner';
+import Banner from '../components/Banner';
 
-class Category extends Component {
+class CategoryPage extends Component {
     render() {
         return (
             <div>
@@ -19,7 +19,6 @@ class Category extends Component {
                                             <select className="form-control">
                                                 <option>Buy</option>
                                                 <option>Rent</option>
-                                                <option>Sale</option>
                                             </select>
                                         </div>
                                         <div className="col-lg-7">
@@ -260,4 +259,4 @@ class Category extends Component {
     }
 }
 
-export default Category;
+export default CategoryPage;

@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
+import {
+    Link, Route
+} from 'react-router-dom';
+
+const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
+    return (
+        <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => {
+            var active = match ? 'active' : '';
+            return (
+                <li className={active}>
+                    <Link to={to}>{label}</Link>
+                </li>
+            )
+        }}
+        />
+    )
+}
 
 class Header extends Component {
     render() {
         return (
-            <div>
+            <>
                 {/* Header Starts */}
                 <div className="navbar-wrapper">
 
@@ -17,45 +34,46 @@ class Header extends Component {
                                     <span className="icon-bar"></span>
                                     <span className="icon-bar"></span>
                                 </button>
-
                             </div>
 
 
                             {/* Nav Starts */}
                             <div className="navbar-collapse  collapse">
                                 <ul className="nav navbar-nav navbar-right">
-                                    <li className="active"><a href="index.php">Home</a></li>
+                                    {/* <li className="active"><a href="index.php">Home</a></li>
                                     <li><a href="about.php">About</a></li>
                                     <li><a href="agents.php">Agents</a></li>
                                     <li><a href="blog.php">Blog</a></li>
-                                    <li><a href="contact.php">Contact</a></li>
+                                    <li><a href="contact.php">Contact</a></li> */}
+
+                                    <MenuLink label="Home" to="/" activeOnlyWhenExact={true} />
+                                    <MenuLink label="About" to="/about" activeOnlyWhenExact={false} />
+                                    <MenuLink label="Agent" to="/agent" activeOnlyWhenExact={false} />
+                                    <MenuLink label="Blog" to="/blog" activeOnlyWhenExact={false} />
+                                    <MenuLink label="Contact" to="/contact" activeOnlyWhenExact={false} />
                                 </ul>
                             </div>
                             {/* Nav Ends */}
 
                         </div>
                     </div>
-
                 </div>
                 {/* Header Starts */}
 
 
                 <div className="container">
-
                     {/* Header Starts */}
                     <div className="header">
-                        <a href="index.php"><img src="images/logo.png" alt="Realestate"></img></a>
+                        <Link to="/"><img src="images/logo.png" alt="Realestate"></img></Link>
 
                         <ul className="pull-right">
-                            <li><a href="buysalerent.php">Buy</a></li>
-                            <li><a href="buysalerent.php">Sale</a></li>
-                            <li><a href="buysalerent.php">Rent</a></li>
+                            <MenuLink label="Nhà Đất Bán" to="/buy"/>
+                            <MenuLink label="Nhà Đất Thuê" to="/rent"/>
                         </ul>
-
                     </div>
                     {/* Header Starts</div> */}
                 </div>
-            </div>
+            </>
         );
     }
 }

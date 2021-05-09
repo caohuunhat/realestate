@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Banner from './Banner';
+import Banner from '../components/Banner';
 
-class ProductDetail extends Component {
+class ProductDetailPage extends Component {
     render() {
+        let pageName = 'Thông tin chi tiết'
         return (
             <div>
                 {/* banner */}
-                <Banner />
+                <Banner pageName={pageName} />
                 {/* banner */}
                 <div className="container">
                     <div className="properties-listing spacer">
@@ -14,30 +15,14 @@ class ProductDetail extends Component {
                             <div className="col-lg-3 col-sm-4 hidden-xs">
                                 <div className="hot-properties hidden-xs">
                                     <h4>Hot Properties</h4>
-                                    <div className="row">
-                                        <div className="col-lg-4 col-sm-5"><img src="images/properties/4.jpg" className="img-responsive img-circle" alt="properties" /></div>
-                                        <div className="col-lg-8 col-sm-7">
-                                            <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                            <p className="price">$300,000</p> </div>
-                                    </div>
+                                    {/* Bài đăng nổi bật */}
                                     <div className="row">
                                         <div className="col-lg-4 col-sm-5"><img src="images/properties/1.jpg" className="img-responsive img-circle" alt="properties" /></div>
                                         <div className="col-lg-8 col-sm-7">
                                             <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
                                             <p className="price">$300,000</p> </div>
                                     </div>
-                                    <div className="row">
-                                        <div className="col-lg-4 col-sm-5"><img src="images/properties/3.jpg" className="img-responsive img-circle" alt="properties" /></div>
-                                        <div className="col-lg-8 col-sm-7">
-                                            <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                            <p className="price">$300,000</p> </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-lg-4 col-sm-5"><img src="images/properties/2.jpg" className="img-responsive img-circle" alt="properties" /></div>
-                                        <div className="col-lg-8 col-sm-7">
-                                            <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                            <p className="price">$300,000</p> </div>
-                                    </div>
+                                    {/* Bài đăng nổi bật */}
                                 </div>
                                 <div className="advertisement">
                                     <h4>Advertisements</h4>
@@ -131,4 +116,4 @@ class ProductDetail extends Component {
     }
 }
 
-export default ProductDetail;
+export default ProductDetailPage;

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Banner from './Banner';
+import Banner from '../components/Banner';
 
-class Agent extends Component {
+class AgentPage extends Component {
     render() {
+        let pageName = 'Agent';
         return (
             <div>
                 {/* banner */}
-                <Banner/>
+                <Banner pageName={pageName}/>
                 {/* banner */}
                 <div className="container">
                     <div className="spacer agents">
@@ -49,9 +50,8 @@ class Agent extends Component {
                     </div>
                 </div>
             </div>
-
         );
     }
 }
 
-export default Agent;
+export default AgentPage;
