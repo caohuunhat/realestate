@@ -36,9 +36,6 @@ class Login extends Component {
                 } else {
                     alert(res.success)
                     this.props.history.push('/')
-                    this.setState({
-                        redirect: true
-                    })
                     if (typeof (Storage) !== 'undefined') {
                         sessionStorage.setItem('token', res.data.token);
                     } else {

@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export default function callAPI(url, method = 'GET', body) {
+export default function callAPI(url, method, body) {
     return axios({
-        method: method,
         url: url,
+        method: method,
         data: body
     })
         .catch(err => {
-            alert(err.data.errors)
+            alert(err)
         })
 };

@@ -14,6 +14,10 @@
     margin-bottom: 40px;
 }
 
+.bd-b {
+    border-bottom: 1px solid rgba(218, 214, 214, 0.39);
+}
+
 .p-text {
     width: auto;
     overflow: hidden;
@@ -35,6 +39,29 @@
     color: #72b70f;
 }
 
-.star-color{
+.star-color {
     color: red;
+}
+
+.profile {
+    height: 500px;
+    padding: 10px 0px;
+    background-color: blanchedalmond;
+}
+
+.list {
+    background-color: red;
+}
+
+.btn-profile {
+    background-color: #31bafd;
+    border: 1px solid #2b9ed8;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.btn-profile:hover {
+    color: black;
+    border: outset;
 }

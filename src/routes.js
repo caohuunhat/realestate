@@ -12,6 +12,7 @@ import ProductManPage from './pages/ProductManPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Login from './components/Login';
 import Register from './components/Register';
+import ManamentPage from "./pages/ManamentPage";
 
 const routes = [
     {
@@ -63,6 +64,11 @@ const routes = [
         path: '/productDetailPage',
         exact: false,
         main: () => <ProductDetailPage />
+    },
+    {
+        path: '/manament',
+        exact: false,
+        main: () => <ManamentPage />
     },
     {
         path: '/login',
