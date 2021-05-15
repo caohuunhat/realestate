@@ -1,14 +1,12 @@
 import React from 'react';
 import AboutPage from './pages/AboutPage';
 import AgentPage from './pages/AgentPage';
-import BlogPage from './pages/BlogPage';
 import BuyCategoryPage from './pages/BuyCategoryPage';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import RentCategoryPage from './pages/RentCategoryPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AddProductPage from './pages/AddProductPage';
-import ProductManPage from './pages/ProductManPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -31,11 +29,6 @@ const routes = [
         main: () => <AgentPage />
     },
     {
-        path: '/blog',
-        exact: false,
-        main: () => <BlogPage />
-    },
-    {
         path: '/contact',
         exact: false,
         main: () => <ContactPage />
@@ -56,14 +49,14 @@ const routes = [
         main: () => <AddProductPage />
     },
     {
-        path: '/productManament',
+        path: '/manamentPage',
         exact: false,
-        main: () => <ProductManPage />
+        main: () => <ManamentPage />
     },
     {
-        path: '/productDetailPage',
+        path: '/productDetailPage/:id',
         exact: false,
-        main: () => <ProductDetailPage />
+        main: ({ match }) => <ProductDetailPage match={match.params.id} />
     },
     {
         path: '/manament',

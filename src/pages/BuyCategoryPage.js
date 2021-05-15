@@ -2,11 +2,60 @@ import React, { Component } from 'react';
 import Banner from '../components/Banner';
 import HotProperties from '../components/HotProperties';
 import Properties from '../components/Properties'
+import axios from 'axios'
+import Pagination from '../components/Pagination';
+
 
 
 class BuyCategoryPage extends Component {
+    state = {
+        datas: [],
+        currentPage: 1,
+    }
+
+    showProduct = () => {
+        const { datas } = this.state
+        return datas.map(data => {
+            return <Properties data={data} />
+        })
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php?page=1&row_per_page=5', {
+            params: {
+                page: this.state.currentPage,
+                row_per_page: '9'
+            }
+        })
+            .then(res => {
+                this.setState({
+                    datas: res.data.list
+                })
+            })
+    }
+
+    onCurrentPage = (currentPage) => {
+        this.setState({
+            currentPage: currentPage
+        })
+
+        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php?page=1&row_per_page=5', {
+            params: {
+                page: this.state.currentPage,
+                row_per_page: '9'
+            }
+        })
+            .then(res => {
+                this.setState({
+                    datas: res.data.list
+                })
+            })
+    }
+
     render() {
-        let pageName = 'Nhà Đất Bán';
+        const { datas, currentPage } = this.state;
+        // console.log(currentPage);
+        const pageName = 'Nhà Đất Bán';
         return (
             <>
                 {/* banner */}
@@ -16,17 +65,17 @@ class BuyCategoryPage extends Component {
                     <div className="properties-listing spacer">
                         <div className="row">
                             <div className="col-lg-3 col-sm-4 ">
-                                <div className="search-form"><h4><span className="glyphicon glyphicon-search" /> Search for</h4>
-                                    <input type="text" className="form-control" placeholder="Search of Properties" />
+                                <div className="search-form"><h4><span className="glyphicon glyphicon-search" />Tìm theo</h4>
+                                    <input type="text" className="form-control" placeholder="Tìm kiếm theo tên" />
                                     <div className="row">
                                         <div className="col-lg-5">
                                             <select className="form-control">
-                                                <option>Buy</option>
+                                                <option>Cần Bán</option>
                                             </select>
                                         </div>
                                         <div className="col-lg-7">
                                             <select className="form-control">
-                                                <option>Price</option>
+                                                <option>Giá</option>
                                                 <option>$150,000 - $200,000</option>
                                                 <option>$200,000 - $250,000</option>
                                                 <option>$250,000 - $300,000</option>
@@ -37,14 +86,14 @@ class BuyCategoryPage extends Component {
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <select className="form-control">
-                                                <option>Property Type</option>
+                                                <option>Loại</option>
                                                 <option>Apartment</option>
                                                 <option>Building</option>
                                                 <option>Office Space</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <button className="btn btn-primary">Find Now</button>
+                                    <button className="btn btn-primary">Tìm kiếm</button>
                                 </div>
                                 <div className="hot-properties hidden-xs">
                                     <h4>Bài đăng nổi bật</h4>
@@ -58,26 +107,21 @@ class BuyCategoryPage extends Component {
                                     {/* <div className="pull-left result">Showing: 12 of 100 </div> */}
                                     <div className="pull-right">
                                         <select className="form-control">
-                                            <option>Sort by</option>
+                                            <option>Lọc</option>
                                             <option>Price: Low to High</option>
                                             <option>Price: High to Low</option>
                                         </select></div>
                                 </div>
                                 <div className="row">
                                     {/* properties */}
-                                    <Properties />
+                                    {this.showProduct()}
                                     {/* properties */}
                                 </div>
                                 <div className="center">
-                                    <ul className="pagination">
-                                        <li><a href="#">«</a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">»</a></li>
-                                    </ul>
+                                    <Pagination
+                                        checkDatas={datas}
+                                        onCurrentPage={this.onCurrentPage}
+                                    />
                                 </div>
                             </div>
                         </div>

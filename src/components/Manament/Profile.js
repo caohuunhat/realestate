@@ -28,7 +28,7 @@ class Profile extends Component {
     render() {
         const { full_name, email, phone, sex } = this.state;
         return (
-            <div className="profile" >
+            <div className="man-profile" >
                 <div class="row text-center">
                     <div class="col-sm-12">
                         <img src="/images/anh_user.png" width="50%" alt="anh user" />

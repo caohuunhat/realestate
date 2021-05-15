@@ -36,6 +36,7 @@ class Login extends Component {
                 } else {
                     alert(res.success)
                     this.props.history.push('/')
+                    window.location.reload();
                     if (typeof (Storage) !== 'undefined') {
                         sessionStorage.setItem('token', res.data.token);
                     } else {

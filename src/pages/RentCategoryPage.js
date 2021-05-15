@@ -1,11 +1,57 @@
 import React, { Component } from 'react'
 import Banner from '../components/Banner'
 import HotProperties from '../components/HotProperties';
+import Pagination from '../components/Pagination';
 import Properties from '../components/Properties';
+import axios from 'axios'
 
 class RentCategoryPage extends Component {
+    state = {
+        datas: [],
+        currentPage: 1,
+    }
+
+    showProduct = () => {
+        const { datas } = this.state
+        return datas.map(data => {
+            return <Properties data={data} />
+        })
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_rent.php?page=1&row_per_page=5', {
+            params: {
+                page: this.state.currentPage,
+                row_per_page: '9'
+            }
+        })
+            .then(res => {
+                this.setState({
+                    datas: res.data.list
+                })
+            })
+    }
+
+    onCurrentPage = (currentPage) => {
+        this.setState({
+            currentPage: currentPage
+        })
+
+        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_rent.php?page=1&row_per_page=5', {
+            params: {
+                page: this.state.currentPage,
+                row_per_page: '9'
+            }
+        })
+            .then(res => {
+                this.setState({
+                    datas: res.data.list
+                })
+            })
+    }
     render() {
-        let pageName = 'Nhà Đất Thuê';
+        const { datas, currentPage } = this.state;
+        const pageName = 'Nhà Đất Thuê';
         return (
             <div>
                 {/* banner */}
@@ -64,19 +110,14 @@ class RentCategoryPage extends Component {
                                 </div>
                                 <div className="row">
                                     {/* properties */}
-                                    <Properties />
+                                    {this.showProduct()}
                                     {/* properties */}
                                 </div>
                                 <div className="center">
-                                    <ul className="pagination">
-                                        <li><a href="#">«</a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">»</a></li>
-                                    </ul>
+                                    <Pagination
+                                        checkDatas={datas}
+                                        onCurrentPage={this.onCurrentPage}
+                                    />
                                 </div>
 
                             </div>
