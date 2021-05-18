@@ -144,6 +144,8 @@ class AddProductPage extends Component {
         return newPostType;
     }
 
+    //Hello
+
     handleOnSubmitPost = (e) => {
         e.preventDefault();
         const { selKind, selType, txtTitle, selPostType, selCity, selDistrict, selWard, txtStreet, txtHouseNum, txtPrice, txtArea, txtDesc, selNumDay, fileImages } = this.state;
