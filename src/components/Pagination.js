@@ -36,7 +36,7 @@ class Pagination extends Component {
         let { checkDatas } = this.props
         let prevStop = currentPage === 1 ? 'disable' : '';
         let nextStop = checkDatas.length === 9 ? '' : 'disable';
-        console.log(checkDatas.length);
+        // console.log(checkDatas.length);
         return (
             <ul className="pagination">
                 <li

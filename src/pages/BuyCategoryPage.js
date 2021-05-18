@@ -21,7 +21,7 @@ class BuyCategoryPage extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php?page=1&row_per_page=5', {
+        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php?page=2&row_per_page=10', {
             params: {
                 page: this.state.currentPage,
                 row_per_page: '9'
@@ -39,7 +39,7 @@ class BuyCategoryPage extends Component {
             currentPage: currentPage
         })
 
-        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php?page=1&row_per_page=5', {
+        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php?page=2&row_per_page=10', {
             params: {
                 page: this.state.currentPage,
                 row_per_page: '9'

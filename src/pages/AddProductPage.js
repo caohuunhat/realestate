@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import Banner from '../components/Banner'
-import { getCity, getDistrict, getWard, getKindNew } from '../constans/getAPI'
+import { getCity, getDistrict, getWard, getKindNew, getPropertyType, getPostType } from '../constans/getAPI'
+import callApiAu from '../utils/callApiAu'
 
 class AddProductPage extends Component {
     state = {
@@ -16,24 +16,48 @@ class AddProductPage extends Component {
         txtPrice: '',
         txtArea: '',
         txtDesc: '',
-        fileImage: '',
+        fileImages: [],
         selPostType: '',
         selNumDay: '',
         status: 0,
         cityDatas: [],
         districtDatas: [],
         wardDatas: [],
-        kindNewDatas: []
+        kindNewDatas: [],
+        propertyType: [],
+        postType: [],
     }
 
 
     onChange = (e) => {
-        let target = e.target;
-        let name = target.name;
-        let value = target.value;
+        const target = e.target;
+        const name = target.name;
+        const value = target.value;
         this.setState({
             [name]: value
         })
+    }
+
+    onChangeFile = (e) => {
+        const { fileImages } = this.state;
+        const file = e.target.files;
+
+        const newImages = [...file]
+
+        const imagesName = []
+        newImages.map(img => (
+            imagesName.push(img.name)
+        ))
+
+        if (newImages.length > 5) {
+            alert("Vui lòng chọn dưới 5 ảnh")
+        } else if (newImages.length < 3) {
+            alert("Vui lòng chọn ít nhất 3 ảnh")
+        } else {
+            this.setState({
+                fileImages: imagesName
+            })
+        }
     }
 
     componentDidMount() {
@@ -57,6 +81,24 @@ class AddProductPage extends Component {
                 kindNewDatas: res.data.list
             })
         })
+        getPropertyType().then(res => {
+            this.setState({
+                propertyType: res.data.list
+            })
+        })
+        getPostType().then(res => {
+            this.setState({
+                postType: res.data.list
+            })
+        })
+    }
+
+    newCity = () => {
+        const { cityDatas } = this.state
+        const newCity = cityDatas.map(city => {
+            return <option value={city.city_id}>{city.cityName}</option>
+        })
+        return newCity;
     }
 
     newDistrict = () => {
@@ -86,6 +128,48 @@ class AddProductPage extends Component {
         return newKind;
     }
 
+    propertyType = () => {
+        const { propertyType } = this.state
+        const newType = propertyType.map(type => {
+            return <option value={type.chouse_id}>{type.name}</option>
+        })
+        return newType;
+    }
+
+    postType = () => {
+        const { postType } = this.state;
+        const newPostType = postType.map(type => {
+            return <option value={type.ptype_id}>{type.name}</option>
+        })
+        return newPostType;
+    }
+
+    handleOnSubmitPost = (e) => {
+        e.preventDefault();
+        const { selKind, selType, txtTitle, selPostType, selCity, selDistrict, selWard, txtStreet, txtHouseNum, txtPrice, txtArea, txtDesc, selNumDay, fileImages } = this.state;
+        const token = sessionStorage.getItem("token");
+        callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/add_property.php', 'POST', token,
+            {
+                chouse_id: selKind,
+                ptype_id: selType,
+                caption: txtTitle,
+                kind_id: selPostType,
+                city_id: selCity,
+                district_id: selDistrict,
+                ward_id: selWard,
+                street: txtStreet,
+                apartment_number: txtHouseNum,
+                estimated_price: txtPrice,
+                land_area: txtArea,
+                description: txtDesc,
+                day_number: selNumDay,
+                p_photo: fileImages
+            })
+            .then(res => {
+                console.log(res);
+            })
+    }
+
     render() {
         console.log(this.state);
         const pageName = 'Đăng tin';
@@ -101,15 +185,11 @@ class AddProductPage extends Component {
             txtPrice,
             txtArea,
             txtDesc,
-            fileImage,
+            fileImages,
             selPostType,
             selNumDay,
-            cityDatas,
         } = this.state;
-
-        const optionCity = cityDatas.map(city => {
-            return <option value={city.city_id}>{city.cityName}</option>
-        })
+        console.log(fileImages);
         return (
             <>
                 <Banner pageName={pageName} />
@@ -122,7 +202,7 @@ class AddProductPage extends Component {
                                 <h3>ĐĂNG TIN RAO BÁN, CHO THUÊ NHÀ ĐẤT</h3>
                                 <p>(Quý vị nhập thông tin nhà đất cần bán hoặc cho thuê vào các mục dưới đây)</p>
                             </div>
-                            <form>
+                            <form onSubmit={this.handleOnSubmitPost}>
                                 <div className="form-group">
                                     <label>Tiêu đề(<span className="star-color">*</span>)</label>
                                     <input
@@ -148,8 +228,7 @@ class AddProductPage extends Component {
                                                 onChange={this.onChange}
                                             >
                                                 <option>-- Hình thức --</option>
-                                                <option value="Nhà đất bán">Nhà đất bán</option>
-                                                <option value="Nhà cho thuê">Nhà cho thuê</option>
+                                                {this.postType()}
                                             </select>
                                         </div>
                                     </div>
@@ -163,12 +242,7 @@ class AddProductPage extends Component {
                                                 onChange={this.onChange}
                                             >
                                                 <option>-- Loại --</option>
-                                                <option value={1}>Căn hộ chung cư</option>
-                                                <option value={2}>Nhà riêng</option>
-                                                <option value={3}>Nhà mặt phố</option>
-                                                <option value={4}>Đất nền</option>
-                                                <option value={5}>Nhà biệt thự</option>
-                                                <option value={6}>Khác</option>
+                                                {this.propertyType()}
                                             </select>
                                         </div>
                                     </div>
@@ -183,7 +257,7 @@ class AddProductPage extends Component {
                                         onChange={this.onChange}
                                     >
                                         <option>-- Chọn thành phố --</option>
-                                        {optionCity}
+                                        {this.newCity()}
                                     </select>
                                 </div>
                                 <div className="form-group">
@@ -234,9 +308,7 @@ class AddProductPage extends Component {
                                             name="txtStreet"
                                             value={txtStreet}
                                             onChange={this.onChange}
-                                            placeholder="Nhập vào số nhà"
-                                            pattern="[0-9]{1,8}"
-                                            title="Vui lòng nhập 'số' và '/' và không quá 8 ký tự"
+                                            placeholder="Nhập vào đường"
                                         />
                                     </div>
                                 </div>
@@ -288,12 +360,10 @@ class AddProductPage extends Component {
                                             <label>Tải ảnh lên (<span className="star-color">không quá 5 ảnh</span>)</label>
                                             <input
                                                 type="file"
-                                                accept="image/x-png,image/gif,image/jpeg"
-                                                multiple="multiple"
-                                                required
-                                                name="fileImage"
-                                                value={fileImage}
-                                                onChange={this.onChange}
+                                                multiple
+                                                accept=".png, .jpg, .jpeg"
+                                                name="fileImages"
+                                                onChange={this.onChangeFile}
                                             />
                                         </div>
                                     </div>
@@ -328,6 +398,7 @@ class AddProductPage extends Component {
                                                 <option value={5}>5 Ngày</option>
                                                 <option value={10}>10 Ngày</option>
                                                 <option value={15}>15 Ngày</option>
+                                                <option value={20}>20 Ngày</option>
                                                 <option value={30}>30 Ngày</option>
                                             </select>
                                         </div>
@@ -335,22 +406,14 @@ class AddProductPage extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 confirm_box">
-                                        Bạn đã chọn: <span>{selPostType}</span>
-                                        <br />
-                                        Đăng trong: <span>{selNumDay}</span>
-                                        <br />
-                                        Tổng cộng: <span>200.000 VND / 10 ngày</span>
-                                    </div>
+                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 confirm_box">
+                                        <h4><span className="glyphicon glyphicon-exclamation-sign"></span> Vui lòng kiểm tra chính xác các thông tin trước khi đăng bài</h4></div>
                                 </div>
-
-                                {/* <Link to="/product-list" className="btn btn-danger mr-10">
-                        Trở lại
-                    </Link> */}
+                                <br />
                                 <button
                                     type="submit"
                                     className="btn btn-primary"
-                                >Lưu lại</button>
+                                >Đăng bài</button>
                             </form>
                         </div>
                         <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">

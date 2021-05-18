@@ -15,3 +15,11 @@ export const getWard = () => {
 export const getKindNew = () => {
     return callAPI('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/dropdown_list/kind_news.php', 'GET', null)
 }
+
+export const getPropertyType = () => {
+    return callAPI('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/dropdown_list/property_type.php', 'GET', null)
+}
+
+export const getPostType = () => {
+    return callAPI('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/dropdown_list/post_type.php', 'GET', null)
+}
