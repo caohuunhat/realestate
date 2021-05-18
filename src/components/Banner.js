@@ -14,7 +14,7 @@ class Banner extends Component {
         &ensp; &nbsp;
             <Link to="/manamentPage"><button
                 className="btn btn-info"
-            >Thông tin</button></Link>
+            >Quản lý tin</button></Link>
         </> :
             <>
                 <p>Tham gia ngay để xem các dự án bất động sản tốt nhất</p>

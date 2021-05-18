@@ -2,7 +2,6 @@ import React from 'react';
 import AboutPage from './pages/AboutPage';
 import AgentPage from './pages/AgentPage';
 import BuyCategoryPage from './pages/BuyCategoryPage';
-import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import RentCategoryPage from './pages/RentCategoryPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -11,6 +10,8 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import Login from './components/Login';
 import Register from './components/Register';
 import ManamentPage from "./pages/ManamentPage";
+import Profile from './components/Profile/Profile';
+import ProfilePage from './pages/ProfilePage';
 
 const routes = [
     {
@@ -27,11 +28,6 @@ const routes = [
         path: '/agent',
         exact: false,
         main: () => <AgentPage />
-    },
-    {
-        path: '/contact',
-        exact: false,
-        main: () => <ContactPage />
     },
     {
         path: '/buy',
@@ -52,6 +48,11 @@ const routes = [
         path: '/manamentPage',
         exact: false,
         main: () => <ManamentPage />
+    },
+    {
+        path: '/profilePage',
+        exact: false,
+        main: () => <ProfilePage />
     },
     {
         path: '/productDetailPage/:id',

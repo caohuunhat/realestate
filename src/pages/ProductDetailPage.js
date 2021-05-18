@@ -48,6 +48,7 @@ class ProductDetailPage extends Component {
                     }
                 })
             })
+
     }
 
     showSlides = () => {
@@ -117,9 +118,8 @@ class ProductDetailPage extends Component {
                                         </div>
                                         <br />
                                         <div className="spacer">
-
-                                            <h3>{caption}</h3>
-
+                                            <h3>🏛️ {caption}</h3>
+                                            <p className="area"><span className="glyphicon glyphicon-map-marker" /> {address}</p>
                                         </div>
                                         <div className="spacer">
                                             <h4>
@@ -155,6 +155,9 @@ class ProductDetailPage extends Component {
                                             </h4>
                                             <p>{description}</p>
                                         </div>
+                                        <div className="spacer">
+                                            Đặc điểm bất động sản
+                                        </div>
                                         <div>
                                             <h4><span className="glyphicon glyphicon-map-marker" />Địa chỉ</h4>
                                             <div className="well"><iframe width="100%" height={350} frameBorder={0} scrolling="no" marginHeight={0} marginWidth={0} src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Pulchowk,+Patan,+Central+Region,+Nepal&aq=0&oq=pulch&sll=37.0625,-95.677068&sspn=39.371738,86.572266&ie=UTF8&hq=&hnear=Pulchowk,+Patan+Dhoka,+Patan,+Bagmati,+Central+Region,+Nepal&ll=27.678236,85.316853&spn=0.001347,0.002642&t=m&z=14&output=embed" /></div>
@@ -163,10 +166,8 @@ class ProductDetailPage extends Component {
                                     <div className="col-lg-4">
                                         <div className="col-lg-12  col-sm-6">
                                             <div className="property-info">
-                                                <p className="price">$ {currency} VND</p>
-                                                <p className="area"><span className="glyphicon glyphicon-map-marker" /> {address}</p>
                                                 <div className="profile">
-                                                    <span className="glyphicon glyphicon-user" />Người đăng bài<p className="text-uppercase">{name}<br />009 229 2929</p>
+                                                    <span className="glyphicon glyphicon-user" />NGƯỜI ĐĂNG BÀI<p className="text-uppercase">{name}<br />009 229 2929</p>
                                                 </div>
                                             </div>
                                         </div>

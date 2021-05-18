@@ -35,8 +35,13 @@ class Header extends Component {
 
     functionAuthor = () => {
         return sessionStorage.length > 0 ?
-            <MenuLink label="Đăng xuất" activeOnlyWhenExact={false} onClick={this.onLogOut} /> : '';
+            <>
+                <MenuLink label="Tài Khoản" to="/profilePage" activeOnlyWhenExact={false} />
+                <MenuLink label="Đăng xuất" activeOnlyWhenExact={false} onClick={this.onLogOut} />
+            </>
+            : '';
     }
+
     render() {
         return (
             <>
@@ -62,7 +67,6 @@ class Header extends Component {
                                     <MenuLink label="Home" to="/" activeOnlyWhenExact={true} />
                                     <MenuLink label="About" to="/about" activeOnlyWhenExact={false} />
                                     <MenuLink label="Agent" to="/agent" activeOnlyWhenExact={false} />
-                                    <MenuLink label="Contact" to="/contact" activeOnlyWhenExact={false} />
                                     {this.functionAuthor()}
                                 </ul>
                             </div>

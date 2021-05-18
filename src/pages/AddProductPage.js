@@ -68,8 +68,8 @@ class AddProductPage extends Component {
         })
         return newDistrict;
     }
-         newWard = () => {
-            const { wardDatas, selDistrict } = this.state
+    newWard = () => {
+        const { wardDatas, selDistrict } = this.state
         const newWard = wardDatas.map(ward => {
             if (ward.district_id === selDistrict) {
                 return <option value={ward.ward_id}>{ward.wardName}</option>

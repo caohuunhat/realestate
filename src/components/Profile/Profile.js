@@ -31,20 +31,20 @@ class Profile extends Component {
             <div className="man-profile" >
                 <div class="row text-center">
                     <div class="col-sm-12">
-                        <img src="/images/anh_user.png" width="50%" alt="anh user" />
+                        <img src="/images/anh_user.png" width="40%" alt="anh user" />
                     </div>
                 </div>
                 <form className="mt-40">
                     <div className="form-group bd-b">
                         <div className="row">
-                            <div className="col-sm-2">
-                            </div>
                             <div className="col-sm-3">
+                            </div>
+                            <div className="col-sm-2">
                                 <label>NAME</label>
                             </div>
-                            <div className="col-sm-1">
+                            <div className="col-sm-2">
                             </div>
-                            <div className="col-sm-6 text-left">
+                            <div className="col-sm-5 text-left">
                                 <h5>
                                     {full_name}
                                 </h5>
@@ -53,14 +53,14 @@ class Profile extends Component {
                     </div>
                     <div className="form-group bd-b">
                         <div className="row">
-                            <div className="col-sm-2">
-                            </div>
                             <div className="col-sm-3">
+                            </div>
+                            <div className="col-sm-2">
                                 <label>EMAIL</label>
                             </div>
-                            <div className="col-sm-1">
+                            <div className="col-sm-2">
                             </div>
-                            <div className="col-sm-6 text-left">
+                            <div className="col-sm-5 text-left">
                                 <h5>
                                     {email}
                                 </h5>
@@ -69,14 +69,14 @@ class Profile extends Component {
                     </div>
                     <div className="form-group bd-b">
                         <div className="row">
-                            <div className="col-sm-2">
-                            </div>
                             <div className="col-sm-3">
+                            </div>
+                            <div className="col-sm-2">
                                 <label>PHONE</label>
                             </div>
-                            <div className="col-sm-1">
+                            <div className="col-sm-2">
                             </div>
-                            <div className="col-sm-6 text-left">
+                            <div className="col-sm-5 text-left">
                                 <h5>
                                     {phone}
                                 </h5>
@@ -85,14 +85,14 @@ class Profile extends Component {
                     </div>
                     <div className="form-group bd-b">
                         <div className="row">
-                            <div className="col-sm-2">
-                            </div>
                             <div className="col-sm-3">
+                            </div>
+                            <div className="col-sm-2">
                                 <label>GENDER</label>
                             </div>
-                            <div className="col-sm-1">
+                            <div className="col-sm-2">
                             </div>
-                            <div className="col-sm-6 text-left">
+                            <div className="col-sm-5 text-left">
                                 <h5>
                                     {sex}
                                 </h5>
@@ -101,17 +101,18 @@ class Profile extends Component {
                     </div>
                 </form>
                 <br />
-                <div className="row">
-                    <div className="col-sm-2">
-
-                    </div>
-                    <div className="col-sm-4">
-                        <button type="submit" className="btn-profile">Sửa thông tin</button>
-                    </div>
-                    <div className="col-sm-4 ">
-                        <button type="submit" className="btn-profile">Đổi mật khẩu</button>
-                    </div>
-                    <div className="col-sm-2">
+                <div className="form-group bd-b">
+                    <div className="row">
+                        <div className="col-sm-3">
+                        </div>
+                        <div className="col-sm-2">
+                            <button type="submit" className="btn-profile btn-edit-profile">Sửa</button>
+                        </div>
+                        <div className="col-sm-2">
+                        </div>
+                        <div className="col-sm-5 text-left">
+                            <button type="submit" className="btn-profile btn-change-pass">Đổi mật khẩu</button>
+                        </div>
                     </div>
                 </div>
             </div>
