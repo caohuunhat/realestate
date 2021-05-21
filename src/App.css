@@ -129,3 +129,100 @@ th {
 .btn-default {
     font-weight: bold !important;
 }
+
+.spacer-detail {
+    width: 100%;
+    padding: 20px 0px;
+    border: 1px solid rgb(226, 226, 226);
+    margin-bottom: 40px;
+}
+
+.properties-listing h4 {
+    font-size: 1.4em;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px 0px;
+}
+
+.ul-detail .li-detail {
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+.dacdiem {
+    font-size: 0.9em;
+    font-weight: 550;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+.properties-listing h3 {
+    line-height: 40px;
+    font-size: 2em;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box-contact {
+    border: 1px solid #ebedf0;
+    border-radius: 4px;
+    padding: 16px 0;
+    margin-bottom: 16px;
+    background-color: rgb(231, 231, 231);
+}
+
+.box-contact .user {
+    padding: 0 16px;
+}
+
+.box-contact .user .avatar {
+    text-align: center;
+}
+
+.box-contact .user .avatar img {
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    border: 1px solid #ebedf0;
+}
+
+.box-contact .user .name {
+    font-size: 17px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: -.16px;
+    color: #2c2f36;
+    margin-bottom: 4px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+}
+
+.box-contact .user .phone {
+    border-radius: 4px;
+    line-height: 40px;
+    height: 40px;
+    color: #fff;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    background: #008f3d;
+    padding: 0 16px;
+}
+
+.box-contact .user .phone span {
+    font-size: 14px;
+    font-weight: 500;
+}
+.phoneEvent {
+    position: relative;
+    letter-spacing: 1.4px;
+}
+.showHotline {
+    display: inline-block;
+}

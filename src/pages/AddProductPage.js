@@ -2,30 +2,34 @@ import React, { Component } from 'react'
 import Banner from '../components/Banner'
 import { getCity, getDistrict, getWard, getKindNew, getPropertyType, getPostType } from '../constans/getAPI'
 import callApiAu from '../utils/callApiAu'
+import axios from 'axios'
+import PopupCom from '../components/AddProduct/PopupCom'
+import Modals from '../components/AddProduct/Modals'
 
 class AddProductPage extends Component {
     state = {
-        txtTitle: '',
-        selType: '',
-        selKind: '',
-        selCity: '',
-        selDistrict: '',
-        selWard: '',
-        txtHouseNum: '',
-        txtStreet: '',
-        txtPrice: '',
-        txtArea: '',
-        txtDesc: '',
-        fileImages: [],
-        selPostType: '',
-        selNumDay: '',
-        status: 0,
+        chouse_id: '',
+        ptype_id: '',
+        caption: '',
+        kind_id: '',
+        city_id: '',
+        district_id: '',
+        ward_id: '',
+        street: '',
+        apartment_number: '',
+        estimated_price: '',
+        land_area: '',
+        description: '',
+        day_number: '',
+        p_photo: [],
         cityDatas: [],
         districtDatas: [],
         wardDatas: [],
         kindNewDatas: [],
         propertyType: [],
         postType: [],
+        openModal: false,
+        modalDatas: null
     }
 
 
@@ -39,23 +43,19 @@ class AddProductPage extends Component {
     }
 
     onChangeFile = (e) => {
-        const { fileImages } = this.state;
         const file = e.target.files;
 
-        const newImages = [...file]
-
-        const imagesName = []
-        newImages.map(img => (
-            imagesName.push(img.name)
-        ))
-
-        if (newImages.length > 5) {
+        const images = []
+        for (const key of file) {
+            images.push(key)
+        }
+        if (file.length > 5) {
             alert("Vui lòng chọn dưới 5 ảnh")
-        } else if (newImages.length < 3) {
+        } else if (file.length < 3) {
             alert("Vui lòng chọn ít nhất 3 ảnh")
         } else {
             this.setState({
-                fileImages: imagesName
+                p_photo: images
             })
         }
     }
@@ -102,18 +102,18 @@ class AddProductPage extends Component {
     }
 
     newDistrict = () => {
-        const { districtDatas, selCity } = this.state
+        const { districtDatas, city_id } = this.state
         const newDistrict = districtDatas.map(dis => {
-            if (dis.city_id === selCity) {
+            if (dis.city_id === city_id) {
                 return <option value={dis.district_id}>{dis.districtName}</option>
             }
         })
         return newDistrict;
     }
     newWard = () => {
-        const { wardDatas, selDistrict } = this.state
+        const { wardDatas, district_id } = this.state
         const newWard = wardDatas.map(ward => {
-            if (ward.district_id === selDistrict) {
+            if (ward.district_id === district_id) {
                 return <option value={ward.ward_id}>{ward.wardName}</option>
             }
         })
@@ -144,57 +144,78 @@ class AddProductPage extends Component {
         return newPostType;
     }
 
-    //Hello
-
     handleOnSubmitPost = (e) => {
         e.preventDefault();
-        const { selKind, selType, txtTitle, selPostType, selCity, selDistrict, selWard, txtStreet, txtHouseNum, txtPrice, txtArea, txtDesc, selNumDay, fileImages } = this.state;
+        const { chouse_id, ptype_id, caption, kind_id, city_id, district_id, ward_id, street, apartment_number, estimated_price, land_area, description, day_number, p_photo } = this.state;
         const token = sessionStorage.getItem("token");
-        callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/add_property.php', 'POST', token,
-            {
-                chouse_id: selKind,
-                ptype_id: selType,
-                caption: txtTitle,
-                kind_id: selPostType,
-                city_id: selCity,
-                district_id: selDistrict,
-                ward_id: selWard,
-                street: txtStreet,
-                apartment_number: txtHouseNum,
-                estimated_price: txtPrice,
-                land_area: txtArea,
-                description: txtDesc,
-                day_number: selNumDay,
-                p_photo: fileImages
-            })
+        const url = "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/add_property.php";
+        const formData = new FormData();
+        formData.append('chouse_id', chouse_id)
+        formData.append('ptype_id', ptype_id)
+        formData.append('caption', caption)
+        formData.append('kind_id', kind_id)
+        formData.append('city_id', city_id)
+        formData.append('district_id', district_id)
+        formData.append('ward_id', ward_id)
+        formData.append('street', street)
+        formData.append('apartment_number', apartment_number)
+        formData.append('estimated_price', estimated_price)
+        formData.append('land_area', land_area)
+        formData.append('description', description)
+        formData.append('day_number', day_number)
+        p_photo.map(img => {
+            formData.append('p_photo[]', img)
+        })
+        axios({
+            url: url,
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                token: token,
+            },
+            data: formData
+        })
             .then(res => {
                 console.log(res);
+                this.setState({
+                    openModal: true,
+                    modalDatas: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err.data);
             })
     }
 
+    checkModal = () => {
+        const { openModal, modalDatas } = this.state
+        return openModal ? <Modals modalDatas={modalDatas} /> : '';
+    }
+
     render() {
-        console.log(this.state);
         const pageName = 'Đăng tin';
         const {
-            txtTitle,
-            selType,
-            selKind,
-            selCity,
-            selDistrict,
-            selWard,
-            txtHouseNum,
-            txtStreet,
-            txtPrice,
-            txtArea,
-            txtDesc,
-            fileImages,
-            selPostType,
-            selNumDay,
+            caption,
+            ptype_id,
+            chouse_id,
+            city_id,
+            district_id,
+            ward_id,
+            apartment_number,
+            street,
+            estimated_price,
+            land_area,
+            description,
+            p_photo,
+            kind_id,
+            day_number,
+            openModal
         } = this.state;
-        console.log(fileImages);
         return (
             <>
                 <Banner pageName={pageName} />
+                {this.checkModal()}
                 <div className="container">
                     <div className="row mt-40 mb-40">
                         <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -204,7 +225,10 @@ class AddProductPage extends Component {
                                 <h3>ĐĂNG TIN RAO BÁN, CHO THUÊ NHÀ ĐẤT</h3>
                                 <p>(Quý vị nhập thông tin nhà đất cần bán hoặc cho thuê vào các mục dưới đây)</p>
                             </div>
-                            <form onSubmit={this.handleOnSubmitPost}>
+                            <form
+                                onSubmit={this.handleOnSubmitPost}
+                                encType="multipart/form-data"
+                            >
                                 <div className="form-group">
                                     <label>Tiêu đề(<span className="star-color">*</span>)</label>
                                     <input
@@ -212,8 +236,8 @@ class AddProductPage extends Component {
                                         className="form-control"
                                         required
                                         placeholder="Nhập vào tiêu đề"
-                                        name="txtTitle"
-                                        value={txtTitle}
+                                        name="caption"
+                                        value={caption}
                                         onChange={this.onChange}
                                         maxlength="100"
                                         title="Tiêu đề không nhập quá 100 từ"
@@ -225,8 +249,8 @@ class AddProductPage extends Component {
                                             <label>Hình thức(<span className="star-color">*</span>)</label>
                                             <select
                                                 className="form-control"
-                                                name="selType"
-                                                value={selType}
+                                                name="ptype_id"
+                                                value={ptype_id}
                                                 onChange={this.onChange}
                                             >
                                                 <option>-- Hình thức --</option>
@@ -239,8 +263,8 @@ class AddProductPage extends Component {
                                             <label>Loại(<span className="star-color">*</span>)</label>
                                             <select
                                                 className="form-control"
-                                                name="selKind"
-                                                value={selKind}
+                                                name="chouse_id"
+                                                value={chouse_id}
                                                 onChange={this.onChange}
                                             >
                                                 <option>-- Loại --</option>
@@ -253,12 +277,11 @@ class AddProductPage extends Component {
                                     <label>Thành phố(<span className="star-color">*</span>)</label>
                                     <select
                                         className="form-control"
-                                        required
-                                        name="selCity"
-                                        value={selCity}
+                                        name="city_id"
+                                        value={city_id}
                                         onChange={this.onChange}
                                     >
-                                        <option>-- Chọn thành phố --</option>
+                                        <option>-- Chọn Tỉnh --</option>
                                         {this.newCity()}
                                     </select>
                                 </div>
@@ -266,12 +289,11 @@ class AddProductPage extends Component {
                                     <label>Quận / Huyện</label>
                                     <select
                                         className="form-control"
-                                        required
-                                        name="selDistrict"
-                                        value={selDistrict}
+                                        name="district_id"
+                                        value={district_id}
                                         onChange={this.onChange}
                                     >
-                                        <option>-- Chọn Quận / Huyện --</option>
+                                        <option>-- Chọn Thành phố / Quận / Huyện --</option>
                                         {this.newDistrict()}
                                     </select>
                                 </div>
@@ -280,8 +302,8 @@ class AddProductPage extends Component {
                                     <select
                                         className="form-control"
                                         required
-                                        name="selWard"
-                                        value={selWard}
+                                        name="ward_id"
+                                        value={ward_id}
                                         onChange={this.onChange}
                                     >
                                         <option>-- Chọn Thị Trấn / Xã --</option>
@@ -294,8 +316,8 @@ class AddProductPage extends Component {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            name="txtHouseNum"
-                                            value={txtHouseNum}
+                                            name="apartment_number"
+                                            value={apartment_number}
                                             onChange={this.onChange}
                                             placeholder="Nhập vào số nhà"
                                             pattern="[0-9]{1,8}"
@@ -307,8 +329,8 @@ class AddProductPage extends Component {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            name="txtStreet"
-                                            value={txtStreet}
+                                            name="street"
+                                            value={street}
                                             onChange={this.onChange}
                                             placeholder="Nhập vào đường"
                                         />
@@ -321,8 +343,8 @@ class AddProductPage extends Component {
                                             <input
                                                 type="number"
                                                 className="form-control"
-                                                name="txtPrice"
-                                                value={txtPrice}
+                                                name="estimated_price"
+                                                value={estimated_price}
                                                 onChange={this.onChange}
                                                 required
                                                 placeholder="Nhập vào giá"
@@ -335,8 +357,8 @@ class AddProductPage extends Component {
                                             <input
                                                 type="number"
                                                 className="form-control"
-                                                name="txtArea"
-                                                value={txtArea}
+                                                name="land_area"
+                                                value={land_area}
                                                 onChange={this.onChange}
                                                 placeholder="m2"
                                                 required
@@ -351,8 +373,8 @@ class AddProductPage extends Component {
                                         rows="3"
                                         required
                                         placeholder="Nhập vào mô tả"
-                                        name="txtDesc"
-                                        value={txtDesc}
+                                        name="description"
+                                        value={description}
                                         onChange={this.onChange}
                                     ></textarea>
                                 </div>
@@ -364,7 +386,8 @@ class AddProductPage extends Component {
                                                 type="file"
                                                 multiple
                                                 accept=".png, .jpg, .jpeg"
-                                                name="fileImages"
+                                                name="p_photo"
+                                                multiple
                                                 onChange={this.onChangeFile}
                                             />
                                         </div>
@@ -377,8 +400,8 @@ class AddProductPage extends Component {
                                             <select
                                                 className="form-control"
                                                 required
-                                                name="selPostType"
-                                                value={selPostType}
+                                                name="kind_id"
+                                                value={kind_id}
                                                 onChange={this.onChange}
                                             >
                                                 <option>-- Chọn loại tin --</option>
@@ -392,8 +415,8 @@ class AddProductPage extends Component {
                                             <select
                                                 className="form-control"
                                                 required
-                                                name="selNumDay"
-                                                value={selNumDay}
+                                                name="day_number"
+                                                value={day_number}
                                                 onChange={this.onChange}
                                             >
                                                 <option>-- Chọn số ngày đăng --</option>

@@ -21,7 +21,10 @@ class ProductDetailPage extends Component {
             name: '',
             land_area: '',
             time: '',
-            images: []
+            ptypeName: '',
+            chouse_name: '',
+            phone: '',
+            // images: []
         }
     }
 
@@ -44,7 +47,10 @@ class ProductDetailPage extends Component {
                         name: res.data.name,
                         land_area: res.data.land_area,
                         time: res.data.post_time,
-                        images: res.data.img.image
+                        ptypeName: res.data.ptypeName,
+                        chouse_name: res.data.chouse_name,
+                        phone: res.data.phone,
+                        // images: res.data.img.image
                     }
                 })
             })
@@ -84,7 +90,7 @@ class ProductDetailPage extends Component {
     }
 
     render() {
-        const { caption, description, price, address, name, time, land_area } = this.state.datas
+        const { caption, description, price, address, name, time, land_area, ptypeName, chouse_name, phone } = this.state.datas
         const currency = new Intl.NumberFormat().format(parseInt(price))
         const pageName = 'Thông tin chi tiết'
         return (
@@ -123,41 +129,66 @@ class ProductDetailPage extends Component {
                                         </div>
                                         <div className="spacer">
                                             <h4>
-                                                <span className="glyphicon glyphicon-th-list" />Thông tin mô tả
+                                                <span className="glyphicon glyphicon-th" />Thông tin bài đăng
                                             </h4>
                                             <div class="row">
                                                 <div class="row">
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                         <ul className="ul-detail">
                                                             <li>Mức giá: </li>
-                                                            <li>{currency}</li>
+                                                            <li className="li-detail">{currency} vnd</li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                         <ul className="ul-detail">
                                                             <li>Diện tích: </li>
-                                                            <li>{land_area} m²</li>
+                                                            <li className="li-detail">{land_area} m²</li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                         <ul className="ul-detail">
                                                             <li>Thời gian đăng: </li>
-                                                            <li>{time}</li>
+                                                            <li className="li-detail">{time}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
+
                                         <div className="spacer">
                                             <h4>
                                                 <span className="glyphicon glyphicon-th-list" />Thông tin mô tả
                                             </h4>
                                             <p>{description}</p>
                                         </div>
-                                        <div className="spacer">
-                                            Đặc điểm bất động sản
+
+                                        <h4>
+                                            <span className="glyphicon glyphicon-home" />Đặc điểm bài đăng
+                                        </h4>
+                                        <div className="spacer-detail">
+                                            <div className="row">
+                                                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                                </div>
+                                                <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                    <span className="dacdiem">Loại tin đăng:</span>
+                                                </div>
+
+                                                <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                                    <span className="text-left">{`${ptypeName} - ${chouse_name}`}</span>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                                </div>
+                                                <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                    <span className="dacdiem">Địa chỉ cụ thể:</span>
+                                                </div>
+                                                <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                                    <span className="text-left">{address}</span>
+                                                </div>
+                                            </div>
                                         </div>
+
                                         <div>
                                             <h4><span className="glyphicon glyphicon-map-marker" />Địa chỉ</h4>
                                             <div className="well"><iframe width="100%" height={350} frameBorder={0} scrolling="no" marginHeight={0} marginWidth={0} src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Pulchowk,+Patan,+Central+Region,+Nepal&aq=0&oq=pulch&sll=37.0625,-95.677068&sspn=39.371738,86.572266&ie=UTF8&hq=&hnear=Pulchowk,+Patan+Dhoka,+Patan,+Bagmati,+Central+Region,+Nepal&ll=27.678236,85.316853&spn=0.001347,0.002642&t=m&z=14&output=embed" /></div>
@@ -165,21 +196,29 @@ class ProductDetailPage extends Component {
                                     </div>
                                     <div className="col-lg-4">
                                         <div className="col-lg-12  col-sm-6">
-                                            <div className="property-info">
-                                                <div className="profile">
-                                                    <span className="glyphicon glyphicon-user" />NGƯỜI ĐĂNG BÀI<p className="text-uppercase">{name}<br />009 229 2929</p>
+                                            <div className="property-info box-contact">
+                                                <div className="profile user">
+                                                    <div className="avatar">
+                                                        <img src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043248-avatar-female-portrait-woman_113285.png" />
+                                                        {/* <img src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png" /> */}
+                                                    </div>
+                                                    {/* <span className="glyphicon glyphicon-user" />NGƯỜI ĐĂNG BÀI */}
+                                                    <div className="name" title={name}>
+                                                        {name}
+                                                    </div>
+                                                    <div className="phone text-center"><span className="phoneEvent showHotline">{phone} - Phone</span></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="col-lg-12 col-sm-6 ">
                                             <div className="enquiry">
-                                                <h6><span className="glyphicon glyphicon-envelope" /> Post Enquiry</h6>
+                                                <h4><span className="glyphicon glyphicon-envelope" />Phản hồi</h4>
                                                 <form role="form">
-                                                    <input type="text" className="form-control" placeholder="Full Name" />
-                                                    <input type="text" className="form-control" placeholder="you@yourdomain.com" />
-                                                    <input type="text" className="form-control" placeholder="your number" />
-                                                    <textarea rows={6} className="form-control" placeholder="Whats on your mind?" defaultValue={""} />
-                                                    <button type="submit" className="btn btn-primary" name="Submit">Send Message</button>
+                                                    <input type="text" required className="form-control" placeholder="Họ tên" />
+                                                    <input type="text" className="form-control" placeholder="Email" />
+                                                    <input type="text" required className="form-control" placeholder="Số điện thoại" />
+                                                    <textarea rows={6} required className="form-control" placeholder="Vấn đề cần báo cáo" defaultValue={""} />
+                                                    <button type="submit" className="btn btn-primary" name="Submit">Gửi phản hồi</button>
                                                 </form>
                                             </div>
                                         </div>
