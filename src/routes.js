@@ -55,9 +55,9 @@ const routes = [
         main: () => <ProfilePage />
     },
     {
-        path: '/productDetailPage/:id',
+        path: '/productDetailPage/:id/',
         exact: false,
-        main: ({ match }) => <ProductDetailPage match={match.params.id} />
+        main: ({ match }) => <ProductDetailPage match={match.params} />
     },
     {
         path: '/manament',

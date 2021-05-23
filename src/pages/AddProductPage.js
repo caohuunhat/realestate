@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
-import Banner from '../components/Banner'
-import { getCity, getDistrict, getWard, getKindNew, getPropertyType, getPostType } from '../constans/getAPI'
-import callApiAu from '../utils/callApiAu'
 import axios from 'axios'
-import PopupCom from '../components/AddProduct/PopupCom'
+import React, { Component } from 'react'
 import Modals from '../components/AddProduct/Modals'
+import Banner from '../components/Banner'
+import { getCity, getDistrict, getKindNew, getPostType, getPropertyType, getWard } from '../constans/getAPI'
 
 class AddProductPage extends Component {
     state = {
@@ -32,7 +30,6 @@ class AddProductPage extends Component {
         modalDatas: null
     }
 
-
     onChange = (e) => {
         const target = e.target;
         const name = target.name;
@@ -51,8 +48,6 @@ class AddProductPage extends Component {
         }
         if (file.length > 5) {
             alert("Vui lòng chọn dưới 5 ảnh")
-        } else if (file.length < 3) {
-            alert("Vui lòng chọn ít nhất 3 ảnh")
         } else {
             this.setState({
                 p_photo: images
@@ -188,9 +183,15 @@ class AddProductPage extends Component {
             })
     }
 
+    handleOpenModal = (isOpen) => {
+        this.setState({
+            openModal: isOpen
+        })
+    }
+
     checkModal = () => {
         const { openModal, modalDatas } = this.state
-        return openModal ? <Modals modalDatas={modalDatas} /> : '';
+        return openModal ? <Modals modalDatas={modalDatas} openModal={this.handleOpenModal} /> : '';
     }
 
     render() {
@@ -210,7 +211,7 @@ class AddProductPage extends Component {
             p_photo,
             kind_id,
             day_number,
-            openModal
+            openModal,
         } = this.state;
         return (
             <>

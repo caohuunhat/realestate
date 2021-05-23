@@ -13,7 +13,9 @@ class Modals extends Component {
                 isCanClose={true}
                 onAfterClose={!modalDatas.errors ? () => {
                     this.props.history.push('/manamentPage')
-                } : null}
+                } : () => {
+                    this.props.openModal(false)
+                }}
                 isBodyScrollLocked={false}
             >
                 <ModalContent modalDatas={modalDatas} />

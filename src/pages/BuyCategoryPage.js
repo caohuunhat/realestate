@@ -13,13 +13,6 @@ class BuyCategoryPage extends Component {
         currentPage: 1,
     }
 
-    showProduct = () => {
-        const { datas } = this.state
-        return datas.map(data => {
-            return <Properties data={data} />
-        })
-    }
-
     componentDidMount() {
         axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php?page=2&row_per_page=10', {
             params: {
@@ -50,6 +43,14 @@ class BuyCategoryPage extends Component {
                     datas: res.data.list
                 })
             })
+    }
+
+
+    showProduct = () => {
+        const { datas } = this.state
+        return datas.map(data => {
+            return <Properties data={data} />
+        })
     }
 
     render() {

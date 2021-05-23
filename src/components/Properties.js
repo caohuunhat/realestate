@@ -19,7 +19,7 @@ class Properties extends Component {
             <div className="col-lg-4 col-sm-6">
                 <div className="properties">
                     <div className="image-holder">
-                        <img src={`http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/${image}`} className="img-products" alt="properties" />
+                        <img className="img-pro" src={`http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/${image}`} className="img-products" alt="properties" />
                         {/* <div className="status sold">Sold</div> */}
                     </div>
                     <h4 className="p-text">{caption}</h4>

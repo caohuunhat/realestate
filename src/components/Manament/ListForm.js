@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ListItem from './ListItem';
 import callApiAu from '../../utils/callApiAu'
+import axios from 'axios'
 class ListForm extends Component {
     state = {
         datas: null,
@@ -23,13 +24,42 @@ class ListForm extends Component {
         const { datas } = this.state;
         if (datas === null) return;
         return datas.map((data, index) => (
-            <ListItem data={data} index={index} />
+            <ListItem
+                data={data}
+                index={index}
+                handleDeleteFormId={this.handleDeleteFormId}
+            />
         ))
+    }
+
+    handleDeleteFormId = async (id) => {
+        const token = sessionStorage.getItem('token')
+        const { datas } = this.state;
+        const delPost = await axios.delete('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/delete_post.php?id=48', {
+            params: {
+                id: id
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                token: token
+            }
+        }, null)
+
+        callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/post.php?ptype_id=0', 'GET', token, null)
+            .then(res => {
+                this.setState({
+                    datas: res.data.list
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        return console.log(delPost);
     }
 
     render() {
         const { datas } = this.state;
-        console.log(this.state.datas);
+        console.log(datas);
         return (
             <div className="container list">
                 <div className="btn-group top-btn">
