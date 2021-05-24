@@ -14,13 +14,20 @@ class ListItem extends Component {
         apartment_number: this.props.data.apartment_number,
         street: this.props.data.street,
         status: this.props.data.status,
-        modalDatas: this.props.data,
+        // modalDatas: this.props.data,
     }
 
     handleClickStatus = () => {
-        const { post_status, modalDatas } = this.state;
+        const { post_status, id, type } = this.state;
         if (post_status === 'Chưa thanh toán') {
-            return <PopupCom name={post_status} modalDatas={modalDatas} />
+            return <PopupCom
+                name={post_status}
+                propertyId={id}
+                type={type}
+            />
+        }
+        if (post_status === 'Đã thanh toán') {
+            return <PopupCom name={post_status} disable={'disable'} />
         }
     }
 

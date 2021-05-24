@@ -15,26 +15,26 @@ class Properties extends Component {
 
     render() {
         const { id, caption, land_area, price, districtName, street, image } = this.state;
+        console.log(image);
         return (
-            <div className="col-lg-4 col-sm-6">
+            <Link style={{ textDecoration: "none" }} to={`/productDetailPage/${id}`} className="col-lg-4 col-sm-6">
                 <div className="properties">
                     <div className="image-holder">
                         <img className="img-pro" src={`http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/${image}`} className="img-products" alt="properties" />
                         {/* <div className="status sold">Sold</div> */}
                     </div>
-                    <h4 className="p-text">{caption}</h4>
+                    <div>
+                        <h4 className="p-text">{caption}</h4>
+                    </div>
                     <div className="row">
-                        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <p className="price">Diện tích: {land_area}m2</p>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <p className="price" style={{ color: "red", fontWeight: "bold" }}>Giá: {price}</p>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pro-info">
+                            <p>Giá: {price}</p>
+                            <p>Diện tích: {land_area}m2</p>
                         </div>
                     </div>
-                    <p className="address">{street} - {districtName}</p>
-                    <Link className="btn btn-primary" to={`/productDetailPage/${id}`}>Xem chi tiết</Link>
+                    <p className="address"><span className="glyphicon glyphicon-map-marker"></span> {street} - {districtName}</p>
                 </div>
-            </div>
+            </Link>
         )
     }
 }

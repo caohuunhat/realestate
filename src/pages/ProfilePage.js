@@ -4,7 +4,7 @@ import Profile from '../components/Profile/Profile';
 
 class ProfilePage extends Component {
     render() {
-        const pageName = 'Quản lý tin'
+        const pageName = 'Tài khoản'
         return (
             <>
                 <Banner pageName={pageName} />

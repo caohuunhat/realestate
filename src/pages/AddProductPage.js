@@ -321,8 +321,8 @@ class AddProductPage extends Component {
                                             value={apartment_number}
                                             onChange={this.onChange}
                                             placeholder="Nhập vào số nhà"
-                                            pattern="[0-9]{1,8}"
-                                            title="Vui lòng nhập 'số' và '/' và không quá 8 ký tự"
+                                            title="Vui lòng nhập đúng định dạng - vd: 20/1/16"
+                                            maxlength="12"
                                         />
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -334,6 +334,7 @@ class AddProductPage extends Component {
                                             value={street}
                                             onChange={this.onChange}
                                             placeholder="Nhập vào đường"
+                                            maxlength="50"
                                         />
                                     </div>
                                 </div>

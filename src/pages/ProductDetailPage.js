@@ -12,7 +12,6 @@ class ProductDetailPage extends Component {
             description: '',
             price: '',
             address: '',
-            type: '',
             name: '',
             land_area: '',
             time: '',
@@ -24,9 +23,8 @@ class ProductDetailPage extends Component {
     }
 
     componentDidMount() {
-        const token = sessionStorage.getItem("token")
         const { id } = this.state;
-
+        window.scrollTo(0, 160);
         axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/details_rs.php?id=', {
             params: {
                 id: id
@@ -40,7 +38,6 @@ class ProductDetailPage extends Component {
                         description: res.data.description,
                         price: res.data.estimated_price,
                         address: res.data.google_map,
-                        type: res.data.ptypeName,
                         name: res.data.name,
                         land_area: res.data.land_area,
                         time: res.data.post_time,
@@ -51,46 +48,26 @@ class ProductDetailPage extends Component {
                     }
                 })
             })
+    }
 
-        // axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/post_details.php?id=109', {
-        //     params: {
-        //         id: id
-        //     },
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         token: token
-        //     }
-        // })
-        //     .then(res => {
-        //         console.log(res.data);
-        //         this.setState({
-        //             datas: {
-        //                 caption: res.data.caption,
-        //                 description: res.data.description,
-        //                 price: res.data.estimated_price,
-        //                 address: res.data.google_map,
-        //                 type: res.data.ptypeName,
-        //                 name: res.data.name,
-        //                 land_area: res.data.land_area,
-        //                 time: res.data.create_at,
-        //                 ptypeName: res.data.ptypeName,
-        //                 chouse_name: res.data.chouse_name,
-        //                 phone: res.data.phone,
-        //                 images: res.data.img.image
-        //             }
-        //         })
-        //     })
+    currencyChange = () => {
+        const { price, land_area, ptypeName } = this.state.datas;
+        const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(parseFloat(price / land_area))
+        const newPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
+        if (ptypeName === 'Cần bán') {
+            return `${currency}/m²`
+        } else {
+            return `${newPrice}/tháng`
+        }
     }
 
     render() {
-        const { caption, description, price, address, name, time, land_area, ptypeName, chouse_name, phone, images, datas } = this.state.datas
-        const currency = new Intl.NumberFormat().format(parseInt(price))
+        const { caption, price, description, address, name, time, land_area, ptypeName, chouse_name, phone, images, datas } = this.state.datas
+        // const currency = new Intl.NumberFormat().format(parseFloat(price / land_area))
         const pageName = 'Thông tin chi tiết';
-        console.log(datas);
         const imgLink = images.map(img => {
             return img.image
         })
-        console.log(imgLink);
         return (
             <div>
                 {/* banner */}
@@ -104,18 +81,12 @@ class ProductDetailPage extends Component {
                                     <div className="col-lg-9">
                                         <div className="property-images">
                                             {/* Slider Starts */}
-                                            <Silde />
-                                            {/* 
-                                            {
-                                                imgLink.map(img => {
-                                                   return <img src={img} width="100%" />
-                                                })
-                                            } */}
+                                            <Silde imgLink={imgLink} />
                                             {/* #Slider Ends */}
                                         </div>
                                         <br />
                                         <div className="spacer">
-                                            <h3>🏛️ {caption}</h3>
+                                            <h3> {caption}</h3>
                                             <p className="area"><span className="glyphicon glyphicon-map-marker" /> {address}</p>
                                         </div>
                                         <div className="spacer">
@@ -127,7 +98,7 @@ class ProductDetailPage extends Component {
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                         <ul className="ul-detail">
                                                             <li>Mức giá: </li>
-                                                            <li className="li-detail">{currency} vnd</li>
+                                                            <li className="li-detail">{this.currencyChange()}</li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -182,7 +153,7 @@ class ProductDetailPage extends Component {
 
                                         <div>
                                             <h4><span className="glyphicon glyphicon-map-marker" />Địa chỉ</h4>
-                                            <iframe className="well" width="100%" height={400} src={`http://maps.google.com/maps?q=(${address})&output=embed`} ></iframe>
+                                            <iframe className="well" width="100%" height={500} src={`http://maps.google.com/maps?q=(${address})&output=embed`} ></iframe>
                                         </div>
                                     </div>
                                     <div className="col-lg-3">
@@ -197,7 +168,7 @@ class ProductDetailPage extends Component {
                                                     <div className="name" title={name}>
                                                         {name}
                                                     </div>
-                                                    <div className="phone text-center"><span className="phoneEvent showHotline">{phone} - Phone</span></div>
+                                                    <div className="phone text-center">&nbsp;<span className="glyphicon glyphicon-phone-alt"></span><span className="phoneEvent showHotline">{phone}</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,7 +179,7 @@ class ProductDetailPage extends Component {
                                                     <input type="text" required className="form-control" placeholder="Họ tên" />
                                                     <input type="text" className="form-control" placeholder="Email" />
                                                     <input type="text" required className="form-control" placeholder="Số điện thoại" />
-                                                    <textarea rows={6} required className="form-control" placeholder="Vấn đề cần báo cáo" defaultValue={""} />
+                                                    <textarea rows={6} required className="form-control" placeholder="Gửi vấn đề cần báo cáo về bài đăng tại đây" defaultValue={""} />
                                                     <button type="submit" className="btn btn-primary" name="Submit">Gửi phản hồi</button>
                                                 </form>
                                             </div>

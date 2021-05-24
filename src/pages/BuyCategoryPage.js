@@ -4,6 +4,7 @@ import HotProperties from '../components/HotProperties';
 import Properties from '../components/Properties'
 import axios from 'axios'
 import Pagination from '../components/Pagination';
+import Search from '../components/Search';
 
 
 
@@ -66,36 +67,9 @@ class BuyCategoryPage extends Component {
                     <div className="properties-listing spacer">
                         <div className="row">
                             <div className="col-lg-3 col-sm-4 ">
-                                <div className="search-form"><h4><span className="glyphicon glyphicon-search" />Tìm theo</h4>
-                                    <input type="text" className="form-control" placeholder="Tìm kiếm theo tên" />
-                                    <div className="row">
-                                        <div className="col-lg-5">
-                                            <select className="form-control">
-                                                <option>Cần Bán</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-lg-7">
-                                            <select className="form-control">
-                                                <option>Giá</option>
-                                                <option>$150,000 - $200,000</option>
-                                                <option>$200,000 - $250,000</option>
-                                                <option>$250,000 - $300,000</option>
-                                                <option>$300,000 - above</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-lg-12">
-                                            <select className="form-control">
-                                                <option>Loại</option>
-                                                <option>Apartment</option>
-                                                <option>Building</option>
-                                                <option>Office Space</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <button className="btn btn-primary">Tìm kiếm</button>
-                                </div>
+                                {/* Search */}
+                                <Search />
+                                {/* Search */}
                                 <div className="hot-properties hidden-xs">
                                     <h4>Bài đăng nổi bật</h4>
                                     {/* Bài đăng nổi bật */}

@@ -1,7 +1,34 @@
 import React, { Component } from 'react'
 import './ModalContent.css'
+import axios from 'axios';
 
 class ModalContent extends Component {
+    state = {
+        id: this.props.propertyId,
+        payment: []
+    }
+
+    componentDidMount() {
+        const { id } = this.state;
+        const token = sessionStorage.getItem('token')
+        if (id) {
+            axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/info_payment.php?id=166', {
+                params: {
+                    id: id
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: token
+                }
+            }, null)
+                .then(res => {
+                    console.log(res);
+                    this.setState({
+                        
+                    })
+                })
+        }
+    }
 
     showModal = () => {
         const { modalDatas } = this.props;

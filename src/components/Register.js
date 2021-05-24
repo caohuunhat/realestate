@@ -67,7 +67,7 @@ class Register extends Component {
         return (
             <>
                 {/* Banner */}
-                <Banner pageName={pageName}/>
+                <Banner pageName={pageName} />
                 {/*banner */}
                 <div className="container" style={{ padding: "30px 0px" }}>
                     <div class="row">
@@ -77,7 +77,7 @@ class Register extends Component {
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                             <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
                             <p>và bắt đầu đăng tin ngay</p>
-                            <form onSubmit={this.onSubmit}>
+                            <form onSubmit={this.onSubmit} autoComplete="on">
                                 <input
                                     type="text"
                                     className="form-control"
@@ -88,14 +88,14 @@ class Register extends Component {
                                     maxLength={50}
                                     required
                                 />
-                                <input type="tel"
+                                <input type="number"
                                     className="form-control"
                                     placeholder="Nhập vào số điện thoại"
                                     name="txtTel"
                                     value={txtTel}
                                     onChange={this.onChange}
-                                    pattern="[0-9]{10}"
                                     required
+                                    title="Vui lòng nhập đúng định dạng SĐT"
                                 />
                                 <select
                                     className="form-control"
@@ -110,20 +110,24 @@ class Register extends Component {
                                 <input type="email" className="form-control" placeholder="Nhập vào Email"
                                     name="txtEmail"
                                     value={txtEmail}
-                                    onChange={this.onChange}
                                     required
+                                    onChange={this.onChange}
                                 />
                                 <input type="password" className="form-control" placeholder="Nhập vào mật khẩu (ít nhất 8 ký tự)"
                                     name="txtPassword"
                                     value={txtPassword}
                                     onChange={this.onChange}
-                                    required minlength="8"
+                                    minlength="8"
+                                    required
+                                    pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                                    title="Mật khẩu (chữ hoa, chữ thường, số, ký tự đặc biệt, và tối thiểu 8 ký tự)"
                                 />
                                 <input type="password" className="form-control" placeholder="Xác nhận mật khẩu"
                                     name="txtConfirmPass"
                                     value={txtConfirmPass}
                                     onChange={this.onChange}
-                                    required minlength="8"
+                                    required
+                                    minlength="8"
                                 />
                                 <br />
                                 <button type="submit" className="btn btn-success" name="Submit">Đăng Ký</button>

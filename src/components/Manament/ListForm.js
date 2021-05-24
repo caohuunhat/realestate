@@ -5,9 +5,11 @@ import axios from 'axios'
 class ListForm extends Component {
     state = {
         datas: null,
+        sortDatas: null
     }
 
     componentDidMount() {
+        window.scrollTo(0, 160);
         const token = sessionStorage.getItem('token')
         callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/post.php?ptype_id=0', 'GET', token, null)
             .then(res => {
@@ -21,20 +23,29 @@ class ListForm extends Component {
     }
 
     showListItem = () => {
-        const { datas } = this.state;
+        const { datas, sortDatas } = this.state;
         if (datas === null) return;
-        return datas.map((data, index) => (
-            <ListItem
-                data={data}
-                index={index}
-                handleDeleteFormId={this.handleDeleteFormId}
-            />
-        ))
+        if (sortDatas !== null) {
+            return sortDatas.map((data, index) => (
+                <ListItem
+                    data={data}
+                    index={index}
+                    handleDeleteFormId={this.handleDeleteFormId}
+                />
+            ))
+        } else {
+            return datas.map((data, index) => (
+                <ListItem
+                    data={data}
+                    index={index}
+                    handleDeleteFormId={this.handleDeleteFormId}
+                />
+            ))
+        }
     }
 
     handleDeleteFormId = async (id) => {
         const token = sessionStorage.getItem('token')
-        const { datas } = this.state;
         const delPost = await axios.delete('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/delete_post.php?id=48', {
             params: {
                 id: id
@@ -57,14 +68,37 @@ class ListForm extends Component {
         return console.log(delPost);
     }
 
+    handleTypeSort = (e) => {
+        const value = e.target.value;
+        const { datas } = this.state;
+        this.findPtype_name(value, datas);
+    }
+
+    findPtype_name = (value, datas) => {
+        const newDatas = datas.filter(data => {
+            return data.ptype_name.indexOf(value) !== -1;
+        })
+        this.setState({
+            sortDatas: newDatas
+        })
+    }
+
     render() {
         const { datas } = this.state;
-        console.log(datas);
+        // console.log(datas);
         return (
             <div className="container list">
                 <div className="btn-group top-btn">
-                    <button className="btn btn-default choose-btn">Cần bán</button>
-                    <button className="btn btn-default choose-btn">Cho thuê</button>
+                    <button
+                        className="btn btn-default choose-btn"
+                        value="Cần bán"
+                        onClick={this.handleTypeSort}
+                    >Cần bán</button>
+                    <button
+                        className="btn btn-default choose-btn"
+                        value="Cho thuê"
+                        onClick={this.handleTypeSort}
+                    >Cho thuê</button>
                 </div>
                 <table className="table">
                     <thead>

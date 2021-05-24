@@ -51,6 +51,7 @@ class RentCategoryPage extends Component {
     }
     render() {
         const { datas, currentPage } = this.state;
+        console.log(datas);
         const pageName = 'Nhà Đất Thuê';
         return (
             <div>
