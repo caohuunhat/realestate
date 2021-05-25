@@ -61,7 +61,7 @@ class BuyCategoryPage extends Component {
         return (
             <>
                 {/* banner */}
-                <Banner pageName={pageName} />
+                {/* <Banner pageName={pageName} /> */}
                 {/* banner */}
                 <div className="container">
                     <div className="properties-listing spacer">

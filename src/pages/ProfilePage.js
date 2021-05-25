@@ -7,7 +7,7 @@ class ProfilePage extends Component {
         const pageName = 'Tài khoản'
         return (
             <>
-                <Banner pageName={pageName} />
+                {/* <Banner pageName={pageName} /> */}
                 <div class="container mt-10 mb-40">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">

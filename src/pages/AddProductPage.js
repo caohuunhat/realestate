@@ -215,7 +215,7 @@ class AddProductPage extends Component {
         } = this.state;
         return (
             <>
-                <Banner pageName={pageName} />
+                {/* <Banner pageName={pageName} /> */}
                 {this.checkModal()}
                 <div className="container">
                     <div className="row mt-40 mb-40">

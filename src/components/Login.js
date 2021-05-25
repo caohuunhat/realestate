@@ -50,9 +50,9 @@ class Login extends Component {
         const pageName = "Đăng nhập"
         return (
             <>
-                <Banner
+                {/* <Banner
                     pageName={pageName}
-                />
+                /> */}
                 <div className="container" style={{ padding: "30px 0px" }}>
 
                     <div class="row">

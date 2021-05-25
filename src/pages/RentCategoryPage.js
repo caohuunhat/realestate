@@ -56,7 +56,7 @@ class RentCategoryPage extends Component {
         return (
             <div>
                 {/* banner */}
-                <Banner pageName={pageName} />
+                {/* <Banner pageName={pageName} /> */}
                 {/* banner */}
                 <div className="container">
                     <div className="properties-listing spacer">

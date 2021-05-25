@@ -25,11 +25,6 @@ const routes = [
         main: () => <AboutPage />
     },
     {
-        path: '/agent',
-        exact: false,
-        main: () => <AgentPage />
-    },
-    {
         path: '/buy',
         exact: false,
         main: () => <BuyCategoryPage />

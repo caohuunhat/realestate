@@ -4,11 +4,10 @@ import Banner from '../components/Banner';
 
 class HomePage extends Component {
     render() {
-        const pageName = "Trang Chủ"
         return (
             <>
                 {/* Banner */}
-                <Banner pageName={pageName} />
+                {/* <Banner/> */}
                 {/* Banner */}
                 <div id="carousel-id" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">

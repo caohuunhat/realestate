@@ -6,7 +6,7 @@ class ProductManPage extends Component {
         let pageName = "Quản lý bài đăng";
         return (
             <>
-                <Banner  pageName={pageName}/>
+                {/* <Banner  pageName={pageName}/> */}
                 <div className="container mt-40">
                     <div className="panel panel-primary">
                         <div className="panel-heading">

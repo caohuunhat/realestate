@@ -9,7 +9,6 @@ class ListForm extends Component {
     }
 
     componentDidMount() {
-        window.scrollTo(0, 160);
         const token = sessionStorage.getItem('token')
         callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/post.php?ptype_id=0', 'GET', token, null)
             .then(res => {
