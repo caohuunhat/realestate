@@ -36,7 +36,7 @@ h2 {
     font-size: 35px;
     letter-spacing: -1px;
     margin-bottom: 20px;
-    color: RGB(52,65,78);
+    color: RGB(52, 65, 78);
 }
 
 h3 {
@@ -123,7 +123,7 @@ table {
 
 .btn {
     border-radius: 5px;
-    font-family: din;
+    font-family: 'Roboto', sans-serif;
     outline: none;
 }
 
@@ -443,7 +443,7 @@ table {
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:hover,
 .nav-tabs>li.active>a:focus {
-    background-color:  RGB(52,65,78);
+    background-color: RGB(52, 65, 78);
     border-radius: 0;
     color: #fff;
     border: none;
@@ -474,7 +474,7 @@ table {
 }
 
 .footer h4 {
-    color: RGB(52,65,78);
+    color: RGB(52, 65, 78);
     border-bottom: 2px solid #131313;
     margin-bottom: 10px;
     padding-bottom: 10px;

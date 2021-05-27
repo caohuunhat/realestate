@@ -37,6 +37,7 @@ class ProductDetailPage extends Component {
                         caption: res.data.caption,
                         description: res.data.description,
                         price: res.data.estimated_price,
+                        priceOld: res.data.estimated_price_1,
                         address: res.data.google_map,
                         name: res.data.name,
                         land_area: res.data.land_area,
@@ -51,9 +52,9 @@ class ProductDetailPage extends Component {
     }
 
     currencyChange = () => {
-        const { price, land_area, ptypeName } = this.state.datas;
-        const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(parseFloat(price / land_area))
-        const newPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
+        const { priceOld, land_area, ptypeName } = this.state.datas;
+        const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(parseFloat(priceOld / land_area))
+        const newPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(priceOld)
         if (ptypeName === 'Cần bán') {
             return `${currency}/m²`
         } else {
@@ -98,7 +99,8 @@ class ProductDetailPage extends Component {
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                         <ul className="ul-detail">
                                                             <li>Mức giá: </li>
-                                                            <li className="li-detail">{this.currencyChange()}</li>
+                                                            <li className="li-detail">{price}</li>
+                                                            <li>{`~${this.currencyChange()}`}</li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -110,7 +112,7 @@ class ProductDetailPage extends Component {
                                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                                         <ul className="ul-detail">
                                                             <li>Thời gian đăng: </li>
-                                                            <li className="li-detail">{time}</li>
+                                                            <li className="li-detail text-uppercase">{time}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -193,7 +195,7 @@ class ProductDetailPage extends Component {
                                             </div>
                                             <div className="advertisement">
                                                 <h4>Advertisements</h4>
-                                                <img src="images/advertisements.jpg" className="img-responsive" alt="advertisement" />
+                                                <img src="/public/images/anh_user.png" className="img-responsive"/>
                                             </div>
                                         </div>
                                     </div>

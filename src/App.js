@@ -1,12 +1,12 @@
-import './App.css';
 import React, { Component } from 'react';
-import Footer from './components/Footer';
-import Header from './components/Header';
 import {
   BrowserRouter as Router,
   Route, Switch
 } from "react-router-dom";
-import routes from './routes'
+import './App.css';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import routes from './routes';
 
 class App extends Component {
   showContentMenu = (routes) => {

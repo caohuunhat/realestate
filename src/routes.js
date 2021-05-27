@@ -12,6 +12,7 @@ import Register from './components/Register';
 import ManamentPage from "./pages/ManamentPage";
 import Profile from './components/Profile/Profile';
 import ProfilePage from './pages/ProfilePage';
+import ChangePass from './components/Profile/ChangePass';
 
 const routes = [
     {
@@ -58,6 +59,11 @@ const routes = [
         path: '/manament',
         exact: false,
         main: () => <ManamentPage />
+    },
+    {
+        path: '/changePass',
+        exact: false,
+        main: () => <ChangePass />
     },
     {
         path: '/login',

@@ -3,13 +3,15 @@ import callAPI from '../../utils/callAPI';
 import axios from "axios"
 import { getProfile } from '../../constans/getAPI';
 import callApiAu from '../../utils/callApiAu'
+import { Link, Route } from 'react-router-dom'
+import ChangePass from './ChangePass';
 
 class Profile extends Component {
     state = {
         full_name: '',
         email: '',
         phone: '',
-        sex: ''
+        sex: '',
     }
 
     componentDidMount() {
@@ -25,12 +27,21 @@ class Profile extends Component {
             })
     }
 
+    editDatas = () => {
+        this.props.editDatas(this.state)
+    }
+
+    onClickForm = () => {
+        this.editDatas()
+        this.props.onOpenForm()
+    }
+
     render() {
         const { full_name, email, phone, sex } = this.state;
         return (
             <div className="man-profile" >
-                <div class="row text-center">
-                    <div class="col-sm-12">
+                <div className="row text-center">
+                    <div className="col-sm-12">
                         <img src="/images/anh_user.png" width="40%" alt="anh user" />
                     </div>
                 </div>
@@ -106,12 +117,17 @@ class Profile extends Component {
                         <div className="col-sm-3">
                         </div>
                         <div className="col-sm-2">
-                            <button type="submit" className="btn-profile btn-edit-profile">Sửa</button>
+                            <button
+                                className="btn-profile btn-edit-profile"
+                                onClick={this.onClickForm}
+                            >Sửa</button>
                         </div>
                         <div className="col-sm-2">
                         </div>
                         <div className="col-sm-5 text-left">
-                            <button type="submit" className="btn-profile btn-change-pass">Đổi mật khẩu</button>
+                            <Link to="/changePass">
+                                <button className="btn-profile btn-change-pass">Đổi mật khẩu</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

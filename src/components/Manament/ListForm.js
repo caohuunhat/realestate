@@ -4,7 +4,7 @@ import callApiAu from '../../utils/callApiAu'
 import axios from 'axios'
 class ListForm extends Component {
     state = {
-        datas: null,
+        datas: [],
         sortDatas: null
     }
 
@@ -23,8 +23,8 @@ class ListForm extends Component {
 
     showListItem = () => {
         const { datas, sortDatas } = this.state;
-        if (datas === null) return;
         if (sortDatas !== null) {
+            console.log(sortDatas);
             return sortDatas.map((data, index) => (
                 <ListItem
                     data={data}
@@ -83,8 +83,8 @@ class ListForm extends Component {
     }
 
     render() {
-        const { datas } = this.state;
-        // console.log(datas);
+        const { datas, sortDatas } = this.state;
+        console.log(sortDatas);
         return (
             <div className="container list">
                 <div className="btn-group top-btn">

@@ -7,7 +7,6 @@ class ManamentPage extends Component {
         const pageName = 'Quản lý tin'
         return (
             <>
-                {/* <Banner pageName={pageName} /> */}
                 <div class="container mt-10 mb-40">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

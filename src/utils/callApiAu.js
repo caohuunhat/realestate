@@ -8,6 +8,6 @@ export default (url, method, token, data) =>
             token: token,
         },
         data: {
-            data,
+            ...data,
         },
     });
