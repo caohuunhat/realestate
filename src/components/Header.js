@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import callApiAu from '../utils/callApiAu'
 
-const MenuLink = ({ label, to, activeOnlyWhenExact, onClick}) => {
+const MenuLink = ({ label, to, activeOnlyWhenExact, onClick }) => {
     return (
         <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => {
             var active = match ? 'active' : '';
@@ -41,7 +41,7 @@ class Header extends Component {
                 <MenuLink label="Đăng xuất" activeOnlyWhenExact={false} onClick={this.onLogOut} />
             </>
             : <>
-                <MenuLink label="Đăng nhập" to="/Login"/>
+                <MenuLink label="Đăng nhập" to="/Login" />
                 <MenuLink label="Đăng ký" to="/Register" activeOnlyWhenExact={false} />
             </>;
     }
@@ -70,6 +70,8 @@ class Header extends Component {
                                 <ul className="nav navbar-nav navbar-right btn-bott">
                                     <MenuLink label="Nhà Đất Bán" to="/buy" />
                                     <MenuLink label="Nhà Đất Thuê" to="/rent" />
+
+                                    <MenuLink label="Đăng tin" to="/addproduct"/>
                                 </ul>
                             </div>
                             {/* Nav Ends */}
@@ -86,14 +88,14 @@ class Header extends Component {
 
 
                 {/* <div className="container"> */}
-                    {/* Header Starts */}
-                    {/* <div className="header">
+                {/* Header Starts */}
+                {/* <div className="header">
                         <ul className="pull-right">
                             <MenuLink label="Nhà Đất Bán" to="/buy" />
                             <MenuLink label="Nhà Đất Thuê" to="/rent" />
                         </ul>
                     </div> */}
-                    {/* Header Starts</div> */}
+                {/* Header Starts</div> */}
                 {/* </div> */}
             </>
         );

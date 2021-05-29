@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Profile from '../components/Profile/Profile';
 import EditProfile from '../components/Profile/EditProfile'
-import ChangePass from '../components/Profile/ChangePass';
 
 class ProfilePage extends Component {
     state = {

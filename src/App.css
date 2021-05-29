@@ -335,6 +335,7 @@ th {
     width: 400px;
     height: 400px
 }
+
 .legen-form-edit {
     margin-bottom: 100px;
 }
@@ -348,7 +349,7 @@ th {
     margin-bottom: 10px;
     font-weight: 600;
     font-size: 14px;
-    font-family: 'Roboto',serif;
+    font-family: 'Roboto', serif;
     float: right;
     padding: 10px 0px;
 }
@@ -362,4 +363,8 @@ th {
 .btn-edit-form:hover {
     color: black;
     border: outset;
+}
+
+:root Confirm {
+    --st-modal-backgroundColor: #2a2a2a;
 }

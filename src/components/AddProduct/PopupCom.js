@@ -5,12 +5,10 @@ import ModalPayment from '../Manament/ModalPayment';
 
 class PopupCom extends Component {
     state = {
-        name: this.props.name,
         modalDatas: this.props.modalDatas,
     }
     render() {
-        const { name } = this.state;
-        const { propertyId, disable, type } = this.props;
+        const { propertyId, disable, type, name } = this.props;
         return (
             <Popup trigger={<button className={`btn btn-default paid-button ${disable}`}>{name}</button>} position="right center" modal="true">
                 {close => <ModalPayment

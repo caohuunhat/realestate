@@ -62,19 +62,16 @@ class Register extends Component {
         if (redirect) {
             return <Redirect to='/login' />;
         }
-
-        const pageName = "Đăng ký"
         return (
             <>
                 {/* Banner */}
-                <Banner pageName={pageName} />
                 {/*banner */}
                 <div className="container" style={{ padding: "30px 0px" }}>
-                    <div class="row">
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div className="row">
+                        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                             <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
                             <p>và bắt đầu đăng tin ngay</p>
                             <form onSubmit={this.onSubmit} autoComplete="on">

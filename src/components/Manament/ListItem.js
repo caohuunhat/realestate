@@ -14,7 +14,10 @@ class ListItem extends Component {
             />
         }
         if (post_status === 'Đã thanh toán') {
-            return <PopupCom name={post_status} disable={'disable'} />
+            return <PopupCom
+                name={post_status}
+                disable={'disable'}
+            />
         }
     }
 
@@ -24,11 +27,12 @@ class ListItem extends Component {
 
     render() {
         const { estimated_price, post_time, ptype_name, land_area, apartment_number, street, property_id } = this.props.data;
+        const { index } = this.props
         console.log(this.props.data)
         return (
             <>
                 <tr>
-                    <td className="text-center"></td>
+                    <td className="text-center">{index + 1}</td>
                     <td>{ptype_name}</td>
                     <td>{`${apartment_number} ${street}`}</td>
                     <td>{estimated_price}</td>

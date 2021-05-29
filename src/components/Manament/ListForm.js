@@ -24,7 +24,6 @@ class ListForm extends Component {
     showListItem = () => {
         const { datas, sortDatas } = this.state;
         if (sortDatas !== null) {
-            console.log(sortDatas);
             return sortDatas.map((data, index) => (
                 <ListItem
                     data={data}
@@ -64,7 +63,8 @@ class ListForm extends Component {
             .catch(err => {
                 console.log(err);
             })
-        return console.log(delPost);
+
+        return delPost;
     }
 
     handleTypeSort = (e) => {

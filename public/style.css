@@ -494,6 +494,23 @@ table {
     margin: 30px 0 0 0;
 }
 
+.navbar-inverse .navbar-nav>li>a[href="/addproduct"] {
+    font-size: 11px;
+    padding: 10px 17.5px;
+    font-family: din;
+    text-transform: uppercase;
+    margin-left: 20px;
+}
+
+.navbar-inverse .navbar-nav>li:nth-child(5) a {
+    font-size: 11px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    font-family: din;
+    text-transform: uppercase;
+}
+
 
 @media (max-width: 600px) {
     .header {

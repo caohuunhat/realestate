@@ -1,20 +1,59 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import callApiAu from './../../utils/callApiAu'
+import { Confirm, Alert } from 'react-st-modal';
 class ChangePass extends Component {
-
-    onGoBack = () => {
-        this.props.history.goBack();
+    state = {
+        oldPassWord: '',
+        newPassWord: '',
+        confirmPassWord: '',
     }
+
+    onChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({
+            [name]: value
+        })
+    }
+
+    submitUpdatePass = async (e) => {
+        e.preventDefault();
+        const { oldPassWord, newPassWord, confirmPassWord } = this.state;
+        const token = sessionStorage.getItem('token')
+        const confirm = await Confirm("Bạn có muốn đổi mật khẩu !", "Thông báo");
+
+        if (confirm) {
+            callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/change_password.php', 'PUT', token, {
+                password: oldPassWord,
+                new_password: newPassWord,
+                confirm_password: confirmPassWord
+            })
+                .then(res => {
+                    if (res.data.success) {
+                        Alert(res.data.success, 'Thông báo');
+                    }
+                    if (res.data.errors) {
+                        Alert(res.data.errors, 'Thông báo');
+                    }
+                })
+                .catch(res => {
+                    console.log(res);
+                })
+        }
+    }
+
     render() {
+        console.log(this.state);
         return (
             <div className="changePass">
-                <form className="form-width" onSubmit={this.submitUpdateForm}>
+                <form className="form-width" onSubmit={this.submitUpdatePass}>
                     <legend className="text-center">Đổi mật khẩu</legend>
                     <div className="form-group">
                         <label htmlFor>Mật khẩu cũ</label>
                         <input
-                            type="text"
-                            name="full_name"
+                            type="password"
+                            name="oldPassWord"
                             onChange={this.onChange}
                             className="form-control"
                             placeholder="Mật khẩu cũ"
@@ -23,8 +62,8 @@ class ChangePass extends Component {
                     <div className="form-group">
                         <label htmlFor>Mật khẩu mới</label>
                         <input
-                            type="text"
-                            name="phone"
+                            type="password"
+                            name="newPassWord"
                             onChange={this.onChange}
 
                             className="form-control"
@@ -34,8 +73,8 @@ class ChangePass extends Component {
                     <div className="form-group">
                         <label htmlFor>Xác nhận mật khẩu mới</label>
                         <input
-                            type="text"
-                            name="phone"
+                            type="password"
+                            name="confirmPassWord"
                             onChange={this.onChange}
 
                             className="form-control"
@@ -46,7 +85,7 @@ class ChangePass extends Component {
                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                             <button
                                 className="btn btn-primary"
-                                onClick={()=>{this.props.history.push('/ProfilePage')}}
+                                onClick={() => { this.props.history.push('/ProfilePage') }}
                             >trở về</button>
                         </div>
                         <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">

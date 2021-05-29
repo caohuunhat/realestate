@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import callApiAu from './../../utils/callApiAu'
 import axios from 'axios'
-
+import callApiAu from '../../utils/callApiAu';
+import { Confirm, Alert } from 'react-st-modal';
 class EditProfile extends Component {
     state = {
         full_name: '',
@@ -18,36 +18,36 @@ class EditProfile extends Component {
     }
 
     onChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
 
+        this.setState({
+            [name]: value
+        })
     }
 
-    submitUpdateForm = (e) => {
+    submitUpdateForm = async (e) => {
         const { full_name, phone, sex } = this.state;
         e.preventDefault();
+
+        const confirm = await Confirm("Bạn muốn cập nhập lại thông tin cá nhân !", "Thông báo");
         const token = sessionStorage.getItem("token");
-        const url = 'http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/update.php';
-        const formData = new FormData();
-        formData.append('full_name', full_name)
-        formData.append('phone_no', phone)
-        formData.append('sex_id', sex)
-        axios({
-            url: url,
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                token: token,
-            },
-            data: formData
-        })
-            .then(res => {
-                console.log(res);
+
+        if (confirm) {
+            const url = 'http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/update.php';
+            callApiAu(url, 'POST', token, {
+                full_name: full_name,
+                phone_no: phone,
+                sex: sex
             })
+                .then(res => {
+                    console.log(res);
+                })
+        }
     }
 
     render() {
         const { full_name, phone, sex } = this.state;
-        console.log(this.state);
         return (
             <div className="edit-profile">
                 <form className="form-edit" onSubmit={this.submitUpdateForm}>
@@ -80,10 +80,11 @@ class EditProfile extends Component {
                         <select
                             name="sex"
                             onChange={this.onChange}
+                            value={sex}
                             className="form-control"
                         >
-                            <option value={1}>Nam</option>
-                            <option value={2}>Nữ</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
                         </select>
                     </div>
                     <div className="form-group button-changePass">

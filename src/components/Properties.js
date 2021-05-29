@@ -15,7 +15,7 @@ class Properties extends Component {
 
     render() {
         const { id, caption, land_area, price, districtName, street, image } = this.state;
-        console.log(image);
+        // console.log(image);
         return (
             <Link style={{ textDecoration: "none" }} to={`/productDetailPage/${id}`} className="col-lg-4 col-sm-6">
                 <div className="properties">

@@ -18,6 +18,7 @@ class ProductDetailPage extends Component {
             ptypeName: '',
             chouse_name: '',
             phone: '',
+            sex: '',
             images: []
         }
     }
@@ -45,7 +46,8 @@ class ProductDetailPage extends Component {
                         ptypeName: res.data.ptypeName,
                         chouse_name: res.data.chouse_name,
                         phone: res.data.phone,
-                        images: res.data.img.image
+                        images: res.data.img.image,
+                        sex: res.data.sex
                     }
                 })
             })
@@ -63,17 +65,12 @@ class ProductDetailPage extends Component {
     }
 
     render() {
-        const { caption, price, description, address, name, time, land_area, ptypeName, chouse_name, phone, images, datas } = this.state.datas
-        // const currency = new Intl.NumberFormat().format(parseFloat(price / land_area))
-        const pageName = 'Thông tin chi tiết';
+        const { caption, price, description, address, name, time, land_area, ptypeName, chouse_name, phone, images, sex } = this.state.datas
         const imgLink = images.map(img => {
             return img.image
         })
         return (
             <div>
-                {/* banner */}
-                {/* <Banner pageName={pageName} /> */}
-                {/* banner */}
                 <div className="container">
                     <div className="properties-listing spacer">
                         <div className="row">
@@ -163,10 +160,8 @@ class ProductDetailPage extends Component {
                                             <div className="property-info box-contact">
                                                 <div className="profile user">
                                                     <div className="avatar">
-                                                        <img src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043248-avatar-female-portrait-woman_113285.png" />
-                                                        {/* <img src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png" /> */}
+                                                        {sex === "Nữ" ? <img src="/images/female.png" width="100%" /> : < img src="/images/male.png" width="100%" />}
                                                     </div>
-                                                    {/* <span className="glyphicon glyphicon-user" />NGƯỜI ĐĂNG BÀI */}
                                                     <div className="name" title={name}>
                                                         {name}
                                                     </div>
@@ -195,7 +190,7 @@ class ProductDetailPage extends Component {
                                             </div>
                                             <div className="advertisement">
                                                 <h4>Advertisements</h4>
-                                                <img src="/public/images/anh_user.png" className="img-responsive"/>
+                                                <img src="/public/images/anh_user.png" className="img-responsive" />
                                             </div>
                                         </div>
                                     </div>
