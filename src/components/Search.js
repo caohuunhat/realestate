@@ -6,6 +6,7 @@ class Search extends Component {
         price: null,
 
         caption: null,
+        type: null,
         price_start: null,
         price_end: null,
         area_start: null,
@@ -14,6 +15,7 @@ class Search extends Component {
         city: [],
         district: [],
         ward: [],
+        types: [],
 
         city_id: null,
         district_id: null,
@@ -211,7 +213,7 @@ class Search extends Component {
     }
 
     onSubmitSearchForm = (e) => {
-        const { caption, city_id, ward_id, district_id, price_start, price_end, area_start, area_end } = this.state;
+        const { type, caption, city_id, ward_id, district_id, price_start, price_end, area_start, area_end } = this.state;
         e.preventDefault();
         axios({
             method: 'post',
@@ -290,6 +292,18 @@ class Search extends Component {
                                 <option value={8}>250 - 300 m²</option>
                                 <option value={9}>300 - 350 m²</option>
                                 <option value={10}>trên 500 m²</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <select
+                                name="type"
+                                // value={type}
+                                onChange={this.onChange}
+                                className="form-control"
+                            >
+                                <option>Loại</option>
                             </select>
                         </div>
                     </div>

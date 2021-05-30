@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Banner from '../components/Banner';
+import HotProperties from '../components/HotProperties';
+import Properties from '../components/Properties';
+import HotBuyProperties from '../components/Properties/HotBuyProperties';
 
 
 class HomePage extends Component {
@@ -16,32 +19,12 @@ class HomePage extends Component {
                         <li data-target="#carousel-id" data-slide-to={2} className="active" />
                     </ol>
                     <div className="carousel-inner">
-                        <div className="item">
-                            <img alt="First slide" src="https://1.bp.blogspot.com/-fJOYWF8sRcc/XqPMUl5F0uI/AAAAAAAAipA/FOrgLq4mcqQ23Lp_hA4_QPcjGym-ez4agCLcBGAsYHQ/s1600/Hinh-anh-dep-nhat-the-gioi%2B%25281%2529.jpg" style={{ width: "100%", height: "550px" }} />
-                            <div className="container">
-                                <div className="carousel-caption">
-                                    <h1>Example headline.</h1>
-                                    <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                                    <p><a className="btn btn-lg btn-primary" href="#" role="button">Xem chi tiết</a></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <img alt="Second slide" src="https://1.bp.blogspot.com/-fJOYWF8sRcc/XqPMUl5F0uI/AAAAAAAAipA/FOrgLq4mcqQ23Lp_hA4_QPcjGym-ez4agCLcBGAsYHQ/s1600/Hinh-anh-dep-nhat-the-gioi%2B%25281%2529.jpg" style={{ width: "100%", height: "550px" }} />
-                            <div className="container">
-                                <div className="carousel-caption">
-                                    <h1>Another example headline.</h1>
-                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                    <p><a className="btn btn-lg btn-primary" href="#" role="button">Xem chi tiết</a></p>
-                                </div>
-                            </div>
-                        </div>
                         <div className="item active">
                             <img alt="Third slide" src="https://1.bp.blogspot.com/-fJOYWF8sRcc/XqPMUl5F0uI/AAAAAAAAipA/FOrgLq4mcqQ23Lp_hA4_QPcjGym-ez4agCLcBGAsYHQ/s1600/Hinh-anh-dep-nhat-the-gioi%2B%25281%2529.jpg" style={{ width: "100%", height: "550px" }} />
                             <div className="container">
                                 <div className="carousel-caption">
-                                    <h1>One more for good measure.</h1>
-                                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                    <h1>Các bài đăng hấp dẫn</h1>
+                                    <p>Hỗ trợ đăng tin và tiềm kiếm tin theo yêu cầu của bạn</p>
                                     <p><a className="btn btn-lg btn-primary" href="#" role="button">Xem chi tiết</a></p>
                                 </div>
                             </div>
@@ -51,176 +34,22 @@ class HomePage extends Component {
                     <a className="right carousel-control" href="#carousel-id" data-slide="next"><span className="glyphicon glyphicon-chevron-right" /></a>
                 </div>
 
-
-                {/* <div id="slider" className="sl-slider-wrapper">
-                    <div className="sl-slider">
-                        <div className="sl-slide" data-orientation="horizontal" data-slice1-rotation={-25} data-slice2-rotation={-25} data-slice1-scale={2} data-slice2-scale={2}>
-                            <div className="sl-slide-inner">
-                                <div className="bg-img bg-img-1" />
-                                <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
-                                <blockquote>
-                                    <p className="location"><span className="glyphicon glyphicon-map-marker" /> 1890 Syndey, Australia</p>
-                                    <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-                                    <cite>$ 20,000,000</cite>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <div className="sl-slide" data-orientation="vertical" data-slice1-rotation={10} data-slice2-rotation={-15} data-slice1-scale="1.5" data-slice2-scale="1.5">
-                            <div className="sl-slide-inner">
-                                <div className="bg-img bg-img-2" />
-                                <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
-                                <blockquote>
-                                    <p className="location"><span className="glyphicon glyphicon-map-marker" /> 1890 Syndey, Australia</p>
-                                    <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-                                    <cite>$ 20,000,000</cite>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <div className="sl-slide" data-orientation="horizontal" data-slice1-rotation={3} data-slice2-rotation={3} data-slice1-scale={2} data-slice2-scale={1}>
-                            <div className="sl-slide-inner">
-                                <div className="bg-img bg-img-3" />
-                                <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
-                                <blockquote>
-                                    <p className="location"><span className="glyphicon glyphicon-map-marker" /> 1890 Syndey, Australia</p>
-                                    <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-                                    <cite>$ 20,000,000</cite>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <div className="sl-slide" data-orientation="vertical" data-slice1-rotation={-5} data-slice2-rotation={25} data-slice1-scale={2} data-slice2-scale={1}>
-                            <div className="sl-slide-inner">
-                                <div className="bg-img bg-img-4" />
-                                <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
-                                <blockquote>
-                                    <p className="location"><span className="glyphicon glyphicon-map-marker" /> 1890 Syndey, Australia</p>
-                                    <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-                                    <cite>$ 20,000,000</cite>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <div className="sl-slide" data-orientation="horizontal" data-slice1-rotation={-5} data-slice2-rotation={10} data-slice1-scale={2} data-slice2-scale={1}>
-                            <div className="sl-slide-inner">
-                                <div className="bg-img bg-img-5" />
-                                <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
-                                <blockquote>
-                                    <p className="location"><span className="glyphicon glyphicon-map-marker" /> 1890 Syndey, Australia</p>
-                                    <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
-                                    <cite>$ 20,000,000</cite>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>{/* /sl-slider */}
-                {/* <nav id="nav-dots" className="nav-dots">
-                    <span className="nav-dot-current" />
-                    <span />
-                    <span />
-                    <span />
-                    <span />
-                </nav> */}
-                {/* </div> */}
-                {/* slider-wrapper */}
-
                 <div className="container">
-                    <div className="properties-listing spacer"> <a href="buysalerent.php" className="pull-right viewall">View All Listing</a>
-                        <h2>Featured Properties</h2>
-                        <div id="owl-example" className="owl-carousel">
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/1.jpg" className="img-responsive" alt="properties" />
-                                    <div className="status sold">Sold</div>
-                                </div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/2.jpg" className="img-responsive" alt="properties" />
-                                    <div className="status new">New</div>
-                                </div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/3.jpg" className="img-responsive" alt="properties" /></div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/4.jpg" className="img-responsive" alt="properties" /></div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/1.jpg" className="img-responsive" alt="properties" />
-                                    <div className="status sold">Sold</div>
-                                </div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/2.jpg" className="img-responsive" alt="properties" />
-                                    <div className="status sold">Sold</div>
-                                </div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/3.jpg" className="img-responsive" alt="properties" />
-                                    <div className="status new">New</div>
-                                </div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/4.jpg" className="img-responsive" alt="properties" /></div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/1.jpg" className="img-responsive" alt="properties" /></div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/2.jpg" className="img-responsive" alt="properties" /></div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                            <div className="properties">
-                                <div className="image-holder"><img src="images/properties/3.jpg" className="img-responsive" alt="properties" /></div>
-                                <h4><a href="property-detail.php">Royal Inn</a></h4>
-                                <p className="price">Price: $234,900</p>
-                                <div className="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">5</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking">2</span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen">1</span> </div>
-                                <a className="btn btn-primary" href="property-detail.php">View Details</a>
-                            </div>
-                        </div>
+                    <div className="properties-listing spacer">
+                        <h2>Các bài đăng nổi bật</h2>
+                        <HotBuyProperties />
                     </div>
+
+
                     <div className="spacer">
                         <div className="row">
                             <div className="col-lg-6 col-sm-9 recent-view">
-                                <h3>About Us</h3>
-                                <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.<br /><a href="about.php">Learn More</a></p>
+                                <h3>Về chúng tôi</h3>
+                                <p>Là công ty tiên phong xây dựng thị trường bất động sản minh bạch và thúc đẩy các giao dịch trên thị trường BĐS Việt Nam diễn ra dễ dàng, nhanh chóng thông qua sự đột phá trên nền tảng công nghệ dẫn dắt bởi đội ngũ chuyên gia hàng đầu
+RE luôn cam kết sự Chính Xác, Minh Bạch, Thông Minh và Chuyên Nghiệp trên tất cả thông tin, sản phẩm và dịch vụ mà chúng tôi cung cấp. Đội ngũ nhân viên kinh doanh tâm huyết cam kết, luôn tư vấn và phục vụ khách hàng nhanh chóng, kịp thời và tận tâm nhất. Để đạt được sứ mệnh cuối cùng là tất cả mọi người đều đưa ra được những quyết định đúng đắn và có trải nghiệm hài lòng khi giao dịch tại RE. </p>
                             </div>
                             <div className="col-lg-5 col-lg-offset-1 col-sm-3 recommended">
-                                <h3>Recommended Properties</h3>
+                                <h3>Gợi ý</h3>
                                 <div id="myCarousel" className="carousel slide">
                                     <ol className="carousel-indicators">
                                         <li data-target="#myCarousel" data-slide-to={0} className="active" />

@@ -44,13 +44,12 @@ class ChangePass extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="changePass">
                 <form className="form-width" onSubmit={this.submitUpdatePass}>
-                    <legend className="text-center">Đổi mật khẩu</legend>
+                    <legend className="legen-changePass text-center">Đổi mật khẩu</legend>
                     <div className="form-group">
-                        <label htmlFor>Mật khẩu cũ</label>
+                        <label>Mật khẩu cũ</label>
                         <input
                             type="password"
                             name="oldPassWord"

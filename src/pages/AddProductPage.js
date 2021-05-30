@@ -389,7 +389,6 @@ class AddProductPage extends Component {
                                                 multiple
                                                 accept=".png, .jpg, .jpeg"
                                                 name="p_photo"
-                                                multiple
                                                 onChange={this.onChangeFile}
                                             />
                                         </div>

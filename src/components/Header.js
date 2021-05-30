@@ -19,7 +19,6 @@ const MenuLink = ({ label, to, activeOnlyWhenExact, onClick }) => {
 }
 
 class Header extends Component {
-
     onLogOut = async () => {
         const approved = window.confirm("Bạn có muốn đăng xuất ?") == true;
         const token = sessionStorage.getItem("token")
@@ -61,7 +60,7 @@ class Header extends Component {
                             {/* Nav Starts */}
                             <div className="navbar-collapse  collapse">
                                 <ul className="nav navbar-nav navbar-right btn-topp">
-                                    <MenuLink label="Home" to="/" activeOnlyWhenExact={true} />
+                                    <MenuLink label="Trang chủ" to="/" activeOnlyWhenExact={true} />
                                     <MenuLink label="About" to="/about" activeOnlyWhenExact={false} />
                                     {this.functionAuthor()}
                                 </ul>
@@ -70,8 +69,7 @@ class Header extends Component {
                                 <ul className="nav navbar-nav navbar-right btn-bott">
                                     <MenuLink label="Nhà Đất Bán" to="/buy" />
                                     <MenuLink label="Nhà Đất Thuê" to="/rent" />
-
-                                    <MenuLink label="Đăng tin" to="/addproduct"/>
+                                    {sessionStorage.getItem("token") ? <MenuLink label="Đăng tin" to="/addproduct" /> : ''}
                                 </ul>
                             </div>
                             {/* Nav Ends */}

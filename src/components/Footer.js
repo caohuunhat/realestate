@@ -5,47 +5,43 @@ import Register from './Register';
 class Footer extends Component {
     render() {
         return (
-                <div>
-                    <div className="footer">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-lg-3 col-sm-3">
-                                    <h4>Information</h4>
-                                    <ul className="row">
-                                        <li className="col-lg-12 col-sm-12 col-xs-3"><a href="about.php">About</a></li>
-                                        <li className="col-lg-12 col-sm-12 col-xs-3"><a href="agents.php">Agents</a></li>
-                                        <li className="col-lg-12 col-sm-12 col-xs-3"><a href="blog.php">Blog</a></li>
-                                        <li className="col-lg-12 col-sm-12 col-xs-3"><a href="contact.php">Contact</a></li>
-                                    </ul>
-                                </div>
-                                <div className="col-lg-3 col-sm-3">
-                                    <h4>Newsletter</h4>
-                                    <p>Get notified about the latest properties in our marketplace.</p>
-                                    <form className="form-inline" role="form">
-                                        <input type="text" placeholder="Enter Your email address" className="form-control" />
-                                        <button className="btn btn-success" type="button">Notify Me!</button></form>
-                                </div>
-                                <div className="col-lg-3 col-sm-3">
-                                    <h4>Follow us</h4>
-                                    <a href="#"><img src="images/facebook.png" alt="facebook" /></a>
-                                    <a href="#"><img src="images/twitter.png" alt="twitter" /></a>
-                                    <a href="#"><img src="images/linkedin.png" alt="linkedin" /></a>
-                                    <a href="#"><img src="images/instagram.png" alt="instagram" /></a>
-                                </div>
-                                <div className="col-lg-3 col-sm-3">
-                                    <h4>Contact us</h4>
-                                    <p><b>Bootstrap Realestate Inc.</b><br />
-                                        <span className="glyphicon glyphicon-map-marker" /> 8290 Walk Street, Australia <br />
-                                        <span className="glyphicon glyphicon-envelope" /> hello@bootstrapreal.com<br />
-                                        <span className="glyphicon glyphicon-earphone" /> (123) 456-7890</p>
-                                </div>
+            <div>
+                <div className="footer">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-3 col-sm-3">
+                                <h4>Thông tin</h4>
+                                <ul className="row">
+                                    <li className="col-lg-12 col-sm-12 col-xs-3"><a href="agents.php">Thành viên</a></li>
+                                    <li className="col-lg-12 col-sm-12 col-xs-3"><a href="contact.php">Liên hệ</a></li>
+                                </ul>
                             </div>
-                            <p className="copyright">Copyright 2013. All rights reserved.	</p>
+                            <div className="col-lg-3 col-sm-3">
+                                <h4>Liên hệ khi gặp sự cố</h4>
+                                <p>0352956126</p>
+                                <p>batdongsan@gmail.com</p>
+                            </div>
+                            <div className="col-lg-3 col-sm-3">
+                                <h4>Theo dõi chúng tôi</h4>
+                                <a href="#"><img src="images/facebook.png" alt="facebook" /></a>
+                                <a href="#"><img src="images/twitter.png" alt="twitter" /></a>
+                                <a href="#"><img src="images/linkedin.png" alt="linkedin" /></a>
+                                <a href="#"><img src="images/instagram.png" alt="instagram" /></a>
+                            </div>
+                            <div className="col-lg-3 col-sm-3">
+                                <h4>Liên hệ với chúng tôi</h4>
+                                <p><b>Real Estate</b><br />
+                                    <span className="glyphicon glyphicon-map-marker" /> 20 Nguyễn Hoàng <br />
+                                    <span className="glyphicon glyphicon-envelope" /> batdongsan@gmail.com<br />
+                                    <span className="glyphicon glyphicon-earphone" /> (84) 0352956126</p>
+                            </div>
                         </div>
+                        <p className="copyright">Copyright 2021. All rights reserved.	</p>
                     </div>
-                    {/* Modal */}
-                    {/* /.modal */}
                 </div>
+                {/* Modal */}
+                {/* /.modal */}
+            </div>
         );
     }
 }

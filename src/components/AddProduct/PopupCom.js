@@ -10,7 +10,7 @@ class PopupCom extends Component {
     render() {
         const { propertyId, disable, type, name } = this.props;
         return (
-            <Popup trigger={<button className={`btn btn-default paid-button ${disable}`}>{name}</button>} position="right center" modal="true">
+            <Popup trigger={<button className={`btn btn-status paid-button ${disable}`}>{name}</button>} position="right center" modal="true">
                 {close => <ModalPayment
                     close={close}
                     type={type}

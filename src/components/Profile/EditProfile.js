@@ -64,7 +64,7 @@ class EditProfile extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor>Phone</label>
+                        <label htmlFor>Số điện thoại</label>
                         <input
                             type="text"
                             value={phone}
@@ -76,7 +76,7 @@ class EditProfile extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor>Gender</label>
+                        <label htmlFor>Giới tính</label>
                         <select
                             name="sex"
                             onChange={this.onChange}

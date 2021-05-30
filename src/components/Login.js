@@ -82,19 +82,18 @@ class Login extends Component {
                                         onChange={this.onChange}
                                     />
                                 </div>
-                                <div className="checkbox">
-                                    <label>
-                                        <input type="checkbox" />Nhớ tài khoản</label>
-                                </div>
                                 <button
                                     type="submit"
                                     className="btn btn-success"
                                 >Đăng nhập</button>
+                                <div className="forgot-password">
+                                    <a href="#">Quên mật khẩu</a>
+                                </div>
                             </form>
                             <br />
                             <h4>Hoặc tạo tài khoản mới</h4>
                             <p>Bắt đầu đăng tin ngay trên nền tảng của chúng tôi</p>
-                            <Link to="/register" className="btn btn-info">
+                            <Link to="/register" className="btn btn-default">
                                 Đăng ký
                             </Link>
                         </div>

@@ -45,7 +45,7 @@ class ListItem extends Component {
                         <div className="btn-group" role="group">
                             <Link to={`/ProductDetailPage/${property_id}`} className="btn btn-default paid-button">Xem chi tiết</Link>
                             <button
-                                className="btn btn-default paid-button"
+                                className="btn btn-delete paid-button"
                                 onClick={() => this.handleDeleteId(property_id)}
                             >Xóa</button>
                         </div>
