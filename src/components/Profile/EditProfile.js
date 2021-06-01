@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import { Confirm } from 'react-st-modal';
 import callApiAu from '../../utils/callApiAu';
-import { Confirm, Alert } from 'react-st-modal';
 class EditProfile extends Component {
     state = {
         full_name: '',
@@ -20,7 +19,6 @@ class EditProfile extends Component {
     onChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-
         this.setState({
             [name]: value
         })
@@ -29,10 +27,8 @@ class EditProfile extends Component {
     submitUpdateForm = async (e) => {
         const { full_name, phone, sex } = this.state;
         e.preventDefault();
-
         const confirm = await Confirm("Bạn muốn cập nhập lại thông tin cá nhân !", "Thông báo");
         const token = sessionStorage.getItem("token");
-
         if (confirm) {
             const url = 'http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/update.php';
             callApiAu(url, 'POST', token, {

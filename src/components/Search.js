@@ -29,11 +29,22 @@ class Search extends Component {
         const cityDatas = await API.getCity();
         const districtDatas = await API.getDistrict();
         const wardDatas = await API.getWard();
+        const typesDatas = await API.getPropertyType();
         this.setState({
             city: cityDatas.data.list,
             district: districtDatas.data.list,
-            ward: wardDatas.data.list
+            ward: wardDatas.data.list,
+            types: typesDatas.data.list,
         })
+    }
+
+    newTypes = () => {
+        const { types } = this.state;
+        if (!types) return;
+        const newTypes = types.map(type => {
+            return <option value={type.chouse_id}>{type.name}</option>
+        })
+        return newTypes;
     }
 
     newCity = () => {
@@ -223,6 +234,7 @@ class Search extends Component {
                 row_per_page: '9'
             },
             data: {
+                chouse_id: type,
                 caption_s: caption,
                 city_id_s: city_id,
                 district_id_s: district_id,
@@ -244,7 +256,7 @@ class Search extends Component {
         const { district_id, city_id, ward_id, price, caption } = this.state;
         return (
             <form onSubmit={this.onSubmitSearchForm}>
-                <div className="search-form"><h4><span className="glyphicon glyphicon-search" />Tìm kiếm</h4>
+                <div className="search-form"><h4>Tìm kiếm</h4>
                     <input
                         type="text"
                         name="caption"
@@ -304,6 +316,7 @@ class Search extends Component {
                                 className="form-control"
                             >
                                 <option>Loại</option>
+                                {this.newTypes()}
                             </select>
                         </div>
                     </div>
@@ -348,7 +361,7 @@ class Search extends Component {
                     </div>
                     <button
                         type="submit"
-                        className="btn btn-primary"
+                        className="btn btn-Search"
                     >Tìm kiếm</button>
                 </div>
             </form>

@@ -4,6 +4,7 @@ import {
   Route, Switch
 } from "react-router-dom";
 import './App.css';
+import Main_Admin from './components/Admin/Main_Admin';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import routes from './routes';
@@ -27,9 +28,11 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Header />
-        {this.showContentMenu(routes)}
-        <Footer />
+        <>
+          <Header />
+          {this.showContentMenu(routes)}
+          <Footer />
+        </>
       </Router>
     )
   }

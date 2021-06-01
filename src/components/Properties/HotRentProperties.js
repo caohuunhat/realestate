@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getBuyVip } from '../../constans/getAPI'
+import { getRentVip } from '../../constans/getAPI'
 import Properties from './Properties'
 
-class HotBuyProperties extends Component {
+class HotRentProperties extends Component {
     state = {
         datas: [],
     }
 
     async componentDidMount() {
-        const res = await getBuyVip();
+        const res = await getRentVip();
         this.setState({ datas: res.data.list })
     }
 
@@ -22,13 +22,13 @@ class HotBuyProperties extends Component {
 
     render() {
         return (
-            <div className="hot_buy_properties">
+            <div className="hot_rent_properties">
                 <div className="row note-buy">
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <h3>Bài đăng bán</h3>
+                        <h3>Bài đăng thuê</h3>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <Link to="/buy">
+                        <Link to="/rent">
                             <a className="pull-right viewall">Xem tất cả</a>
                         </Link>
                     </div>
@@ -41,4 +41,4 @@ class HotBuyProperties extends Component {
     }
 }
 
-export default HotBuyProperties;
+export default HotRentProperties;

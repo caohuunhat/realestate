@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ListItem from './ListItem';
 import callApiAu from '../../utils/callApiAu'
 import axios from 'axios'
+import { Confirm, Alert } from 'react-st-modal';
+
 class ListForm extends Component {
     state = {
         datas: [],
@@ -44,27 +46,31 @@ class ListForm extends Component {
 
     handleDeleteFormId = async (id) => {
         const token = sessionStorage.getItem('token')
-        const delPost = await axios.delete('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/delete_post.php?id=48', {
-            params: {
-                id: id
-            },
-            headers: {
-                'Content-Type': 'application/json',
-                token: token
-            }
-        }, null)
 
-        callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/post.php?ptype_id=0', 'GET', token, null)
-            .then(res => {
-                this.setState({
-                    datas: res.data.list
+        const confirm = await Confirm('Bạn có chắc muốn xóa bài đăng này', 'Thông báo !')
+
+        if (confirm) {
+            const delPost = await axios.delete('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/delete_post.php?id=48', {
+                params: {
+                    id: id
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: token
+                }
+            }, null)
+
+            callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/manage_products/post.php?ptype_id=0', 'GET', token, null)
+                .then(res => {
+                    this.setState({
+                        datas: res.data.list
+                    })
                 })
-            })
-            .catch(err => {
-                console.log(err);
-            })
-
-        return delPost;
+                .catch(err => {
+                    console.log(err);
+                })
+            return delPost;
+        }
     }
 
     handleTypeSort = (e) => {

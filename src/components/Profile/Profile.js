@@ -16,31 +16,22 @@ class Profile extends Component {
 
     componentDidMount() {
         const token = sessionStorage.getItem('token');
-        callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/profile.php', 'GET', token, null)
-            .then(res => {
-                this.setState({
-                    full_name: res.data.full_name,
-                    email: res.data.email,
-                    phone: res.data.phone_no,
-                    sex: res.data.sex
+        this.interval = setInterval(() => {
+            callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/profile.php', 'GET', token, null)
+                .then(res => {
+                    this.setState({
+                        full_name: res.data.full_name,
+                        email: res.data.email,
+                        phone: res.data.phone_no,
+                        sex: res.data.sex
+                    })
                 })
-            })
+        }, 800)
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     const token = sessionStorage.getItem('token');
-    //     if (prevProps !== this.state) {
-    //         callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/profile.php', 'GET', token, null)
-    //             .then(res => {
-    //                 this.setState({
-    //                     full_name: res.data.full_name,
-    //                     email: res.data.email,
-    //                     phone: res.data.phone_no,
-    //                     sex: res.data.sex
-    //                 })
-    //             })
-    //     }
-    // }
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
 
     editDatas = () => {
         this.props.editDatas(this.state)
@@ -53,7 +44,6 @@ class Profile extends Component {
 
     render() {
         const { full_name, email, phone, sex } = this.state;
-        console.log(phone);
         return (
             <div className="man-profile" >
                 <div className="row text-center">

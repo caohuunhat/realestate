@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Banner from '../components/Banner';
-import HotProperties from '../components/HotProperties';
+import HotProperties from '../components/HotProperties/HotProperties';
 import Properties from '../components/Properties'
 import axios from 'axios'
 import Pagination from '../components/Pagination';
@@ -17,6 +17,7 @@ class BuyCategoryPage extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 160);
         axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php?page=2&row_per_page=3', {
             params: {
                 page: this.state.currentPage,
@@ -75,8 +76,8 @@ class BuyCategoryPage extends Component {
             datasInNewPage: res.data.list,
             currentPage: currentPage
         })
-
     }
+    
     showProduct = () => {
         const { datas } = this.state
         if (!datas) return;
@@ -95,8 +96,8 @@ class BuyCategoryPage extends Component {
                             {/* Search */}
                             <Search />
                             {/* Search */}
-                            <div className="hot-properties  ">
-                                <h4>Bài đăng nổi bật</h4>
+                            <div className="hot-properties">
+                                <h4>Gợi ý</h4>
                                 {/* Bài đăng nổi bật */}
                                 <HotProperties />
                                 {/* Bài đăng nổi bật */}

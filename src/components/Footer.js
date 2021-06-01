@@ -5,7 +5,7 @@ import Register from './Register';
 class Footer extends Component {
     render() {
         return (
-            <div>
+            <>
                 <div className="footer">
                     <div className="container">
                         <div className="row">
@@ -41,7 +41,7 @@ class Footer extends Component {
                 </div>
                 {/* Modal */}
                 {/* /.modal */}
-            </div>
+            </>
         );
     }
 }

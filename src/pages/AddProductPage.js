@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Modals from '../components/AddProduct/Modals'
 import Banner from '../components/Banner'
 import { getCity, getDistrict, getKindNew, getPostType, getPropertyType, getWard } from '../constans/getAPI'
+import { Confirm, Alert } from 'react-st-modal';
 
 class AddProductPage extends Component {
     state = {
@@ -19,6 +20,7 @@ class AddProductPage extends Component {
         land_area: '',
         description: '',
         day_number: '',
+
         p_photo: [],
         cityDatas: [],
         districtDatas: [],
@@ -26,6 +28,7 @@ class AddProductPage extends Component {
         kindNewDatas: [],
         propertyType: [],
         postType: [],
+
         openModal: false,
         modalDatas: null
     }
@@ -39,6 +42,61 @@ class AddProductPage extends Component {
         })
     }
 
+    onChangePrice = (e) => {
+        const value = e.target.value
+        let price = parseInt(value)
+        if (price < 0 || price > 50000000000) {
+            Alert('vui lòng nhập đúng định dạng giá tiền bằng số (Không quá 50 tỷ)', 'Thông báo');
+            this.setState({
+                estimated_price: '',
+            })
+        } else {
+            this.setState({
+                estimated_price: price
+            })
+        }
+    }
+
+    onChangeArea = (e) => {
+        const value = e.target.value
+        let areas = parseInt(value)
+        if (areas < 0 || areas > 2000) {
+            Alert('vui lòng nhập đúng định dạng diện tích bằng số (Không quá 2000 m2)', 'Thông báo');
+            this.setState({
+                land_area: '',
+            })
+        } else {
+            this.setState({
+                land_area: areas
+            })
+        }
+    }
+
+    onChangeHouseNumber = (e) => {
+        const value = e.target.value;
+        this.setState({
+            apartment_number: value
+        }, () => {
+            this.checkValid(value);
+        })
+    }
+
+    checkValid = (value) => {
+        const charValid = '1234567890/';
+        for (const char of value) {
+            if (charValid.indexOf(char) !== -1) {
+                this.setState({
+                    apartment_number: value
+                })
+            } else {
+                Alert('Vui lòng nhập đúng định dạng số nhà (bao gồm số và "/")', "Thông báo !")
+                this.setState({
+                    apartment_number: ''
+                })
+            }
+        }
+    }
+
     onChangeFile = (e) => {
         const file = e.target.files;
 
@@ -47,7 +105,10 @@ class AddProductPage extends Component {
             images.push(key)
         }
         if (file.length > 5) {
-            alert("Vui lòng chọn dưới 5 ảnh")
+            Alert("Vui lòng chọn dưới 5 ảnh", "Thông báo !")
+            this.setState({
+                p_photo: []
+            })
         } else {
             this.setState({
                 p_photo: images
@@ -139,8 +200,9 @@ class AddProductPage extends Component {
         return newPostType;
     }
 
-    handleOnSubmitPost = (e) => {
+    handleOnSubmitPost = async (e) => {
         e.preventDefault();
+
         const { chouse_id, ptype_id, caption, kind_id, city_id, district_id, ward_id, street, apartment_number, estimated_price, land_area, description, day_number, p_photo } = this.state;
         const token = sessionStorage.getItem("token");
         const url = "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/add_property.php";
@@ -161,26 +223,30 @@ class AddProductPage extends Component {
         p_photo.map(img => {
             formData.append('p_photo[]', img)
         })
-        axios({
-            url: url,
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                token: token,
-            },
-            data: formData
-        })
-            .then(res => {
-                console.log(res);
-                this.setState({
-                    openModal: true,
-                    modalDatas: res.data
+
+        const confirm = await Confirm("vui lòng kiểm tra đầy đủ thông tin trước khi đăng bài", "Thông báo !")
+        if (confirm) {
+            axios({
+                url: url,
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    token: token,
+                },
+                data: formData
+            })
+                .then(res => {
+                    console.log(res);
+                    this.setState({
+                        openModal: true,
+                        modalDatas: res.data
+                    })
                 })
-            })
-            .catch(err => {
-                console.log(err.data);
-            })
+                .catch(err => {
+                    console.log(err.data);
+                })
+        }
     }
 
     handleOpenModal = (isOpen) => {
@@ -195,7 +261,6 @@ class AddProductPage extends Component {
     }
 
     render() {
-        const pageName = 'Đăng tin';
         const {
             caption,
             ptype_id,
@@ -215,7 +280,6 @@ class AddProductPage extends Component {
         } = this.state;
         return (
             <>
-                {/* <Banner pageName={pageName} /> */}
                 {this.checkModal()}
                 <div className="container">
                     <div className="row mt-40 mb-40">
@@ -319,8 +383,8 @@ class AddProductPage extends Component {
                                             className="form-control"
                                             name="apartment_number"
                                             value={apartment_number}
-                                            onChange={this.onChange}
-                                            placeholder="Nhập vào số nhà"
+                                            onChange={this.onChangeHouseNumber}
+                                            placeholder="Số nhà VD: 20/1/16 hoặc 20"
                                             title="Vui lòng nhập đúng định dạng - vd: 20/1/16"
                                             maxlength="12"
                                         />
@@ -347,7 +411,7 @@ class AddProductPage extends Component {
                                                 className="form-control"
                                                 name="estimated_price"
                                                 value={estimated_price}
-                                                onChange={this.onChange}
+                                                onChange={this.onChangePrice}
                                                 required
                                                 placeholder="Nhập vào giá"
                                             />
@@ -361,7 +425,7 @@ class AddProductPage extends Component {
                                                 className="form-control"
                                                 name="land_area"
                                                 value={land_area}
-                                                onChange={this.onChange}
+                                                onChange={this.onChangeArea}
                                                 placeholder="m2"
                                                 required
                                             />

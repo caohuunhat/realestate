@@ -1,12 +1,13 @@
+import axios from 'axios';
 import React, { Component } from 'react';
-import Banner from '../components/Banner';
-import axios from 'axios'
-import HotProperties from '../components/HotProperties';
+import HotProperties from '../components/HotProperties/HotProperties';
+import FeedBack from '../components/ProductDetail/FeedBack';
 import Silde from '../components/ProductDetail/Silde';
 
 class ProductDetailPage extends Component {
     state = {
         id: this.props.match.id,
+
         datas: {
             caption: '',
             description: '',
@@ -19,6 +20,7 @@ class ProductDetailPage extends Component {
             chouse_name: '',
             phone: '',
             sex: '',
+
             images: []
         }
     }
@@ -32,7 +34,6 @@ class ProductDetailPage extends Component {
             }
         })
             .then(res => {
-                console.log(res.data);
                 this.setState({
                     datas: {
                         caption: res.data.caption,
@@ -53,6 +54,46 @@ class ProductDetailPage extends Component {
             })
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.match.id !== prevState.id) {
+            return { id: nextProps.match.id };
+        }
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { id } = this.state;
+        if (prevProps.match.id !== this.state.id) {
+            //Perform some operation here
+            this.setState({ id: this.props.match.id });
+            axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/details_rs.php?id=', {
+                params: {
+                    id: id
+                }
+            })
+                .then(res => {
+                    this.setState({
+                        datas: {
+                            caption: res.data.caption,
+                            description: res.data.description,
+                            price: res.data.estimated_price,
+                            priceOld: res.data.estimated_price_1,
+                            address: res.data.google_map,
+                            name: res.data.name,
+                            land_area: res.data.land_area,
+                            time: res.data.post_time,
+                            ptypeName: res.data.ptypeName,
+                            chouse_name: res.data.chouse_name,
+                            phone: res.data.phone,
+                            images: res.data.img.image,
+                            sex: res.data.sex
+                        }
+                    })
+                })
+        }
+
+    }
+
     currencyChange = () => {
         const { priceOld, land_area, ptypeName } = this.state.datas;
         const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(parseFloat(priceOld / land_area))
@@ -65,10 +106,12 @@ class ProductDetailPage extends Component {
     }
 
     render() {
+        const { id } = this.state;
         const { caption, price, description, address, name, time, land_area, ptypeName, chouse_name, phone, images, sex } = this.state.datas
         const imgLink = images.map(img => {
             return img.image
         })
+        console.log(id);
         return (
             <div>
                 <div className="container">
@@ -170,28 +213,19 @@ class ProductDetailPage extends Component {
                                             </div>
                                         </div>
                                         <div className="col-lg-12 col-sm-6 ">
-                                            <div className="enquiry">
-                                                <h4><span className="glyphicon glyphicon-envelope" />Phản hồi</h4>
-                                                <form role="form">
-                                                    <input type="text" required className="form-control" placeholder="Họ tên" />
-                                                    <input type="text" className="form-control" placeholder="Email" />
-                                                    <input type="text" required className="form-control" placeholder="Số điện thoại" />
-                                                    <textarea rows={6} required className="form-control" placeholder="Gửi vấn đề cần báo cáo về bài đăng tại đây" defaultValue={""} />
-                                                    <button type="submit" className="btn btn-primary" name="Submit">Gửi phản hồi</button>
-                                                </form>
-                                            </div>
+                                            {<FeedBack property_id={id} />}
                                         </div>
                                         <div className="col-lg-12 col-sm-6 ">
                                             <div className="hot-properties hidden-xs">
-                                                <h4>Hot Properties</h4>
+                                                <h4>Gợi ý</h4>
                                                 {/* Bài đăng nổi bật */}
                                                 <HotProperties />
                                                 {/* Bài đăng nổi bật */}
                                             </div>
-                                            <div className="advertisement">
+                                            {/* <div className="advertisement">
                                                 <h4>Advertisements</h4>
                                                 <img src="/public/images/anh_user.png" className="img-responsive" />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>

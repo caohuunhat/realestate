@@ -27,8 +27,7 @@ class ListItem extends Component {
 
     render() {
         const { estimated_price, post_time, ptype_name, land_area, apartment_number, street, property_id } = this.props.data;
-        const { index } = this.props
-        console.log(this.props.data)
+        const { index } = this.props;
         return (
             <>
                 <tr>

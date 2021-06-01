@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Banner from '../components/Banner';
-import HotProperties from '../components/HotProperties';
-import Properties from '../components/Properties';
+import HotProperties from '../components/HotProperties/HotProperties';
 import HotBuyProperties from '../components/Properties/HotBuyProperties';
+import HotRentProperties from '../components/Properties/HotRentProperties';
 
 
 class HomePage extends Component {
@@ -10,7 +9,6 @@ class HomePage extends Component {
         return (
             <>
                 {/* Banner */}
-                {/* <Banner/> */}
                 {/* Banner */}
                 <div id="carousel-id" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
@@ -25,7 +23,7 @@ class HomePage extends Component {
                                 <div className="carousel-caption">
                                     <h1>Các bài đăng hấp dẫn</h1>
                                     <p>Hỗ trợ đăng tin và tiềm kiếm tin theo yêu cầu của bạn</p>
-                                    <p><a className="btn btn-lg btn-primary" href="#" role="button">Xem chi tiết</a></p>
+                                    <p><a className="btn btn-lg btn-login" href="#" role="button">Xem chi tiết</a></p>
                                 </div>
                             </div>
                         </div>
@@ -36,8 +34,9 @@ class HomePage extends Component {
 
                 <div className="container">
                     <div className="properties-listing spacer">
-                        <h2>Các bài đăng nổi bật</h2>
+                        <h2 className="h2-black">Các bài đăng nổi bật</h2>
                         <HotBuyProperties />
+                        <HotRentProperties />
                     </div>
 
 
@@ -50,53 +49,9 @@ RE luôn cam kết sự Chính Xác, Minh Bạch, Thông Minh và Chuyên Nghi�
                             </div>
                             <div className="col-lg-5 col-lg-offset-1 col-sm-3 recommended">
                                 <h3>Gợi ý</h3>
-                                <div id="myCarousel" className="carousel slide">
-                                    <ol className="carousel-indicators">
-                                        <li data-target="#myCarousel" data-slide-to={0} className="active" />
-                                        <li data-target="#myCarousel" data-slide-to={1} className />
-                                        <li data-target="#myCarousel" data-slide-to={2} className />
-                                        <li data-target="#myCarousel" data-slide-to={3} className />
-                                    </ol>
-                                    {/* Carousel items */}
-                                    <div className="carousel-inner">
-                                        <div className="item active">
-                                            <div className="row">
-                                                <div className="col-lg-4"><img src="images/properties/1.jpg" className="img-responsive" alt="properties" /></div>
-                                                <div className="col-lg-8">
-                                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                                    <p className="price">$300,000</p>
-                                                    <a href="property-detail.php" className="more">More Detail</a> </div>
-                                            </div>
-                                        </div>
-                                        <div className="item">
-                                            <div className="row">
-                                                <div className="col-lg-4"><img src="images/properties/2.jpg" className="img-responsive" alt="properties" /></div>
-                                                <div className="col-lg-8">
-                                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                                    <p className="price">$300,000</p>
-                                                    <a href="property-detail.php" className="more">More Detail</a> </div>
-                                            </div>
-                                        </div>
-                                        <div className="item">
-                                            <div className="row">
-                                                <div className="col-lg-4"><img src="images/properties/3.jpg" className="img-responsive" alt="properties" /></div>
-                                                <div className="col-lg-8">
-                                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                                    <p className="price">$300,000</p>
-                                                    <a href="property-detail.php" className="more">More Detail</a> </div>
-                                            </div>
-                                        </div>
-                                        <div className="item">
-                                            <div className="row">
-                                                <div className="col-lg-4"><img src="images/properties/4.jpg" className="img-responsive" alt="properties" /></div>
-                                                <div className="col-lg-8">
-                                                    <h5><a href="property-detail.php">Integer sed porta quam</a></h5>
-                                                    <p className="price">$300,000</p>
-                                                    <a href="property-detail.php" className="more">More Detail</a> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {/* Gợi ý */}
+
+                                <HotProperties />
                             </div>
                         </div>
                     </div>

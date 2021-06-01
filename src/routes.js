@@ -1,18 +1,18 @@
 import React from 'react';
+import Main_Admin from './components/Admin/Main_Admin';
+import Login from './components/Login';
+import LoginAdmin from './components/LoginAdmin';
+import ChangePass from './components/Profile/ChangePass';
+import Register from './components/Register';
 import AboutPage from './pages/AboutPage';
-import AgentPage from './pages/AgentPage';
+import AddProductPage from './pages/AddProductPage';
 import BuyCategoryPage from './pages/BuyCategoryPage';
 import HomePage from './pages/HomePage';
-import RentCategoryPage from './pages/RentCategoryPage';
-import NotFoundPage from './pages/NotFoundPage';
-import AddProductPage from './pages/AddProductPage';
-import ProductDetailPage from './pages/ProductDetailPage';
-import Login from './components/Login';
-import Register from './components/Register';
 import ManamentPage from "./pages/ManamentPage";
-import Profile from './components/Profile/Profile';
+import NotFoundPage from './pages/NotFoundPage';
+import ProductDetailPage from './pages/ProductDetailPage';
 import ProfilePage from './pages/ProfilePage';
-import ChangePass from './components/Profile/ChangePass';
+import RentCategoryPage from './pages/RentCategoryPage';
 
 const routes = [
     {
@@ -49,6 +49,16 @@ const routes = [
         path: '/profilePage',
         exact: false,
         main: () => <ProfilePage />
+    },
+    {
+        path: '/adminPage',
+        exact: false,
+        main: () => <Main_Admin />
+    },
+    {
+        path: '/loginAdmin',
+        exact: false,
+        main: () => <LoginAdmin />
     },
     {
         path: '/productDetailPage/:id/',

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     Link, Route, withRouter
 } from 'react-router-dom';
-import callApiAu from '../utils/callApiAu'
+import callApiAu from '../utils/callApiAu';
+import callApiAdmin from '../utils/callApiAdmin'
 
 const MenuLink = ({ label, to, activeOnlyWhenExact, onClick }) => {
     return (
@@ -22,21 +23,32 @@ class Header extends Component {
     onLogOut = async () => {
         const approved = window.confirm("Bạn có muốn đăng xuất ?") == true;
         const token = sessionStorage.getItem("token")
+        const token_admin = sessionStorage.getItem("token_admin")
         if (approved) {
-            callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/logout.php', 'DELETE', token, null)
-                .then(res => {
-                    alert(res.data.success);
-                    sessionStorage.removeItem('token')
-                    this.props.history.push('/');
-                })
+            if (token_admin) {
+                callApiAdmin('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/logout.php', 'DELETE', token_admin, null)
+                    .then(res => {
+                        console.log(res);
+                        alert(res.data.success);
+                        sessionStorage.removeItem('token_admin')
+                        this.props.history.push('/');
+                    })
+            } else {
+                callApiAu('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/logout.php', 'DELETE', token, null)
+                    .then(res => {
+                        alert(res.data.success);
+                        sessionStorage.removeItem('token')
+                        this.props.history.push('/');
+                    })
+            }
         }
     }
 
     functionAuthor = () => {
         return sessionStorage.length > 0 ?
             <>
-                <MenuLink label="Tài Khoản" to="/profilePage" activeOnlyWhenExact={false} />
-                <MenuLink label="Quản lý tin" to="/manamentPage" activeOnlyWhenExact={true} />
+                {sessionStorage.getItem('token_admin') ? <MenuLink label="Admin" to="/adminPage" activeOnlyWhenExact={true} /> : <><MenuLink label="Tài Khoản" to="/profilePage" activeOnlyWhenExact={false} />
+                    <MenuLink label="Quản lý tin" to="/manamentPage" activeOnlyWhenExact={true} /> </>}
                 <MenuLink label="Đăng xuất" activeOnlyWhenExact={false} onClick={this.onLogOut} />
             </>
             : <>
@@ -73,28 +85,9 @@ class Header extends Component {
                                 </ul>
                             </div>
                             {/* Nav Ends */}
-
-
                         </div>
-
-
-
                     </div>
                 </div>
-
-                {/* Header Starts */}
-
-
-                {/* <div className="container"> */}
-                {/* Header Starts */}
-                {/* <div className="header">
-                        <ul className="pull-right">
-                            <MenuLink label="Nhà Đất Bán" to="/buy" />
-                            <MenuLink label="Nhà Đất Thuê" to="/rent" />
-                        </ul>
-                    </div> */}
-                {/* Header Starts</div> */}
-                {/* </div> */}
             </>
         );
     }

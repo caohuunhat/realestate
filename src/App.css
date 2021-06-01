@@ -156,6 +156,8 @@ th {
     margin-top: 10px;
     margin-bottom: 20px;
     font-family: 'Roboto', sans-serif;
+
+    transition: 0.6s;
 }
 
 .ul-detail .li-detail {
@@ -332,7 +334,6 @@ th {
 }
 
 .changePass {
-    /* margin: 20px 0px 100px 0px; */
     padding: 20px 80px;
     display: flex;
     align-items: center;
@@ -346,13 +347,14 @@ th {
     border-radius: 5%;
 }
 
-.legen-changePass{
-    color:#CC5500 ;
+.legen-changePass {
+    color: #CC5500;
 }
 
 .form-edit {
     width: 400px;
-    height: 400px
+    height: 400px;
+    margin-bottom: 16px;
 }
 
 .legen-form-edit {
@@ -367,7 +369,7 @@ th {
     border: 1px solid #29675c;
     border-radius: 10px;
     color: white;
-    margin-bottom: 10px;
+    /* margin-bottom: 5px; */
     font-weight: 600;
     font-size: 14px;
     font-family: 'Roboto', serif;
@@ -403,6 +405,10 @@ th {
     margin-top: 50px;
 }
 
+.hot_rent_properties {
+    margin-top: 50px;
+}
+
 .forgot-password {
     margin-top: 10px;
 }
@@ -420,4 +426,118 @@ th {
 
 .btn-default:hover {
     color: black;
+}
+
+.hot-pro-3 {
+    margin-top: -14px;
+    margin-top: 0px;
+}
+
+.hot-pro-3 p {
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.hot-pro-3 h6 {
+    margin-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    color: #29675c;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    transition: 0.6s;
+}
+
+.img-hot-pro-3 {
+    width: 119px;
+    height: 70px;
+    margin-left: 10px;
+    margin-top: 11px;
+}
+
+.hot-properties-3 {
+    width: 260px;
+    padding: 10px 0;
+    border: 1px solid #29675c;
+    margin-left: 0;
+    margin-top: 10px;
+    background-color: #e8e8e8;
+    transition: 0.6s;
+    border-radius: 10px;
+}
+
+.hot-properties-3:hover {
+    background-color: #29675c;
+
+    box-shadow: 7px 11px 13px 2px rgba(115, 115, 115, 1);
+    -webkit-box-shadow: 7px 11px 13px 2px rgba(115, 115, 115, 1);
+    -moz-box-shadow: 7px 11px 13px 2px rgba(115, 115, 115, 1);
+
+    transition: 0.3s;
+}
+
+.hot-properties-3:hover h6 {
+    color: #f8f8ff;
+}
+
+.p-text-address-hot-3 {
+    color: #D2B48C;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+}
+
+h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #CC5500;
+}
+
+.h2-black {
+    color: #131313;
+}
+
+.btn-Search {
+    width: 100%;
+    background-color: #29675c;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #f8f8ff;
+    transition: 0.3s;
+}
+
+.btn-Search:hover {
+    background-color: #f8f8ff;
+    color: #CC5500;
+    border: 1px solid #29675c;
+}
+
+.btn-login {
+    width: 100%;
+    background-color: #29675c;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #f8f8ff;
+    border-radius: 40px;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #f8f8ff;
+    color: #CC5500;
+    border: 1px solid #29675c;
 }

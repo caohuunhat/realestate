@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.btn-danger {
+    padding: 12px 41px !important;
+}
+
+.btn-duyet {
+    width: 113px !important;
+}
+
+.nav-link {
+    background-color: #29675c;
+}
+
+.update-profile {
+    margin-top: 80px;
+}
+
+.update-profile h3 {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 24px;
+    color: #CC5500;
+}

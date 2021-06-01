@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import callAPI from '../utils/callAPI';
 import { Link, withRouter } from 'react-router-dom'
+import callAPI from '../utils/callAPI';
 
-class Login extends Component {
+
+class LoginAdmin extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -22,9 +23,9 @@ class Login extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         const { email, password } = this.state
-        callAPI("http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/login.php", 'POST', {
-            email: email,
-            password: password
+        callAPI("http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/login.php", 'POST', {
+            email_ad: email,
+            password_ad: password
         })
             .then(res => {
                 return res.data
@@ -37,14 +38,13 @@ class Login extends Component {
                     this.props.history.push('/')
                     window.location.reload();
                     if (typeof (Storage) !== 'undefined') {
-                        sessionStorage.setItem('token', res.data.token);
+                        sessionStorage.setItem('token_admin', res.data.token);
                     } else {
                         alert('Trình duyệt của bạn không hỗ trợ!');
                     }
                 }
             })
     }
-
     render() {
         return (
             <>
@@ -54,7 +54,7 @@ class Login extends Component {
 
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <h2>Đăng nhập</h2>
+                            <h2>Đăng nhập Admin</h2>
                             <form className role="form" onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <label className="sr-only">Email address</label>
@@ -89,7 +89,7 @@ class Login extends Component {
                             <p>Bắt đầu đăng tin ngay trên nền tảng của chúng tôi</p>
                             <Link to="/register" className="btn btn-default">
                                 Đăng ký
-                            </Link>
+                        </Link>
                         </div>
                     </div>
                 </div>
@@ -97,8 +97,8 @@ class Login extends Component {
 
                 </div>
             </>
-        )
+        );
     }
 }
 
-export default withRouter(Login);
+export default withRouter(LoginAdmin);

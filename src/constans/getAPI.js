@@ -23,3 +23,15 @@ export const getPropertyType = () => {
 export const getPostType = () => {
     return callAPI('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/dropdown_list/post_type.php', 'GET', null)
 }
+
+export const getBuyVip = () => {
+    return callAPI('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/adv_sell.php', 'GET', null)
+}
+
+export const getRentVip = () => {
+    return callAPI('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/adv_rent.php', 'GET', null)
+}
+
+export const getAllVip = () => {
+    return callAPI('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/random_vip.php', 'GET', null)
+}

@@ -72,7 +72,7 @@ class Register extends Component {
 
                         </div>
                         <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+                            <h2>Đăng ký tài khoản</h2>
                             <p>và bắt đầu đăng tin ngay</p>
                             <form onSubmit={this.onSubmit} autoComplete="on">
                                 <input
@@ -127,7 +127,7 @@ class Register extends Component {
                                     minlength="8"
                                 />
                                 <br />
-                                <button type="submit" className="btn btn-success" name="Submit">Đăng Ký</button>
+                                <button type="submit" className="btn btn-login" name="Submit">Đăng Ký</button>
                             </form>
                         </div>
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
