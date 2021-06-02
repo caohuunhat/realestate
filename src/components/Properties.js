@@ -1,39 +1,71 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import PropertyItems from './PropertyItems';
 
 class Properties extends Component {
     state = {
-        id: this.props.data.property_id,
-        caption: this.props.data.caption,
-        land_area: this.props.data.land_area,
-        price: this.props.data.estimated_price,
-        districtName: this.props.data.districtName,
-        street: this.props.data.street,
-        image: this.props.data.image,
-        datas: this.props.data
+        datas: this.props.datas,
+        datasSearch: this.props.datasSearch
     }
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.datas !== prevState.datas) {
+            return {
+                datas: nextProps.datas,
+            }
+        }
+        if (nextProps.datasSearch !== prevState.datasSearch) {
+            return {
+                datasSearch: nextProps.datasSearch,
+            }
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.datas !== prevState.datas) {
+            this.setState({
+                datas: this.state.datas,
+            })
+        }
+        if (this.state.datasSearch !== prevState.datasSearch) {
+            this.setState({
+                datasSearch: this.state.datasSearch,
+            })
+        }
+    }
+
+    showDatasPost = () => {
+        const { datasSearch, datas } = this.state;
+        if (datas.length > 0 && datasSearch <= 0) {
+            return this.showPost(datas);
+        }
+        return this.showPost(datasSearch);
+    }
+
+    showPost = (datas) => {
+        const DB = datas?.map(data => {
+            return <PropertyItems data={data} />
+        })
+        return DB;
+    }
+
+
+
+    // showPost = () => {
+    //     const { datas } = this.state;
+    //     const DB = datas?.map(data => {
+    //         return <PropertyItems data={data} />
+    //     })
+    //     return DB;
+    // }
+
     render() {
-        const { id, caption, land_area, price, districtName, street, image } = this.state;
+        console.log(this.state.datas);
+        console.log(this.state.datasSearch);
         return (
-            <Link style={{ textDecoration: "none" }} to={`/productDetailPage/${id}`} className="col-lg-4 col-sm-6">
-                <div className="properties">
-                    <div className="image-holder">
-                        <img className="img-pro" src={`http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/${image}`} className="img-products" alt="properties" />
-                        {/* <div className="status sold">Sold</div> */}
-                    </div>
-                    <div>
-                        <h4 className="p-text">{caption}</h4>
-                    </div>
-                    <div className="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pro-info">
-                            <p>Giá: {price}</p>
-                            <p>Diện tích: {land_area}m2</p>
-                        </div>
-                    </div>
-                    <p className="address"><span className="glyphicon glyphicon-map-marker"></span> {street} - {districtName}</p>
-                </div>
-            </Link>
+            <>
+                {/* {this.showPost()} */}
+                {this.showDatasPost()}
+            </>
         )
     }
 }

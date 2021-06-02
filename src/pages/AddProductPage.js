@@ -104,8 +104,8 @@ class AddProductPage extends Component {
         for (const key of file) {
             images.push(key)
         }
-        if (file.length > 5) {
-            Alert("Vui lòng chọn dưới 5 ảnh", "Thông báo !")
+        if (file.length > 5 || file.length < 3) {
+            Alert("Vui lòng chọn dưới 5 ảnh và trên 3 ảnh", "Thông báo !")
             this.setState({
                 p_photo: []
             })
@@ -207,6 +207,7 @@ class AddProductPage extends Component {
         const token = sessionStorage.getItem("token");
         const url = "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/add_property.php";
         const formData = new FormData();
+
         formData.append('chouse_id', chouse_id)
         formData.append('ptype_id', ptype_id)
         formData.append('caption', caption)

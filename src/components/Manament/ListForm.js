@@ -89,8 +89,6 @@ class ListForm extends Component {
     }
 
     render() {
-        const { datas, sortDatas } = this.state;
-        console.log(sortDatas);
         return (
             <div className="container list">
                 <div className="btn-group top-btn">

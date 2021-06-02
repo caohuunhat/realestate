@@ -1,100 +1,65 @@
+import axios from 'axios';
 import React, { Component } from 'react';
-import Banner from '../components/Banner';
 import HotProperties from '../components/HotProperties/HotProperties';
-import Properties from '../components/Properties'
-import axios from 'axios'
-import Pagination from '../components/Pagination';
+import Properties from '../components/Properties';
 import Search from '../components/Search';
-
-
+import Pagination from "react-js-pagination";
 
 class BuyCategoryPage extends Component {
     state = {
         datas: [],
-        datasInNewPage: [],
-        totalPages: '',
-        currentPage: 1,
+        activePage: 1,
+        row_per_page: 3,
+        datasSearch: []
     }
 
     componentDidMount() {
         window.scrollTo(0, 160);
-        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php?page=2&row_per_page=3', {
+        axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php', {
             params: {
-                page: this.state.currentPage,
-                row_per_page: '2'
+                page: this.state.activePage,
+                row_per_page: this.state.row_per_page
             }
         }).then(res => {
             this.setState({
-                datas: null,
-                datasInNewPage: res.data.list,
-                totalPages: res.data.total_page
+                datas: res.data.list,
             })
-        }).catch((err) => {
-            console.log(err);
         })
     }
 
-    static getDerivedStateFromProps(props, state) {
-        if (state.datas !== state.datasInNewPage) {
-            return {
-                datasInNewPage: state.datasInNewPage,
-            }
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.datasInNewPage !== prevState.datas) {
-            this.setState({
-                datas: this.state.datasInNewPage,
-                datasInNewPage: null
-            })
-        }
-    }
-
-    callData = async (currentPage) => {
-        return await axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php', {
+    changeApiPaginate = (activePage) => {
+        return axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse//api/data-index/list_sell.php', {
             params: {
-                page: currentPage,
-                row_per_page: '2'
+                page: activePage,
+                row_per_page: this.state.row_per_page
             }
         })
     }
 
-    onNext = async (currentPage) => {
-        currentPage = currentPage + 1;
-        let res = await this.callData(currentPage)
+    onChangePagination = async (pageNumber) => {
+        const res = await this.changeApiPaginate(pageNumber)
         this.setState({
-            datasInNewPage: res.data.list,
-            currentPage: currentPage
+            datas: res.data.list,
+            activePage: pageNumber
         })
     }
 
-    onPrev = async (currentPage) => {
-        currentPage = currentPage - 1;
-        let res = await this.callData(currentPage)
+    datasSearch = (datas) => {
         this.setState({
-            datasInNewPage: res.data.list,
-            currentPage: currentPage
-        })
-    }
-    
-    showProduct = () => {
-        const { datas } = this.state
-        if (!datas) return;
-        return datas.map(data => {
-            return <Properties data={data} />
+            datasSearch: datas
         })
     }
 
     render() {
-        const { datas, currentPage, totalPages } = this.state;
+        const { datas, currentPage, totalPages, activePage, row_per_page, datasSearch } = this.state;
+        console.log(datasSearch);
         return (
             <div className="container">
                 <div className="properties-listing spacer">
                     <div className="row">
                         <div className="col-lg-3 col-sm-4 ">
                             {/* Search */}
-                            <Search />
+                            <Search datasSearch={this.datasSearch} />
                             {/* Search */}
                             <div className="hot-properties">
                                 <h4>Gợi ý</h4>
@@ -105,7 +70,6 @@ class BuyCategoryPage extends Component {
                         </div>
                         <div className="col-lg-9 col-sm-8">
                             <div className="sortby clearfix">
-                                {/* <div className="pull-left result">Showing: 12 of 100 </div> */}
                                 <div className="pull-right">
                                     <select className="form-control">
                                         <option>Lọc</option>
@@ -115,26 +79,18 @@ class BuyCategoryPage extends Component {
                             </div>
                             <div className="row">
                                 {/* properties */}
-                                {this.showProduct()}
+                                <Properties datas={datas} datasSearch={datasSearch} />
                                 {/* properties */}
                             </div>
                             <div className="center">
 
-                                <ul className="pagination">
-                                    <li
-                                        // className={prevStop}
-                                        onClick={() => this.onPrev(currentPage)}
-                                    ><a href="#">«</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li
-                                        // className={nextStop}
-                                        onClick={() => this.onNext(currentPage)}
-                                    ><a href="#">»</a></li>
-                                </ul>
+                                <Pagination
+                                    activePage={activePage}
+                                    itemsCountPerPage={row_per_page}
+                                    totalItemsCount={7}
+                                    pageRangeDisplayed={5}
+                                    onChange={this.onChangePagination}
+                                />
 
                             </div>
                         </div>

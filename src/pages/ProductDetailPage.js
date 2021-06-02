@@ -64,7 +64,6 @@ class ProductDetailPage extends Component {
     componentDidUpdate(prevProps, prevState) {
         const { id } = this.state;
         if (prevProps.match.id !== this.state.id) {
-            //Perform some operation here
             this.setState({ id: this.props.match.id });
             axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/details_rs.php?id=', {
                 params: {
@@ -111,7 +110,6 @@ class ProductDetailPage extends Component {
         const imgLink = images.map(img => {
             return img.image
         })
-        console.log(id);
         return (
             <div>
                 <div className="container">

@@ -4,7 +4,6 @@ import axios from 'axios';
 class Search extends Component {
     state = {
         price: null,
-
         caption: null,
         type: null,
         price_start: null,
@@ -22,6 +21,7 @@ class Search extends Component {
         ward_id: null,
 
         currentPage: 1,
+
         datasSearch: []
     }
 
@@ -228,10 +228,10 @@ class Search extends Component {
         e.preventDefault();
         axios({
             method: 'post',
-            url: "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/search/search_sell.php?page=1&row_per_page=5",
+            url: "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/search/search_sell.php",
             params: {
                 page: this.state.currentPage,
-                row_per_page: '9'
+                row_per_page: '2'
             },
             data: {
                 chouse_id: type,
@@ -246,14 +246,13 @@ class Search extends Component {
             }
         })
             .then(res => {
-                console.log(res.data.list);
-                this.setState({
-                    datasSearch: res.data.list
-                })
+                this.props.datasSearch(res.data.list)
             })
     }
+
     render() {
-        const { district_id, city_id, ward_id, price, caption } = this.state;
+
+        const { district_id, city_id, ward_id, price, caption, datasSearch } = this.state;
         return (
             <form onSubmit={this.onSubmitSearchForm}>
                 <div className="search-form"><h4>Tìm kiếm</h4>

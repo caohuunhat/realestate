@@ -7,6 +7,7 @@ let checkSeach = (item, keyword, arr) => {
 };
 
 export default (data, keyword, ...arr) => {
+  if (!data) return;
   const newdata = data.filter((item) => {
     return checkSeach(item, keyword, arr);
   });
