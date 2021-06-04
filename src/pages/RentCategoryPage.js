@@ -45,8 +45,15 @@ class RentCategoryPage extends Component {
         })
     }
 
+    // datasSearch = (datas) => {
+    //     this.setState({
+    //         datasSearch: datas
+    //     })
+    // }
+
+
     render() {
-        const { datas, activePage, row_per_page } = this.state;
+        const { datas, activePage, row_per_page, datasSearch } = this.state;
         return (
             <div className="container">
                 <div className="properties-listing spacer">
@@ -71,7 +78,10 @@ class RentCategoryPage extends Component {
                             </div>
                             <div className="row">
                                 {/* properties */}
-                                <Properties datas={datas} />
+                                <Properties
+                                    datas={datas}
+                                    // datasSearch={datasSearch}
+                                />
                                 {/* properties */}
                             </div>
                             <div className="center">

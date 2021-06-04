@@ -10,7 +10,7 @@ class BuyCategoryPage extends Component {
         datas: [],
         activePage: 1,
         row_per_page: 3,
-        datasSearch: []
+        // datasSearch: []
     }
 
     componentDidMount() {
@@ -44,11 +44,11 @@ class BuyCategoryPage extends Component {
         })
     }
 
-    datasSearch = (datas) => {
-        this.setState({
-            datasSearch: datas
-        })
-    }
+    // datasSearch = (datas) => {
+    //     this.setState({
+    //         datasSearch: datas
+    //     })
+    // }
 
     render() {
         const { datas, currentPage, totalPages, activePage, row_per_page, datasSearch } = this.state;
@@ -87,7 +87,7 @@ class BuyCategoryPage extends Component {
                                 <Pagination
                                     activePage={activePage}
                                     itemsCountPerPage={row_per_page}
-                                    totalItemsCount={7}
+                                    totalItemsCount={5}
                                     pageRangeDisplayed={5}
                                     onChange={this.onChangePagination}
                                 />

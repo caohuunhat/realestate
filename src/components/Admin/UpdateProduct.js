@@ -26,7 +26,8 @@ export class UpdateProduct extends Component {
       ward_id: "",
       ptype_id: "",
       chouse_id: "",
-      kind_id: ""
+      kind_id: "",
+      property_id: ""
     };
   }
 
@@ -47,6 +48,7 @@ export class UpdateProduct extends Component {
             ptype_id: res.data.ptype_id,
             chouse_id: res.data.chouse_id,
             kind_id: res.data.kind_id,
+            property_id: res.data.property_id,
           });
         })
         .catch((err) => {
@@ -68,6 +70,7 @@ export class UpdateProduct extends Component {
             ptype_id: res.data.ptype_id,
             chouse_id: res.data.chouse_id,
             kind_id: res.data.kind_id,
+            property_id: res.data.property_id,
           });
         })
         .catch((err) => {
@@ -149,7 +152,7 @@ export class UpdateProduct extends Component {
     return await getAPI(
       "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/confirm/details.php?id=94",
       "GET",
-      "d174cb46cdd38238c9867ecc661eb3de",
+      `${sessionStorage.getItem("token_admin")}`,
       null,
       this.props.match.params.id
     );
@@ -159,7 +162,7 @@ export class UpdateProduct extends Component {
     return await getAPI(
       "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/approved/details.php?id",
       "GET",
-      "d174cb46cdd38238c9867ecc661eb3de",
+      `${sessionStorage.getItem("token_admin")}`,
       null,
       this.props.match.params.id
     );
@@ -235,7 +238,7 @@ export class UpdateProduct extends Component {
 
   kindNews = () => {
     return this.state.kindNews.map((item) => {
-        return <option value={item.id}>{item.name}</option>;   
+      return <option value={item.id}>{item.name}</option>;
     })
   }
 
@@ -273,9 +276,10 @@ export class UpdateProduct extends Component {
       day_number,
       p_photo,
     } = this.state;
-    const token = sessionStorage.getItem("token");
+
+    const token_admin = sessionStorage.getItem("token_admin");
     const url =
-      "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/add_property.php";
+      "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/edit.php";
     const formData = new FormData();
     formData.append("chouse_id", chouse_id);
     formData.append("ptype_id", ptype_id);
@@ -298,8 +302,11 @@ export class UpdateProduct extends Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
-        token: token,
+        "Accept": "application/json",
+        token_admin: token_admin,
+      },
+      params: {
+        id: this.state.property_id,
       },
       data: formData,
     })
@@ -337,13 +344,13 @@ export class UpdateProduct extends Component {
 
     estimated_price = estimated_price.split(" ")[0];
     let unit = estimated_price.split(" ")[1];
-    if (unit === "nghìn") {
-      estimated_price = estimated_price + thousand;
-    } else if (unit === "triệu") {
-      estimated_price = estimated_price + milion;
-    } else {
-      estimated_price = estimated_price + bilion;
-    }
+    // if (unit === "nghìn") {
+    //   estimated_price = estimated_price + thousand;
+    // } else if (unit === "triệu") {
+    //   estimated_price = estimated_price + milion;
+    // } else {
+    //   estimated_price = estimated_price + bilion;
+    // }
 
     return (
       <div className="container">
@@ -530,13 +537,14 @@ export class UpdateProduct extends Component {
                       Tải ảnh lên (
                       <span className="star-color">không quá 5 ảnh</span>)
                     </label>
-                    {/* <input
+                    <input
                       type="file"
                       multiple
                       accept=".png, .jpg, .jpeg"
                       name="p_photo"
-                    /> */}
-                    <input type="file" id="myfile" name="myfile"></input>
+                      onChange={this.onChangeFile}
+                      
+                    />
                   </div>
                 </div>
               </div>

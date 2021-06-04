@@ -13,11 +13,11 @@ class Properties extends Component {
                 datas: nextProps.datas,
             }
         }
-        if (nextProps.datasSearch !== prevState.datasSearch) {
-            return {
-                datasSearch: nextProps.datasSearch,
-            }
-        }
+        // if (nextProps.datasSearch !== prevState.datasSearch) {
+        //     return {
+        //         datasSearch: nextProps.datasSearch,
+        //     }
+        // }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -26,16 +26,17 @@ class Properties extends Component {
                 datas: this.state.datas,
             })
         }
-        if (this.state.datasSearch !== prevState.datasSearch) {
-            this.setState({
-                datasSearch: this.state.datasSearch,
-            })
-        }
+        // if (this.state.datasSearch !== prevState.datasSearch) {
+        //     this.setState({
+        //         datasSearch: this.state.datasSearch,
+        //     })
+        // }
     }
 
     showDatasPost = () => {
         const { datasSearch, datas } = this.state;
-        if (datas.length > 0 && datasSearch <= 0) {
+        if (datas.length > 0 && !datasSearch) {
+            console.log(datas);
             return this.showPost(datas);
         }
         return this.showPost(datasSearch);
@@ -49,7 +50,6 @@ class Properties extends Component {
     }
 
 
-
     // showPost = () => {
     //     const { datas } = this.state;
     //     const DB = datas?.map(data => {
@@ -60,7 +60,7 @@ class Properties extends Component {
 
     render() {
         console.log(this.state.datas);
-        console.log(this.state.datasSearch);
+        // console.log(this.state.datasSearch);
         return (
             <>
                 {/* {this.showPost()} */}

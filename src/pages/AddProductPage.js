@@ -207,7 +207,6 @@ class AddProductPage extends Component {
         const token = sessionStorage.getItem("token");
         const url = "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/add_property.php";
         const formData = new FormData();
-
         formData.append('chouse_id', chouse_id)
         formData.append('ptype_id', ptype_id)
         formData.append('caption', caption)

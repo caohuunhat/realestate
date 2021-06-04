@@ -33,7 +33,7 @@ export class Row_Post extends Component {
     await getAPI(
       "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/confirm/delete.php?id=94",
       "DELETE",
-      "d174cb46cdd38238c9867ecc661eb3de",
+      `${sessionStorage.getItem("token_admin")}`,
       null,
       id
     );
@@ -43,7 +43,7 @@ export class Row_Post extends Component {
     await getAPI(
       "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/approved/delete.php?id=137",
       "DELETE",
-      "d174cb46cdd38238c9867ecc661eb3de",
+      `${sessionStorage.getItem("token_admin")}`,
       null,
       id
     );
@@ -53,7 +53,7 @@ export class Row_Post extends Component {
     await getAPI(
       "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/confirm/confirm.php?id=119",
       "PUT",
-      "d174cb46cdd38238c9867ecc661eb3de",
+      `${sessionStorage.getItem("token_admin")}`,
       null,
       id
     );

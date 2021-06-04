@@ -57,7 +57,7 @@ export class Admin extends Component {
     return await getAPI(
       "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/user_account/list_user.php",
       "GET",
-      "d174cb46cdd38238c9867ecc661eb3de"
+      `${sessionStorage.getItem("token_admin")}`
     );
   };
 
@@ -65,7 +65,7 @@ export class Admin extends Component {
     return await getAPI(
       "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/confirm/list_post.php",
       "GET",
-      "d174cb46cdd38238c9867ecc661eb3de"
+      `${sessionStorage.getItem("token_admin")}`
     );
   };
 
@@ -73,7 +73,7 @@ export class Admin extends Component {
     return await getAPI(
       "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/approved/list.php",
       "GET",
-      "d174cb46cdd38238c9867ecc661eb3de"
+      `${sessionStorage.getItem("token_admin")}`
     );
   };
 
@@ -81,7 +81,7 @@ export class Admin extends Component {
     return await getAPI(
       "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/user_account/delete.php?id=",
       "DELETE",
-      "d174cb46cdd38238c9867ecc661eb3de",
+      `${sessionStorage.getItem("token_admin")}`,
       null,
       id
     );
