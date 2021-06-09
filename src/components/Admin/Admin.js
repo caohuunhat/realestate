@@ -129,7 +129,7 @@ export class Admin extends Component {
   render() {
     let { data, dataPost1, dataPost2, keyword } = this.state;
     let dataPost = [...dataPost1, ...dataPost2];
-    console.log(dataPost2);
+    // console.log(dataPost2);
     data = checkSeach(data, keyword, "full_name", "email", "phone_no");
     dataPost = checkSeach(
       dataPost,

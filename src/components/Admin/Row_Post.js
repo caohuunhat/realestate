@@ -133,7 +133,7 @@ export class Row_Post extends Component {
 
   render() {
     let { dataPostItem } = this.state;
-    console.log(dataPostItem);
+    // console.log(dataPostItem);
 
     return (
       <tr>
