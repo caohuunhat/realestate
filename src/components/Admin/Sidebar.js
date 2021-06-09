@@ -29,7 +29,7 @@ export class Sidebar extends Component {
                 <i className="material-icons">person</i>
                 <p>Manage user accounts</p>
               </a> */}
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/adminPage">
                 <i className="material-icons">person</i>
                 <p>Tài khoản member</p>
               </Link>
@@ -39,13 +39,13 @@ export class Sidebar extends Component {
                 <i className="material-icons">content_paste</i>
                 <p>Manage user posts</p>
               </a> */}
-              <Link className="nav-link" to="/post_management">
+              <Link className="nav-link" to="/adminPage/post_management">
                 <i className="material-icons">content_paste</i>
                 <p>Bài đăng</p>
               </Link>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="/feedback">
+              <Link className="nav-link" to="/adminPage/feedback">
                 <i className="material-icons">library_books</i>
                 <p>Phản hồi</p>
               </Link>

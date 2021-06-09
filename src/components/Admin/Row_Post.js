@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import getAPI from "../../api/getAPI";
-import { Confirm } from 'react-st-modal';
+import { Confirm } from "react-st-modal";
 
 export class Row_Post extends Component {
   constructor(props) {
@@ -60,23 +60,29 @@ export class Row_Post extends Component {
   };
 
   onConfirmPost = async () => {
-    const confirm = await Confirm("Bạn có muốn duyệt bài đăng này?", "Thông báo")
+    const confirm = await Confirm(
+      "Bạn có muốn duyệt bài đăng này?",
+      "Thông báo"
+    );
     if (confirm) {
       await this.confirmPost(this.state.dataPostItem.property_id);
-      window.location.reload();
+      // window.location.reload();
+      this.props.history.push("/adminPage");
     }
   };
 
   onDeleteUser = async (id) => {
-    const confirm = await Confirm("Bạn có muốn xóa bài đăng này?", "Thông báo")
+    const confirm = await Confirm("Bạn có muốn xóa bài đăng này?", "Thông báo");
     if (confirm) {
       console.log(this.state.dataPostItem);
       if (this.state.dataPostItem.note === 0) {
         await this.onDelete(id);
         window.location.reload();
+        // this.props.history.push("/post_management");
       } else {
         await this.onDeleteapproved(id);
         window.location.reload();
+        // this.props.history.push("/post_management");
       }
     }
   };
@@ -150,18 +156,18 @@ export class Row_Post extends Component {
         <td>{dataPostItem.ptype_name}</td>
         <td>{dataPostItem.post_time}</td>
         <td>
-          <button type="button" className="btn btn-detail">
+          <button type="button" className="btn btn-detail btn-chitiet">
             Chi tiết
           </button>
           <Link
             to={`edit/${dataPostItem.note}/${dataPostItem.property_id}`}
-            className="btn btn-info"
+            className="btn btn-primary btn-capnhat"
           >
             Cập nhật
           </Link>
           <button
             type="button"
-            className="btn btn-danger"
+            className="btn btn-danger btn-xoa"
             onClick={() =>
               this.onDeleteUser(this.state.dataPostItem.property_id)
             }
@@ -174,4 +180,4 @@ export class Row_Post extends Component {
     );
   }
 }
-export default Row_Post;
+export default withRouter(Row_Post);

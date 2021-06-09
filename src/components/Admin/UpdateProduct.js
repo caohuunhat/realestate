@@ -14,7 +14,6 @@ export class UpdateProduct extends Component {
       property_type: [],
       kindNews: [],
 
-
       caption: "",
       apartment_number: "",
       street: "",
@@ -27,7 +26,7 @@ export class UpdateProduct extends Component {
       ptype_id: "",
       chouse_id: "",
       kind_id: "",
-      property_id: ""
+      property_id: "",
     };
   }
 
@@ -128,14 +127,16 @@ export class UpdateProduct extends Component {
         console.log(err);
       });
 
-    this.callKindNews().then((res) => {
-      this.setState({
-        kindNews: res.data.list
+    this.callKindNews()
+      .then((res) => {
+        this.setState({
+          kindNews: res.data.list,
+        });
+        console.log(this.state.kindNews);
       })
-      console.log(this.state.kindNews)
-    }).catch((err) => {
-      console.log(err)
-    })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   onChange = (e) => {
@@ -199,8 +200,10 @@ export class UpdateProduct extends Component {
   };
 
   callKindNews = async () => {
-    return axios.get("http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/dropdown_list/kind_news.php")
-  }
+    return axios.get(
+      "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/add_property/dropdown_list/kind_news.php"
+    );
+  };
 
   city = () => {
     return this.state.city.map((item) => {
@@ -239,8 +242,8 @@ export class UpdateProduct extends Component {
   kindNews = () => {
     return this.state.kindNews.map((item) => {
       return <option value={item.id}>{item.name}</option>;
-    })
-  }
+    });
+  };
 
   onChangeFile = (e) => {
     const file = e.target.files;
@@ -279,7 +282,9 @@ export class UpdateProduct extends Component {
 
     const token_admin = sessionStorage.getItem("token_admin");
     const url =
-      "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/edit.php";
+      this.props.match.params.note === "0"
+        ? "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/edit.php?id=144"
+        : "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/update.php?id=141";
     const formData = new FormData();
     formData.append("chouse_id", chouse_id);
     formData.append("ptype_id", ptype_id);
@@ -302,7 +307,7 @@ export class UpdateProduct extends Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         token_admin: token_admin,
       },
       params: {
@@ -335,7 +340,7 @@ export class UpdateProduct extends Component {
       ward_id,
       ptype_id,
       chouse_id,
-      kind_id
+      kind_id,
     } = this.state;
 
     const thousand = "000";
@@ -543,7 +548,6 @@ export class UpdateProduct extends Component {
                       accept=".png, .jpg, .jpeg"
                       name="p_photo"
                       onChange={this.onChangeFile}
-                      
                     />
                   </div>
                 </div>
@@ -575,8 +579,8 @@ export class UpdateProduct extends Component {
                       className="form-control"
                       required
                       name="day_number"
-                    //   value={day_number}
-                    //   onChange={this.onChange}
+                      //   value={day_number}
+                      //   onChange={this.onChange}
                     >
                       <option>-- Chọn số ngày đăng --</option>
                       <option value={5}>5 Ngày</option>

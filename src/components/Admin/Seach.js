@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Admin";
 
 export class Seach extends Component {
   constructor(props) {
@@ -34,8 +35,7 @@ export class Seach extends Component {
     return (
       <nav>
         <div className="container-fluid">
-          <div className="navbar-wrapper">
-          </div>
+          <div className="navbar-wrapper"></div>
           <button
             className="navbar-toggler"
             type="button"
@@ -43,11 +43,10 @@ export class Seach extends Component {
             aria-controls="navigation-index"
             aria-expanded="false"
             aria-label="Toggle navigation"
-          >
-          </button>
+          ></button>
           <div className="collapse navbar-collapse justify-content-end">
             <form className="navbar-form">
-              <div className="input-group no-border">
+              <div className="input-group no-border search-admin">
                 <input
                   type="text"
                   defaultValue
@@ -57,13 +56,6 @@ export class Seach extends Component {
                   value={keyword}
                   onChange={this.onChange}
                 />
-                <button
-                  type="submit"
-                  className="btn btn-white btn-round btn-just-icon"
-                >
-                  <i className="material-icons">search</i>
-                  <div className="ripple-container" />
-                </button>
               </div>
             </form>
           </div>

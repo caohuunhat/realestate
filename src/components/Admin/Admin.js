@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import { Confirm } from 'react-st-modal';
+import { Confirm } from "react-st-modal";
 import getAPI from "../../api/getAPI";
 import checkSeach from "../../constans/testSeach";
 import Account_management from "./Account_management";
@@ -17,6 +17,7 @@ export class Admin extends Component {
       data: [],
       dataPost1: [],
       dataPost2: [],
+      dataFeedback: [],
       keyword: "",
     };
   }
@@ -47,6 +48,14 @@ export class Admin extends Component {
         this.setState({
           dataPost2: res.data.list,
         });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    this.CallFeedbackAPI()
+      .then((res) => {
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -87,8 +96,19 @@ export class Admin extends Component {
     );
   };
 
+  CallFeedbackAPI = async () => {
+    return await getAPI(
+      "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/admin_api/enquiry/list.php",
+      "GET",
+      `${sessionStorage.getItem("token_admin")}`
+    );
+  };
+
   onDelete = async (tenant_id) => {
-    const confirm = await Confirm("Bạn có muốn xóa người dùng này?", "Thông báo");
+    const confirm = await Confirm(
+      "Bạn có muốn xóa người dùng này?",
+      "Thông báo"
+    );
     if (confirm) {
       this.DeleteUser(tenant_id)
         .then((res) => {
@@ -126,7 +146,7 @@ export class Admin extends Component {
       <div class="main-panel">
         <Seach onSeach={this.onSeach} />
 
-        <Route exact path="/">
+        <Route exact path="/adminPage">
           <Account_management
             listUser={data}
             onDelete={this.onDelete}
@@ -134,13 +154,16 @@ export class Admin extends Component {
           />
         </Route>
 
-        <Route path="/edit/:note/:id" component={UpdateProduct}></Route>
+        <Route
+          path="/adminPage/edit/:note/:id"
+          component={UpdateProduct}
+        ></Route>
 
-        <Route path="/post_management">
+        <Route path="/adminPage/post_management">
           <Post_management listPost={dataPost} />
         </Route>
 
-        <Route path="/feedback">
+        <Route path="/adminPage/feedback">
           <Feedback />
         </Route>
       </div>
