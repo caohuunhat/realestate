@@ -1,11 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
-.btn-danger {
+.btn-xoa {
     padding: 12px 41px !important;
+    width: 113px !important;
+    margin: 2px;
 }
 
 .btn-duyet {
     width: 113px !important;
+    padding: 12px 41px !important;
+    margin: 2px;
+}
+
+.btn-chitiet{
+    width: 113px !important;
+    padding: 12px 41px !important;
+    margin: 2px;
+}
+
+.btn-capnhat{
+    width: 113px !important;
+    padding: 12px 41px !important;
+    border: none;
+    border-radius: 7%;
+    margin: 2px;
 }
 
 .nav-link {
@@ -22,4 +40,10 @@
     letter-spacing: 2px;
     font-size: 24px;
     color: #CC5500;
+}
+
+.search-admin{
+    width: 400px;
+    float: right;
+    margin-bottom: 20px;
 }
