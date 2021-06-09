@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 
@@ -12,8 +13,8 @@ class Footer extends Component {
                             <div className="col-lg-3 col-sm-3">
                                 <h4>Thông tin</h4>
                                 <ul className="row">
-                                    <li className="col-lg-12 col-sm-12 col-xs-3"><a href="agents.php">Thành viên</a></li>
-                                    <li className="col-lg-12 col-sm-12 col-xs-3"><a href="contact.php">Liên hệ</a></li>
+                                    <Link to="/about" className="col-lg-12 col-sm-12 col-xs-3">Thành viên</Link>
+                                    <Link to="/contact" className="col-lg-12 col-sm-12 col-xs-3">Liên hệ</Link>
                                 </ul>
                             </div>
                             <div className="col-lg-3 col-sm-3">

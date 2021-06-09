@@ -1,12 +1,14 @@
 import React from 'react';
 import Main_Admin from './components/Admin/Main_Admin';
+import ForgotPass from './components/ForgotPass';
 import Login from './components/Login';
 import LoginAdmin from './components/LoginAdmin';
 import ChangePass from './components/Profile/ChangePass';
 import Register from './components/Register';
-import AboutPage from './pages/AboutPage';
 import AddProductPage from './pages/AddProductPage';
+import AgentPage from './pages/AgentPage';
 import BuyCategoryPage from './pages/BuyCategoryPage';
+import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import ManamentPage from "./pages/ManamentPage";
 import NotFoundPage from './pages/NotFoundPage';
@@ -23,7 +25,7 @@ const routes = [
     {
         path: '/about',
         exact: false,
-        main: () => <AboutPage />
+        main: () => <AgentPage />
     },
     {
         path: '/buy',
@@ -49,6 +51,16 @@ const routes = [
         path: '/profilePage',
         exact: false,
         main: () => <ProfilePage />
+    },
+    {
+        path: '/contact',
+        exact: false,
+        main: () => <ContactPage />
+    },
+    {
+        path: '/forgotPass',
+        exact: false,
+        main: () => <ForgotPass />
     },
     {
         path: '/adminPage',

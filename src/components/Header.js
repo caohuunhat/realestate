@@ -47,6 +47,7 @@ class Header extends Component {
     functionAuthor = () => {
         return sessionStorage.length > 0 ?
             <>
+
                 {sessionStorage.getItem('token_admin') ? <MenuLink label="Admin" to="/adminPage" activeOnlyWhenExact={true} /> : <><MenuLink label="Tài Khoản" to="/profilePage" activeOnlyWhenExact={false} />
                     <MenuLink label="Quản lý tin" to="/manamentPage" activeOnlyWhenExact={true} /> </>}
                 <MenuLink label="Đăng xuất" activeOnlyWhenExact={false} onClick={this.onLogOut} />
@@ -64,25 +65,26 @@ class Header extends Component {
                 <div className="navbar-wrapper">
 
                     <div className="navbar-inverse" role="navigation">
-                        <div className="container">
+                        <div className="container nav-top-logo-and-img">
                             <div className="navbar-header header-image">
-                                <Link to="/"><img src="images/logo.png" alt="Realestate"></img></Link>
+                                <Link to="/"><img src="images/logo-real-estate.png" className="img-logo" alt="Realestate" /></Link>
                             </div>
-
                             {/* Nav Starts */}
-                            <div className="navbar-collapse  collapse">
-                                <ul className="nav navbar-nav navbar-right btn-topp">
-                                    <MenuLink label="Trang chủ" to="/" activeOnlyWhenExact={true} />
-                                    <MenuLink label="About" to="/about" activeOnlyWhenExact={false} />
-                                    {this.functionAuthor()}
-                                </ul>
-                            </div>
-                            <div className="navbar-collapse  collapse">
-                                <ul className="nav navbar-nav navbar-right btn-bott">
-                                    <MenuLink label="Nhà Đất Bán" to="/buy" />
-                                    <MenuLink label="Nhà Đất Thuê" to="/rent" />
-                                    {sessionStorage.getItem("token") ? <MenuLink label="Đăng tin" to="/addproduct" /> : ''}
-                                </ul>
+                            <div>
+                                <div className="navbar-collapse  collapse mg-nav">
+                                    <ul className="nav navbar-nav navbar-right btn-topp">
+                                        <MenuLink label="Trang chủ" to="/" activeOnlyWhenExact={true} />
+                                        <MenuLink label="About" to="/about" activeOnlyWhenExact={false} />
+                                        {this.functionAuthor()}
+                                    </ul>
+                                </div>
+                                <div className="navbar-collapse  collapse">
+                                    <ul className="nav navbar-nav navbar-right btn-bott">
+                                        <MenuLink label="Nhà Đất Bán" to="/buy" />
+                                        <MenuLink label="Nhà Đất Thuê" to="/rent" />
+                                        {sessionStorage.getItem("token") ? <MenuLink label="Đăng tin" to="/addproduct" /> : ''}
+                                    </ul>
+                                </div>
                             </div>
                             {/* Nav Ends */}
                         </div>

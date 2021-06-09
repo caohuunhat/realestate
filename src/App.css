@@ -541,3 +541,38 @@ h2 {
     color: #CC5500;
     border: 1px solid #29675c;
 }
+
+.carousel .slide .legend {
+    background: white !important;
+    color: #CC5500 !important;
+    text-decoration: none !important;
+}
+
+.img-logo {
+    width: 50%;
+    /* height: 100px; */
+}
+
+.nav-top-logo-and-img {
+    display: flex;
+    align-items: center;
+}
+
+.mg-nav {
+    margin-bottom: 20px;
+}
+
+.about-display {
+    height: 100px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-agent {
+    margin-top: 40px;
+}
+
+.img-agent {
+    border-radius: 50%;
+}

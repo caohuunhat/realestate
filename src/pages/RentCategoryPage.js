@@ -11,6 +11,7 @@ class RentCategoryPage extends Component {
         datas: [],
         activePage: 1,
         row_per_page: 3,
+        totalItemsCount: ''
     }
 
     componentDidMount() {
@@ -23,7 +24,9 @@ class RentCategoryPage extends Component {
         })
             .then(res => {
                 this.setState({
-                    datas: res.data.list
+                    datas: res.data.list,
+                    totalItemsCount: res.data.count
+
                 })
             })
     }
@@ -51,9 +54,8 @@ class RentCategoryPage extends Component {
     //     })
     // }
 
-
     render() {
-        const { datas, activePage, row_per_page, datasSearch } = this.state;
+        const { datas, activePage, row_per_page, datasSearch, totalItemsCount } = this.state;
         return (
             <div className="container">
                 <div className="properties-listing spacer">
@@ -80,7 +82,7 @@ class RentCategoryPage extends Component {
                                 {/* properties */}
                                 <Properties
                                     datas={datas}
-                                    // datasSearch={datasSearch}
+                                // datasSearch={datasSearch}
                                 />
                                 {/* properties */}
                             </div>
@@ -88,7 +90,7 @@ class RentCategoryPage extends Component {
                                 <Pagination
                                     activePage={activePage}
                                     itemsCountPerPage={row_per_page}
-                                    totalItemsCount={6}
+                                    totalItemsCount={totalItemsCount}
                                     pageRangeDisplayed={5}
                                     onChange={this.onChangePagination}
                                 />

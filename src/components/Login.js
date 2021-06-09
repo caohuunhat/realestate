@@ -81,7 +81,7 @@ class Login extends Component {
                                     className="btn btn-login"
                                 >Đăng nhập</button>
                                 <div className="forgot-password">
-                                    <a href="#">Quên mật khẩu</a>
+                                    <Link to="/forgotPass">Quên mật khẩu</Link>
                                 </div>
                             </form>
                             <br />

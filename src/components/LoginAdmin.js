@@ -80,16 +80,10 @@ class LoginAdmin extends Component {
                                     type="submit"
                                     className="btn btn-login"
                                 >Đăng nhập</button>
-                                <div className="forgot-password">
-                                    <a href="#">Quên mật khẩu</a>
-                                </div>
                             </form>
                             <br />
-                            <h4>Hoặc tạo tài khoản mới</h4>
-                            <p>Bắt đầu đăng tin ngay trên nền tảng của chúng tôi</p>
-                            <Link to="/register" className="btn btn-default">
-                                Đăng ký
-                        </Link>
+                            <h4>Trang quản lý của Admin</h4>
+                            <p>Vui lòng đăng nhập bằng tài khoản Admin</p>
                         </div>
                     </div>
                 </div>

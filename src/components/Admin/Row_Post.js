@@ -66,8 +66,7 @@ export class Row_Post extends Component {
     );
     if (confirm) {
       await this.confirmPost(this.state.dataPostItem.property_id);
-      // window.location.reload();
-      this.props.history.push("/adminPage");
+      window.location.reload();
     }
   };
 
@@ -127,7 +126,7 @@ export class Row_Post extends Component {
   handleDetail = () => {
     if (this.state.dataPostItem.note === "0") {
       this.callDetailConfirm(this.state.dataPostItem.property_id).then(
-        (res) => {}
+        (res) => { }
       );
     }
   };

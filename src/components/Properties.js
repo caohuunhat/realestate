@@ -59,7 +59,7 @@ class Properties extends Component {
     // }
 
     render() {
-        console.log(this.state.datas);
+        // console.log(this.state.datas);
         // console.log(this.state.datasSearch);
         return (
             <>

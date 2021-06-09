@@ -10,7 +10,7 @@ class BuyCategoryPage extends Component {
         datas: [],
         activePage: 1,
         row_per_page: 3,
-        // datasSearch: []
+        totalItemsCount: '',
     }
 
     componentDidMount() {
@@ -21,8 +21,10 @@ class BuyCategoryPage extends Component {
                 row_per_page: this.state.row_per_page
             }
         }).then(res => {
+            console.log(res);
             this.setState({
                 datas: res.data.list,
+                totalItemsCount: res.data.count
             })
         })
     }
@@ -51,8 +53,8 @@ class BuyCategoryPage extends Component {
     // }
 
     render() {
-        const { datas, currentPage, totalPages, activePage, row_per_page, datasSearch } = this.state;
-        console.log(datasSearch);
+        const { datas, currentPage, totalPages, activePage, row_per_page, datasSearch, totalItemsCount } = this.state;
+        console.log(totalItemsCount);
         return (
             <div className="container">
                 <div className="properties-listing spacer">
@@ -87,7 +89,7 @@ class BuyCategoryPage extends Component {
                                 <Pagination
                                     activePage={activePage}
                                     itemsCountPerPage={row_per_page}
-                                    totalItemsCount={5}
+                                    totalItemsCount={totalItemsCount}
                                     pageRangeDisplayed={5}
                                     onChange={this.onChangePagination}
                                 />

@@ -504,7 +504,7 @@ table {
     padding: 10px 17.5px;
     font-family: din;
     text-transform: uppercase;
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
 
 .navbar-inverse .navbar-nav>li:nth-child(5) a {

@@ -3,34 +3,32 @@ import HotProperties from '../components/HotProperties/HotProperties';
 import HotBuyProperties from '../components/Properties/HotBuyProperties';
 import HotRentProperties from '../components/Properties/HotRentProperties';
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+import { Link } from 'react-router-dom';
 
 class HomePage extends Component {
     render() {
         return (
             <>
-                {/* Banner */}
-                {/* Banner */}
-                <div id="carousel-id" className="carousel slide" data-ride="carousel">
-                    <ol className="carousel-indicators">
-                        <li data-target="#carousel-id" data-slide-to={0} className />
-                        <li data-target="#carousel-id" data-slide-to={1} className />
-                        <li data-target="#carousel-id" data-slide-to={2} className="active" />
-                    </ol>
-                    <div className="carousel-inner">
-                        <div className="item active">
-                            <img alt="Third slide" src="https://1.bp.blogspot.com/-fJOYWF8sRcc/XqPMUl5F0uI/AAAAAAAAipA/FOrgLq4mcqQ23Lp_hA4_QPcjGym-ez4agCLcBGAsYHQ/s1600/Hinh-anh-dep-nhat-the-gioi%2B%25281%2529.jpg" style={{ width: "100%", height: "550px" }} />
-                            <div className="container">
-                                <div className="carousel-caption">
-                                    <h1>Các bài đăng hấp dẫn</h1>
-                                    <p>Hỗ trợ đăng tin và tiềm kiếm tin theo yêu cầu của bạn</p>
-                                    <p><a className="btn btn-lg btn-login" href="#" role="button">Xem chi tiết</a></p>
-                                </div>
-                            </div>
-                        </div>
+                <Carousel
+                    showThumbs={false}
+                    interval={5000}
+                    autoPlay={true}
+                    infiniteLoop={true}
+                    showArrows={false}
+                    showStatus={false}
+                    emulateTouch={true}
+                >
+                    <div>
+                        <img src="https://www.emeraldgrouppublishing.com/sites/default/files/2020-02/ejournal_subject_-_fw_-_property_management_and_built_environment.jpg" />
+                        <Link to="/login" className="legend" style={{ fontSize: "24px" }}>Tham gia ngay với chúng tôi để bắt đầu đăng tin ngay</Link>
                     </div>
-                    <a className="left carousel-control" href="#carousel-id" data-slide="prev"><span className="glyphicon glyphicon-chevron-left" /></a>
-                    <a className="right carousel-control" href="#carousel-id" data-slide="next"><span className="glyphicon glyphicon-chevron-right" /></a>
-                </div>
+                    <div>
+                        <img src="https://www.ajg.com/uk/-/media/images/gallagher/uk/products/insurance/expertise/real-estate-hospitality-and-leisure/real-estate-hero.jpg?h=550&w=1440&hash=1B7E2E4EC0AD1F362D08F10D1D5EB8FE" />
+                        <Link to="/register" className="legend" style={{ fontSize: "24px" }}>Đội ngũ hỗ trợ 24/7 - 0352956129</Link>
+                    </div>
+                </Carousel>
 
                 <div className="container">
                     <div className="properties-listing spacer">
@@ -38,7 +36,6 @@ class HomePage extends Component {
                         <HotBuyProperties />
                         <HotRentProperties />
                     </div>
-
 
                     <div className="spacer">
                         <div className="row">
