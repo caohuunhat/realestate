@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Banner from '../components/Banner';
 
 class ContactPage extends Component {
     render() {
