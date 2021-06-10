@@ -85,7 +85,7 @@ const routes = [
         main: () => <LoginAdmin />
     },
     {
-        path: '/productDetailPage/:id/',
+        path: '/productDetailPage/:id',
         exact: false,
         main: ({ match }) => <ProductDetailPage match={match.params} />
     },
