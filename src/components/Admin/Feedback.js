@@ -1,7 +1,37 @@
 import React, { Component } from "react";
+import Row_Feedback from "./Row_Feedback";
 
 export class Feedback extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      dataFeedback: [],
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.dataFeedback !== state.dataFeedback) {
+      return {
+        dataFeedback: props.dataFeedback,
+      };
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.dataFeedback !== this.state.dataFeedback) {
+      this.setState({
+        dataFeedback: this.state.dataFeedback,
+      });
+    }
+  }
+
   render() {
+    let { dataFeedback } = this.state;
+    let rowFeedBack = dataFeedback.map((item, index) => {
+      return <Row_Feedback key={item.id} item={item} index={index} />;
+    });
+
     return (
       <div className="content">
         <div className="container-fluid">
@@ -12,8 +42,8 @@ export class Feedback extends Component {
                   <h4 className="card-title ">Phản hồi</h4>
                   <p className="card-category">
                     {" "}
-                  Phản hồi của khách hàng về bài đăng
-                </p>
+                    Phản hồi của khách hàng về bài đăng
+                  </p>
                 </div>
                 <div className="card-body">
                   <div className="table-responsive">
@@ -30,47 +60,7 @@ export class Feedback extends Component {
                         </tr>
                       </thead>
                       {/* <tbody>{row}</tbody> */}
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>01</td>
-                          <td>Huy Phan</td>
-                          <td>huy@gmail.com</td>
-                          <td>0123456789</td>
-                          <td>Cần mua nhà</td>
-                          <td>
-                            <button
-                              type="button"
-                              className="btn btn-danger"
-                            >
-                              Xóa
-                            </button>
-                            <button type="button" className="btn btn-detail">
-                              Chi tiết
-                            </button>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>2</td>
-                          <td>02</td>
-                          <td>Huy Phan</td>
-                          <td>huy@gmail.com</td>
-                          <td>0123456789</td>
-                          <td>Cần mua nhà</td>
-                          <td>
-                            <button
-                              type="button"
-                              className="btn btn-danger"
-                            >
-                              Xóa
-                            </button>
-                            <button type="button" className="btn btn-detail">
-                              Chi tiết
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
+                      <tbody>{rowFeedBack}</tbody>
                     </table>
                   </div>
                 </div>

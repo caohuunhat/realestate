@@ -77,11 +77,9 @@ export class Row_Post extends Component {
       if (this.state.dataPostItem.note === 0) {
         await this.onDelete(id);
         window.location.reload();
-        // this.props.history.push("/post_management");
       } else {
         await this.onDeleteapproved(id);
         window.location.reload();
-        // this.props.history.push("/post_management");
       }
     }
   };
@@ -126,9 +124,16 @@ export class Row_Post extends Component {
   handleDetail = () => {
     if (this.state.dataPostItem.note === "0") {
       this.callDetailConfirm(this.state.dataPostItem.property_id).then(
-        (res) => { }
+        (res) => {}
       );
     }
+  };
+
+  goDetail = () => {
+    this.props.history.push(
+      `/productDetailPage/${this.state.dataPostItem.property_id}`
+    );
+    window.location.reload();
   };
 
   render() {
@@ -155,9 +160,14 @@ export class Row_Post extends Component {
         <td>{dataPostItem.ptype_name}</td>
         <td>{dataPostItem.post_time}</td>
         <td>
-          <button type="button" className="btn btn-detail btn-chitiet">
+          <button
+            type="button"
+            className="btn btn-detail btn-chitiet"
+            onClick={this.goDetail}
+          >
             Chi tiết
           </button>
+
           <Link
             to={`edit/${dataPostItem.note}/${dataPostItem.property_id}`}
             className="btn btn-primary btn-capnhat"
