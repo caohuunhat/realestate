@@ -10,7 +10,7 @@ class RentCategoryPage extends Component {
     state = {
         datas: [],
         activePage: 1,
-        row_per_page: 3,
+        row_per_page: 9,
         totalItemsCount: ''
     }
 

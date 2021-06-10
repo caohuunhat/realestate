@@ -1,12 +1,20 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Confirm, Alert } from 'react-st-modal';
+import { Link, withRouter } from 'react-router-dom';
+import { Alert } from 'react-st-modal';
 
 class ForgotPass extends Component {
     state = {
         email: '',
+        pending: null,
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (!prevState.pending) {
+            this.showPending(this.state.pending)
+        }
+    }
+
     onChange = (e) => {
         const value = e.target.value;
         this.setState({
@@ -17,20 +25,32 @@ class ForgotPass extends Component {
     onSubmitEmail = async (e) => {
         e.preventDefault();
         const { email } = this.state;
+
+        this.setState({
+            pending: true,
+        })
         const res = await axios.put('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/tenant_api/forgot_password/input_email.php', {
             email: email,
         })
 
         if (res) {
+            this.setState({
+                pending: false
+            })
             if (res.data.success) {
                 Alert(res.data.success, "Thông báo !")
+                this.props.history.push(`/otpCheck/${email}`)
             } else {
                 Alert(res.data.errors, "Thông báo !")
             }
         }
     }
+
+    showPending = (status) => {
+        return status ? Alert("Đang kiểm tra email...........", "Thông báo !") : '';
+    }
+
     render() {
-        console.log(this.state.email);
         return (
             <>
                 <div className="container" style={{ padding: "30px 0px" }}>
@@ -73,4 +93,4 @@ class ForgotPass extends Component {
     }
 }
 
-export default ForgotPass;
+export default withRouter(ForgotPass);

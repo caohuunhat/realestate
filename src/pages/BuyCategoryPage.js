@@ -9,7 +9,7 @@ class BuyCategoryPage extends Component {
     state = {
         datas: [],
         activePage: 1,
-        row_per_page: 3,
+        row_per_page: 9,
         totalItemsCount: '',
     }
 
@@ -21,7 +21,6 @@ class BuyCategoryPage extends Component {
                 row_per_page: this.state.row_per_page
             }
         }).then(res => {
-            console.log(res);
             this.setState({
                 datas: res.data.list,
                 totalItemsCount: res.data.count
@@ -53,8 +52,7 @@ class BuyCategoryPage extends Component {
     // }
 
     render() {
-        const { datas, currentPage, totalPages, activePage, row_per_page, datasSearch, totalItemsCount } = this.state;
-        console.log(totalItemsCount);
+        const { datas, activePage, row_per_page, datasSearch, totalItemsCount } = this.state;
         return (
             <div className="container">
                 <div className="properties-listing spacer">

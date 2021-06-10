@@ -48,7 +48,6 @@ class Register extends Component {
     }
 
     render() {
-        console.log(this.state);
         const {
             txtFullName,
             selSex,
@@ -64,8 +63,6 @@ class Register extends Component {
         }
         return (
             <>
-                {/* Banner */}
-                {/*banner */}
                 <div className="container" style={{ padding: "30px 0px" }}>
                     <div className="row">
                         <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">

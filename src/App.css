@@ -1,5 +1,6 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap');
 
 .white {
     color: white;
@@ -396,8 +397,7 @@ th {
 }
 
 .note-buy h3 {
-    font-size: 24px;
-    font-weight: lighter;
+    font-size: 25px;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -508,7 +508,8 @@ h2 {
 }
 
 .h2-black {
-    color: #131313;
+    color: #29675c;
+    font-family: 'Merriweather', serif;
 }
 
 .btn-Search {
@@ -550,7 +551,6 @@ h2 {
 
 .img-logo {
     width: 50%;
-    /* height: 100px; */
 }
 
 .nav-top-logo-and-img {
@@ -563,10 +563,20 @@ h2 {
 }
 
 .about-display {
-    height: 100px !important;
+    width: auto;
+    height: 210px !important;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    flex-direction: column;
+    letter-spacing: 2px;
+}
+
+.about-display h4 {
+    font-family: 'Merriweather', serif;
+}
+
+.about-display span {
+    line-height:2;
 }
 
 .about-agent {
@@ -575,4 +585,20 @@ h2 {
 
 .img-agent {
     border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.about-bottom {
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+.about-us-css p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-style: oblique;
+    line-height: 2;
+    letter-spacing: 1px;
+    color: #131313;
 }

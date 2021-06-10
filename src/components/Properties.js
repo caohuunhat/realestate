@@ -36,7 +36,6 @@ class Properties extends Component {
     showDatasPost = () => {
         const { datasSearch, datas } = this.state;
         if (datas.length > 0 && !datasSearch) {
-            console.log(datas);
             return this.showPost(datas);
         }
         return this.showPost(datasSearch);

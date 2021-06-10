@@ -64,7 +64,8 @@ class ChangePass extends Component {
                             type="password"
                             name="newPassWord"
                             onChange={this.onChange}
-
+                            pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                            title="Mật khẩu (chữ hoa, chữ thường, số, ký tự đặc biệt, và tối thiểu 8 ký tự)"
                             className="form-control"
                             placeholder="Mật khẩu mới"
                         />

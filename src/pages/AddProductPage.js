@@ -398,7 +398,7 @@ class AddProductPage extends Component {
                                             value={street}
                                             onChange={this.onChange}
                                             placeholder="Nhập vào đường"
-                                            maxlength="50"
+                                            maxlength="30"
                                         />
                                     </div>
                                 </div>

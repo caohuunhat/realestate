@@ -1,6 +1,8 @@
 import React from 'react';
 import Main_Admin from './components/Admin/Main_Admin';
-import ForgotPass from './components/ForgotPass';
+import ForgotPass from './components/ForgotPassword/ForgotPass';
+import NewPass from './components/ForgotPassword/NewPass';
+import OtpCheck from './components/ForgotPassword/OtpCheck';
 import Login from './components/Login';
 import LoginAdmin from './components/LoginAdmin';
 import ChangePass from './components/Profile/ChangePass';
@@ -61,6 +63,16 @@ const routes = [
         path: '/forgotPass',
         exact: false,
         main: () => <ForgotPass />
+    },
+    {
+        path: '/otpCheck/:email',
+        exact: false,
+        main: () => <OtpCheck />
+    },
+    {
+        path: '/newPass/:email',
+        exact: false,
+        main: ({match}) => <NewPass match={match.params}/>
     },
     {
         path: '/adminPage',

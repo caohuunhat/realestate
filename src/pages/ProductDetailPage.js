@@ -95,10 +95,14 @@ class ProductDetailPage extends Component {
 
     currencyChange = () => {
         const { priceOld, land_area, ptypeName } = this.state.datas;
-        const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(parseFloat(priceOld / land_area))
+
+        const realPrice = Math.ceil(parseFloat(priceOld / land_area)/1000000)
+
+        // const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(realPrice)
         const newPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(priceOld)
+
         if (ptypeName === 'Cần bán') {
-            return `${currency}/m²`
+            return `${realPrice} triệu/m²`
         } else {
             return `${newPrice}/tháng`
         }
