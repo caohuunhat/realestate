@@ -1,4 +1,3 @@
-import React from 'react';
 import Main_Admin from './components/Admin/Main_Admin';
 import ForgotPass from './components/ForgotPassword/ForgotPass';
 import NewPass from './components/ForgotPassword/NewPass';
