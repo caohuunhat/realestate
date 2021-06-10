@@ -55,7 +55,9 @@ export class Admin extends Component {
 
     this.CallFeedbackAPI()
       .then((res) => {
-        console.log(res);
+        this.setState({
+          dataFeedback: res.data.list,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -127,10 +129,18 @@ export class Admin extends Component {
   };
 
   render() {
-    let { data, dataPost1, dataPost2, keyword } = this.state;
+    let { data, dataPost1, dataPost2, keyword, dataFeedback } = this.state;
     let dataPost = [...dataPost1, ...dataPost2];
-    console.log(dataPost2);
-    data = checkSeach(data, keyword, "full_name", "email", "phone_no");
+    console.log(data);
+    data = checkSeach(
+      data,
+      keyword,
+      "full_name",
+      "email",
+      "phone_no",
+      "tenant_id"
+    );
+
     dataPost = checkSeach(
       dataPost,
       keyword,
@@ -139,7 +149,18 @@ export class Admin extends Component {
       "email",
       "estimated_price",
       "ptype_name",
-      "post_time"
+      "post_time",
+      "property_id"
+    );
+
+    dataFeedback = checkSeach(
+      dataFeedback,
+      keyword,
+      "property_id",
+      "full_name",
+      "email",
+      "phone_no",
+      "description"
     );
 
     return (
@@ -164,7 +185,7 @@ export class Admin extends Component {
         </Route>
 
         <Route path="/adminPage/feedback">
-          <Feedback />
+          <Feedback dataFeedback={dataFeedback} />
         </Route>
       </div>
     );
