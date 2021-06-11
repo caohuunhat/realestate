@@ -602,3 +602,7 @@ h2 {
     letter-spacing: 1px;
     color: #131313;
 }
+
+.clearfix{
+    visibility: hidden;
+}

@@ -11,7 +11,11 @@ class RentCategoryPage extends Component {
         datas: [],
         activePage: 1,
         row_per_page: 9,
-        totalItemsCount: ''
+        totalItemsCount: '',
+
+        typeSearch: 'rent',
+
+        datasSearch: []
     }
 
     componentDidMount() {
@@ -48,20 +52,20 @@ class RentCategoryPage extends Component {
         })
     }
 
-    // datasSearch = (datas) => {
-    //     this.setState({
-    //         datasSearch: datas
-    //     })
-    // }
+    datasSearch = (datas) => {
+        this.setState({
+            datasSearch: datas
+        })
+    }
 
     render() {
-        const { datas, activePage, row_per_page, datasSearch, totalItemsCount } = this.state;
+        const { datas, activePage, row_per_page, datasSearch, totalItemsCount, typeSearch } = this.state;
         return (
             <div className="container">
                 <div className="properties-listing spacer">
                     <div className="row">
                         <div className="col-lg-3 col-sm-4 ">
-                            <Search />
+                            <Search datasSearch={this.datasSearch} typeSearch={typeSearch} />
                             <div className="hot-properties hidden-xs">
                                 <h4>Gợi ý</h4>
                                 {/* Bài đăng nổi bật */}
@@ -82,7 +86,7 @@ class RentCategoryPage extends Component {
                                 {/* properties */}
                                 <Properties
                                     datas={datas}
-                                // datasSearch={datasSearch}
+                                    datasSearch={datasSearch}
                                 />
                                 {/* properties */}
                             </div>

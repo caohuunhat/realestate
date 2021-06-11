@@ -24,10 +24,10 @@ class Footer extends Component {
                             </div>
                             <div className="col-lg-3 col-sm-3">
                                 <h4>Theo dõi chúng tôi</h4>
-                                <a href="#"><img src="images/facebook.png" alt="facebook" /></a>
-                                <a href="#"><img src="images/twitter.png" alt="twitter" /></a>
-                                <a href="#"><img src="images/linkedin.png" alt="linkedin" /></a>
-                                <a href="#"><img src="images/instagram.png" alt="instagram" /></a>
+                                <a href="#"><img src="/images/facebook.png" alt="facebook" /></a>
+                                <a href="#"><img src="/images/twitter.png" alt="twitter" /></a>
+                                <a href="#"><img src="/images/linkedin.png" alt="linkedin" /></a>
+                                <a href="#"><img src="/images/instagram.png" alt="instagram" /></a>
                             </div>
                             <div className="col-lg-3 col-sm-3">
                                 <h4>Liên hệ với chúng tôi</h4>

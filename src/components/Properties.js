@@ -3,42 +3,25 @@ import PropertyItems from './PropertyItems';
 
 class Properties extends Component {
     state = {
-        datas: this.props.datas,
-        datasSearch: this.props.datasSearch
-    }
-
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.datas !== prevState.datas) {
-            return {
-                datas: nextProps.datas,
-            }
-        }
-        // if (nextProps.datasSearch !== prevState.datasSearch) {
-        //     return {
-        //         datasSearch: nextProps.datasSearch,
-        //     }
-        // }
+        datas: [],
+        datasSearch: []
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.state.datas !== prevState.datas) {
+        if (this.props.datas !== prevProps.datas || this.props.datasSearch !== prevProps.datasSearch) {
             this.setState({
-                datas: this.state.datas,
+                datas: this.props.datas,
+                datasSearch: this.props.datasSearch
             })
         }
-        // if (this.state.datasSearch !== prevState.datasSearch) {
-        //     this.setState({
-        //         datasSearch: this.state.datasSearch,
-        //     })
-        // }
     }
 
     showDatasPost = () => {
         const { datasSearch, datas } = this.state;
-        if (datas.length > 0 && !datasSearch) {
-            return this.showPost(datas);
+        if (datasSearch.length > 0) {
+            return this.showPost(datasSearch);
         }
-        return this.showPost(datasSearch);
+        return this.showPost(datas);
     }
 
     showPost = (datas) => {
@@ -48,21 +31,9 @@ class Properties extends Component {
         return DB;
     }
 
-
-    // showPost = () => {
-    //     const { datas } = this.state;
-    //     const DB = datas?.map(data => {
-    //         return <PropertyItems data={data} />
-    //     })
-    //     return DB;
-    // }
-
     render() {
-        // console.log(this.state.datas);
-        // console.log(this.state.datasSearch);
         return (
             <>
-                {/* {this.showPost()} */}
                 {this.showDatasPost()}
             </>
         )

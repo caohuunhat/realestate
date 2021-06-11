@@ -20,7 +20,7 @@ class AgentPage extends Component {
                                         <h4>Cao Hữu Nhật</h4>
                                         <br />
                                         <a href="mailto:caohuunhat79@gmail.com.com"><span className="glyphicon glyphicon-envelope" /> caohuunhat79@gmail.com</a>
-                                        <a href="mailto:caohuunhat79@gmail.com.com"><span className="glyphicon glyphicon-earphone" /> (84) 035 295 6126</a>
+                                        <a href="#"><span className="glyphicon glyphicon-earphone" /> (84) 035 295 6126</a>
                                     </div>
                                 </div>
                             </div>
@@ -59,10 +59,10 @@ class AgentPage extends Component {
                                 }}><img src="images/nhat_agent.jpg" className="img-responsive img-agent" alt="agent name" /></a></div>
                                 <div className="col-lg-7 col-sm-7">
                                     <div className="about-display">
-                                        <h4>Cao Hữu Nhật</h4>
+                                        <h4>Phan Đức Huy</h4>
                                         <br />
-                                        <a href="mailto:caohuunhat79@gmail.com.com"><span className="glyphicon glyphicon-envelope" /> caohuunhat79@gmail.com</a>
-                                        <a href="mailto:caohuunhat79@gmail.com.com"><span className="glyphicon glyphicon-earphone" /> (84) 035 295 6126</a>
+                                        <a href="mailto:phanduchuy007@gmail.com"><span className="glyphicon glyphicon-envelope" /> phanduchuy007@gmail.com</a>
+                                        <a href="#"><span className="glyphicon glyphicon-earphone" /> (84) 034 334 1370</a>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@ class AgentPage extends Component {
                                 }}><img src="images/nhat_agent.jpg" className="img-responsive img-agent" alt="agent name" /></a></div>
                                 <div className="col-lg-7 col-sm-7">
                                     <div className="about-display">
-                                        <h4>Cao Hữu Nhật</h4>
+                                        <h4>Nguyễn Minh Ngọc</h4>
                                         <br />
                                         <a href="mailto:caohuunhat79@gmail.com.com"><span className="glyphicon glyphicon-envelope" /> caohuunhat79@gmail.com</a>
                                         <a href="mailto:caohuunhat79@gmail.com.com"><span className="glyphicon glyphicon-earphone" /> (84) 035 295 6126</a>

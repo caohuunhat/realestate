@@ -65,7 +65,7 @@ class ProductDetailPage extends Component {
         const { id } = this.state;
         if (prevProps.match.id !== this.state.id) {
             this.setState({ id: this.props.match.id });
-            axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/details_rs.php?id=', {
+            axios.get('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/details_rs.php', {
                 params: {
                     id: id
                 }
@@ -96,15 +96,14 @@ class ProductDetailPage extends Component {
     currencyChange = () => {
         const { priceOld, land_area, ptypeName } = this.state.datas;
 
-        const realPrice = Math.ceil(parseFloat(priceOld / land_area)/1000000)
+        const sellPrice = Math.ceil(parseFloat(priceOld / land_area) / 1000000)
+        const rentPrice = Math.ceil(parseFloat(priceOld) / 1000000)
 
-        // const currency = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(realPrice)
-        const newPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(priceOld)
-
+        // const newPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(priceOld)
         if (ptypeName === 'Cần bán') {
-            return `${realPrice} triệu/m²`
+            return `${sellPrice} triệu/m²`
         } else {
-            return `${newPrice}/tháng`
+            return `${rentPrice} triệu/tháng`
         }
     }
 
@@ -224,10 +223,6 @@ class ProductDetailPage extends Component {
                                                 <HotProperties />
                                                 {/* Bài đăng nổi bật */}
                                             </div>
-                                            {/* <div className="advertisement">
-                                                <h4>Advertisements</h4>
-                                                <img src="/public/images/anh_user.png" className="img-responsive" />
-                                            </div> */}
                                         </div>
                                     </div>
                                 </div>

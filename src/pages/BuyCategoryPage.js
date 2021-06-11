@@ -11,6 +11,10 @@ class BuyCategoryPage extends Component {
         activePage: 1,
         row_per_page: 9,
         totalItemsCount: '',
+
+        typeSearch: 'sell',
+
+        datasSearch: []
     }
 
     componentDidMount() {
@@ -45,21 +49,21 @@ class BuyCategoryPage extends Component {
         })
     }
 
-    // datasSearch = (datas) => {
-    //     this.setState({
-    //         datasSearch: datas
-    //     })
-    // }
+    datasSearch = (datas) => {
+        this.setState({
+            datasSearch: datas
+        })
+    }
 
     render() {
-        const { datas, activePage, row_per_page, datasSearch, totalItemsCount } = this.state;
+        const { datas, activePage, row_per_page, datasSearch, totalItemsCount, typeSearch } = this.state;
         return (
             <div className="container">
                 <div className="properties-listing spacer">
                     <div className="row">
                         <div className="col-lg-3 col-sm-4 ">
                             {/* Search */}
-                            <Search datasSearch={this.datasSearch} />
+                            <Search datasSearch={this.datasSearch} typeSearch={typeSearch} />
                             {/* Search */}
                             <div className="hot-properties">
                                 <h4>Gợi ý</h4>
@@ -75,7 +79,8 @@ class BuyCategoryPage extends Component {
                                         <option>Lọc</option>
                                         <option>Price: Low to High</option>
                                         <option>Price: High to Low</option>
-                                    </select></div>
+                                    </select>
+                                </div>
                             </div>
                             <div className="row">
                                 {/* properties */}

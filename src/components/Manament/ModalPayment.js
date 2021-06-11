@@ -35,7 +35,7 @@ class ModalPayment extends Component {
                         name: res.data.name,
                         bank_number: res.data.bank_number,
                         last_id: res.data.property_id,
-                        price: res.data.price
+                        price: res.data.price_root
                     }
                 })
             })
@@ -47,7 +47,7 @@ class ModalPayment extends Component {
         const { type } = this.state;
 
         const checkType = type === 'Cần bán' ? "NB" : "NT";
-        // const currency = new Intl.NumberFormat().format(parseInt(modalDatas.price))
+        const formatPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Math.ceil(price / 1000)*1000)
 
         return <div className="content-popup">
             <h4 className="notifi">Thông báo</h4>
@@ -56,9 +56,10 @@ class ModalPayment extends Component {
             <p><span className="accent">Ngân Hàng: </span>{bank_name}</p>
             <p><span className="accent">Chủ tài khoản: </span>{name}</p>
             <p><span className="accent">Số tài khoản: </span>{bank_number}</p>
-            <p><span className="accent">Số tiền: </span>{price} vnd</p>
+            <p><span className="accent">Số tiền: </span>{formatPrice} (vnd)</p>
             <p><span className="accent">Nội dung (lưu ý *): </span>{`${checkType} ${last_id}`}</p>
-            <span className="accent-mini">* Lưu ý: quý khách vui lòng chuyển tiền theo đúng thông tin và (nội dung) như trên!</span>
+            <span className="accent-mini">* Lưu ý: quý khách vui lòng chuyển tiền theo đúng thông tin và (nội dung) như trên !</span>
+            <span className="accent-mini">* Lưu ý: bài đăng sẽ tự động xóa nếu không thanh toán trong vòng 3 ngày !</span>
             <span className="accent-mini">* Nếu có bất kỳ sai sót nào vui lòng liên hệ <span className="phone-number">0352956129</span> để được hỗ trợ</span>
         </div>
     }

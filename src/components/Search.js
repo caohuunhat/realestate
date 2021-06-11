@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as API from './../constans/getAPI';
 import axios from 'axios';
+import { Alert } from 'react-st-modal';
+
 class Search extends Component {
     state = {
         price: null,
@@ -10,6 +12,8 @@ class Search extends Component {
         price_end: null,
         area_start: null,
         area_end: null,
+
+        area: '',
 
         city: [],
         district: [],
@@ -81,69 +85,126 @@ class Search extends Component {
         const bilion = '000000000'
         const value = e.target.value;
 
-        switch (value) {
-            case "1":
-                this.setState({
-                    price_start: `${5}${milion}`,
-                    price_end: `${8}${milion}`
-                })
-                break;
-            case "2":
-                this.setState({
-                    price_start: `${8}${milion}`,
-                    price_end: `${1}${bilion}`
-                })
-                break;
-            case "3":
-                this.setState({
-                    price_start: `${1}${bilion}`,
-                    price_end: `${2}${bilion}`
-                })
-                break;
-            case "4":
-                this.setState({
-                    price_start: `${2}${bilion}`,
-                    price_end: `${3}${bilion}`
-                })
-                break;
-            case "5":
-                this.setState({
-                    price_start: `${3}${bilion}`,
-                    price_end: `${5}${bilion}`
-                })
-                break;
-            case "6":
-                this.setState({
-                    price_start: `${5}${bilion}`,
-                    price_end: `${7}${bilion}`
-                })
-                break;
-            case "7":
-                this.setState({
-                    price_start: `${7}${bilion}`,
-                    price_end: `${10}${bilion}`
-                })
-                break;
-            case "8":
-                this.setState({
-                    price_start: `${10}${bilion}`,
-                    price_end: `${20}${bilion}`
-                })
-                break;
-            case "9":
-                this.setState({
-                    price_start: `${20}${bilion}`,
-                    price_end: `${30}${bilion}`
-                })
-                break;
-            case "10":
-                this.setState({
-                    price_start: `${30}${bilion}`,
-                    price_end: ``
-                })
-                break;
-            default:
-                break;
+        const { typeSearch } = this.props;
+
+        if (typeSearch === 'sell') {
+            switch (value) {
+                case "1":
+                    this.setState({
+                        price_start: `${5}${milion}`,
+                        price_end: `${8}${milion}`
+                    })
+                    break;
+                case "2":
+                    this.setState({
+                        price_start: `${8}${milion}`,
+                        price_end: `${1}${bilion}`
+                    })
+                    break;
+                case "3":
+                    this.setState({
+                        price_start: `${1}${bilion}`,
+                        price_end: `${2}${bilion}`
+                    })
+                    break;
+                case "4":
+                    this.setState({
+                        price_start: `${2}${bilion}`,
+                        price_end: `${3}${bilion}`
+                    })
+                    break;
+                case "5":
+                    this.setState({
+                        price_start: `${3}${bilion}`,
+                        price_end: `${5}${bilion}`
+                    })
+                    break;
+                case "6":
+                    this.setState({
+                        price_start: `${5}${bilion}`,
+                        price_end: `${7}${bilion}`
+                    })
+                    break;
+                case "7":
+                    this.setState({
+                        price_start: `${7}${bilion}`,
+                        price_end: `${10}${bilion}`
+                    })
+                    break;
+                case "8":
+                    this.setState({
+                        price_start: `${10}${bilion}`,
+                        price_end: `${20}${bilion}`
+                    })
+                    break;
+                case "9":
+                    this.setState({
+                        price_start: `${20}${bilion}`,
+                        price_end: `${30}${bilion}`
+                    })
+                    break;
+                case "10":
+                    this.setState({
+                        price_start: `${30}${bilion}`,
+                        price_end: ``
+                    })
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (value) {
+                case "1":
+                    this.setState({
+                        price_start: ``,
+                        price_end: `${1}${milion}`
+                    })
+                    break;
+                case "2":
+                    this.setState({
+                        price_start: `${1}${milion}`,
+                        price_end: `${3}${milion}`
+                    })
+                    break;
+                case "3":
+                    this.setState({
+                        price_start: `${3}${milion}`,
+                        price_end: `${5}${milion}`
+                    })
+                    break;
+                case "4":
+                    this.setState({
+                        price_start: `${5}${milion}`,
+                        price_end: `${10}${milion}`
+                    })
+                    break;
+                case "5":
+                    this.setState({
+                        price_start: `${10}${milion}`,
+                        price_end: `${40}${milion}`
+                    })
+                    break;
+                case "6":
+                    this.setState({
+                        price_start: `${40}${milion}`,
+                        price_end: `${70}${milion}`
+                    })
+                    break;
+                case "7":
+                    this.setState({
+                        price_start: `${70}${milion}`,
+                        price_end: `${100}${milion}`
+                    })
+                    break;
+                case "8":
+                    this.setState({
+                        price_start: `${100}${milion}`,
+                        price_end: ``
+                    })
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -225,13 +286,16 @@ class Search extends Component {
 
     onSubmitSearchForm = (e) => {
         const { type, caption, city_id, ward_id, district_id, price_start, price_end, area_start, area_end } = this.state;
+        const { typeSearch } = this.props;
         e.preventDefault();
+
+        const url = typeSearch === "sell" ? "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/search/search_sell.php" : "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/search/search_rent.php"
         axios({
             method: 'post',
-            url: "http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/search/search_sell.php",
+            url: url,
             params: {
                 page: this.state.currentPage,
-                row_per_page: '2'
+                row_per_page: '9'
             },
             data: {
                 chouse_id: type,
@@ -246,15 +310,20 @@ class Search extends Component {
             }
         })
             .then(res => {
+                console.log(res);
+                if (res.data.count === 0) {
+                    Alert("Không tìm thấy sản phẩm !", "Thông báo !")
+                }
                 this.props.datasSearch(res.data.list)
             })
     }
 
     render() {
-
-        const { district_id, city_id, ward_id, price, caption, datasSearch } = this.state;
+        // console.log(this.state.datasSearch);
+        const { district_id, city_id, ward_id, price, caption, area } = this.state;
+        console.log(price, ' ', area);
         return (
-            <form onSubmit={this.onSubmitSearchForm}>
+            <form onSubmit={this.onSubmitSearchForm} >
                 <div className="search-form"><h4>Tìm kiếm</h4>
                     <input
                         type="text"
@@ -274,16 +343,29 @@ class Search extends Component {
                                 className="form-control"
                             >
                                 <option>Giá</option>
-                                <option value={1}>500 - 800 triệu</option>
-                                <option value={2}>800 triệu - 1 tỷ</option>
-                                <option value={3}>1 - 2 tỷ</option>
-                                <option value={4}>2 - 3 tỷ</option>
-                                <option values={5}>3 - 5 tỷ</option>
-                                <option value={6}>5 - 7 tỷ</option>
-                                <option value={7}>7 - 10 tỷ</option>
-                                <option value={8}>10 - 20 tỷ</option>
-                                <option value={9}>20 - 30 tỷ</option>
-                                <option value={10}>trên 30 tỷ</option>
+                                {this.props.typeSearch === 'sell' ?
+                                    <>
+                                        <option value={1}>500 - 800 triệu</option>
+                                        <option value={2}>800 triệu - 1 tỷ</option>
+                                        <option value={3}>1 - 2 tỷ</option>
+                                        <option value={4}>2 - 3 tỷ</option>
+                                        <option values={5}>3 - 5 tỷ</option>
+                                        <option value={6}>5 - 7 tỷ</option>
+                                        <option value={7}>7 - 10 tỷ</option>
+                                        <option value={8}>10 - 20 tỷ</option>
+                                        <option value={9}>20 - 30 tỷ</option>
+                                        <option value={10}>Trên 30 tỷ</option>
+                                    </> : <>
+                                        <option value={1}>Dưới 1 triệu</option>
+                                        <option value={2}>1 - 3 triệu</option>
+                                        <option value={3}>3 - 5 triệu</option>
+                                        <option value={4}>5 - 10 triệu</option>
+                                        <option values={5}>10 - 40 triệu</option>
+                                        <option value={6}>40 - 70 triệu</option>
+                                        <option value={7}>70 - 100 triệu</option>
+                                        <option value={8}>Trên 100 triệu</option>
+                                    </>
+                                }
                             </select>
                         </div>
                         <div className="col-lg-6">
@@ -327,7 +409,7 @@ class Search extends Component {
                                 onChange={this.onChange}
                                 className="form-control"
                             >
-                                <option>Tỉnh / Thành phố</option>
+                                <option value="">Tỉnh / Thành phố</option>
                                 {this.newCity()}
                             </select>
                         </div>
@@ -340,7 +422,7 @@ class Search extends Component {
                                 onChange={this.onChange}
                                 className="form-control"
                             >
-                                <option>Quận / Huyện</option>
+                                <option value="">Quận / Huyện</option>
                                 {this.newDistrict()}
                             </select>
                         </div>
@@ -353,15 +435,29 @@ class Search extends Component {
                                 value={ward_id}
                                 onChange={this.onChange}
                             >
-                                <option>Phường / Thị Xã</option>
+                                <option value="">Phường / Thị Xã</option>
                                 {this.newWard()}
                             </select>
                         </div>
                     </div>
+
                     <button
                         type="submit"
                         className="btn btn-Search"
                     >Tìm kiếm</button>
+
+                    {/* <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <button
+                                type="button"
+                                className="btn btn-Search"
+                                onClick={this.onDelete}
+                            >Xóa</button>
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
+                        </div>
+                    </div> */}
                 </div>
             </form>
         )

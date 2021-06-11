@@ -22,7 +22,7 @@ class FeedBack extends Component {
     onSubmitFeedBack = async (e) => {
         e.preventDefault();
         const { property_id, full_name, email, phone_no, description } = this.state
-        const confirm = await Confirm('Gửi phản hồi', 'Thông báo')
+        const confirm = await Confirm('Gửi phản hồi ?', 'Thông báo')
         if (confirm) {
             callAPI('http://localhost/BatDongSanTest/House-Rental-System-main/renthouse/api/data-index/enquiry.php', 'POST', {
                 property_id: property_id,
@@ -34,7 +34,7 @@ class FeedBack extends Component {
                 .then(res => res.data)
                 .then(async res => {
                     if (res.success) {
-                        await Alert(res.success)
+                        await Alert(res.success, "Thông báo !")
                         this.setState({
                             full_name: '',
                             email: '',
@@ -42,7 +42,7 @@ class FeedBack extends Component {
                             description: '',
                         })
                     } else {
-                        Alert(res.errors)
+                        Alert(res.errors, "Thông báo !")
                     }
                 })
         }
@@ -59,7 +59,7 @@ class FeedBack extends Component {
                         name="full_name"
                         value={full_name}
                         onChange={this.onChange}
-                        maxLength={50}
+                        maxLength={40}
                         required
                         className="form-control"
                         placeholder="Họ tên"
@@ -73,7 +73,7 @@ class FeedBack extends Component {
                         placeholder="Email"
                     />
                     <input
-                        type="number"
+                        type="text"
                         required
                         name="phone_no"
                         value={phone_no}
@@ -81,7 +81,6 @@ class FeedBack extends Component {
                         className="form-control"
                         placeholder="Số điện thoại"
                         pattern="\d*"
-                        maxlength="10"
                         maxLength={10}
                         title="Vui lòng nhập đúng định dạng số điện thoại"
                     />

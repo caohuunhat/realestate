@@ -67,7 +67,7 @@ class Header extends Component {
                     <div className="navbar-inverse" role="navigation">
                         <div className="container nav-top-logo-and-img">
                             <div className="navbar-header header-image">
-                                <Link to="/"><img src="images/logo-real-estate.png" className="img-logo" alt="Realestate" /></Link>
+                                <Link to="/"><img src="/images/logo-real-estate.png" className="img-logo"/></Link>
                             </div>
                             {/* Nav Starts */}
                             <div>
